@@ -478,8 +478,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _crouchMultiplier: 0.5
-  _speed: 750
+  _walkSpeed: 750
+  _crouchSpeed: 300
   _sensitivity: 20
+  _rangeInteraction: 3
+  _actionAsset: {fileID: -944628639613478452, guid: c2c6205f0e37e81419ebc7e0cdc96b50, type: 3}
 --- !u!136 &1932127554338752270
 CapsuleCollider:
   m_ObjectHideFlags: 0

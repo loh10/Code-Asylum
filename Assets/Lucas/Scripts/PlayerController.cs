@@ -11,30 +11,36 @@ public class PlayerController : MonoBehaviour
     
     private Transform _transform;
     private Transform _camera;
+    
     private Rigidbody _rb;
     private CapsuleCollider _capsuleCollider;
-    private PlayerInput _playerInput;
+    
     private bool _freezeInput;
+    private bool _isCrouched;
+    
+    private GameObject _itemHolder;
     
     [Range(0f, 1f)][SerializeField] private float _crouchMultiplier = 0.5f;
-    [SerializeField] private float _speed = 750f;
+    [SerializeField] private float _walkSpeed = 750f;
+    [SerializeField] private float _crouchSpeed = 300f;
     [SerializeField] private float _sensitivity = 20f;
+    [SerializeField] private float _rangeInteraction = 3f;
+    [SerializeField] private InputActionAsset _actionAsset;
 
     private void Start()
     {
-        Cursor.visible = false;
         _transform = transform;
         _camera = Camera.main.transform;
         _rb = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
-        _playerInput = GetComponentInChildren<PlayerInput>();
     }
+    
     private void Update()
     {
         if (_freezeInput) return;
         
         RotateCamera();
-        Move();
+        Movement();
     }
 
     public void GetInputPlayer(InputAction.CallbackContext ctx)
@@ -57,6 +63,7 @@ public class PlayerController : MonoBehaviour
             _capsuleCollider.height *= _crouchMultiplier;
             _capsuleCollider.center -= new Vector3(0, 1 - _crouchMultiplier, 0);
             _camera.position -= new Vector3(0, 1 - _crouchMultiplier, 0);
+            _isCrouched = true;
         }
 
         else if (ctx.canceled)
@@ -64,7 +71,21 @@ public class PlayerController : MonoBehaviour
             _capsuleCollider.height /= _crouchMultiplier;
             _capsuleCollider.center += new Vector3(0, 1 - _crouchMultiplier, 0);
             _camera.position += new Vector3(0, 1 - _crouchMultiplier, 0);
+            _isCrouched = false;
         }
+    }
+    
+    public void Interact(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.canceled) return;
+
+        if (!Physics.Raycast(_camera.position, _camera.forward, 
+            out RaycastHit hit, _rangeInteraction, 1 << LayerMask.NameToLayer("Interactable"))) return;
+
+        // Lock locker = hit.collider.GetComponent<Lock>();
+        // if (locker == null) return;
+        //
+        // locker.Interact();
     }
     
     private void RotateCamera()
@@ -77,12 +98,13 @@ public class PlayerController : MonoBehaviour
         _camera.localEulerAngles = new Vector3(_rotation.y, 0, 0);
     }
     
-    private void Move()
+    private void Movement()
     {
         if (_rb == null || _inputDirection == Vector2.zero) return;
-
-        float curSpeedX = _speed * _inputDirection.y * Time.deltaTime;
-        float curSpeedY = _speed * _inputDirection.x * Time.deltaTime;
+        
+        float speed = _isCrouched ? _crouchSpeed : _walkSpeed;
+        float curSpeedX = speed * _inputDirection.y * Time.deltaTime;
+        float curSpeedY = speed * _inputDirection.x * Time.deltaTime;
 
         _moveDirection = _transform.forward * curSpeedX + _transform.right * curSpeedY;
 
@@ -98,7 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         _freezeInput = value;
         
-        InputActionMap map = _playerInput.actions.actionMaps[indexActionMap];
+        InputActionMap map = _actionAsset.actionMaps[indexActionMap];
         if (value)
         {
             map.Disable();
@@ -108,11 +130,18 @@ public class PlayerController : MonoBehaviour
             map.Enable();
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer != LayerMask.NameToLayer("AI")) return;
+        
+        //Dead
+    }
     
+
     #region Get and Set
     public bool GetFreezeInput() => _freezeInput;
-    public float GetSpeed() => _speed;
-    public void SetSpeed(float value) => _speed = value;
+    public float GetSpeed() => _walkSpeed;
+    public void SetSpeed(float value) => _walkSpeed = value;
     public void SetSensitivity(float value) => _sensitivity = value;
     #endregion
 }

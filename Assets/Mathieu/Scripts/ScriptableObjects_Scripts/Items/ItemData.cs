@@ -19,4 +19,7 @@ public class ItemData : ScriptableObject
     [Header("Sound & Effects")]
     public AudioClip useSound; // Sound effect when used
     public ParticleSystem useEffect; // Optional visual effect
+
+    [Header("Usage Rules")]
+    public bool consumeOnUse; // Determines if the item is consumed after use
 }

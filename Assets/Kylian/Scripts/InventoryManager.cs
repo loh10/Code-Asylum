@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static DialogueManager;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class InventoryManager : MonoBehaviour
 
     void AddItem(string item)
     {
+        Debug.Log(DialogueManager.GetDialogue("Dialogue", "Text"));
         if (_inventoryItem.ContainsKey(item))
         {
             _inventoryItem[item]++;

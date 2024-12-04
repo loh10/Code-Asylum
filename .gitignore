@@ -73,13 +73,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Ignore user settings
-/UserSettings/
-/UserSettings/EditorUserSettings.asset
-/UserSettings/Layouts
-UserSettings/Layouts/default-2021.dwlt
-UserSettings/EditorUserSettings.asset
-UserSettings/Layouts/CurrentMaximizeLayout.dwlt
-UserSettings/Search.settings
-ProjectSettings/TimelineSettings.asset
+
 .vscode/settings.json
 /.idea

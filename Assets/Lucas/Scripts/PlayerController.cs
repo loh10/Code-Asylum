@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _rangeInteraction = 3f;
     [SerializeField] private InputActionAsset _actionAsset;
 
+    //public Inventory _inventory;
+
     private void Start()
     {
         _transform = transform;
@@ -85,7 +87,7 @@ public class PlayerController : MonoBehaviour
         // Lock locker = hit.collider.GetComponent<Lock>();
         // if (locker == null) return;
         //
-        // locker.Interact();
+        // locker.Interact(this);
     }
     
     private void RotateCamera()

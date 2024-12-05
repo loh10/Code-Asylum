@@ -39,19 +39,29 @@ public class AIController : MonoBehaviour
 
     private void Update()
     {
-        if (IsVisible(_agentTransform, _mainCamera))
+        bool isAgentVisible = IsVisible(_agentTransform, _mainCamera);
+        bool isTargetVisible = IsVisible(_target, _agentCamera);
+        
+        if (isAgentVisible)
         {
+            if (isTargetVisible)
+            {
+                _patrolState.SetCurrentWaypoint(_target.position);
+            }
             if (_stateMachine.CurrentState() is not IdleState)
                 _stateMachine.ChangeState(_idleState);
         }
-        else if (IsVisible(_target, _agentCamera))
+        else if (isTargetVisible)
         {
             if (_stateMachine.CurrentState() is not FollowState)
                 _stateMachine.ChangeState(_followState);
         }
-        else if (_stateMachine.CurrentState() is not PatrolState)
+        else 
         {
-            _stateMachine.ChangeState(_patrolState);
+            if (_stateMachine.CurrentState() is FollowState)
+                _patrolState.SetCurrentWaypoint(_target.position);
+            if (_stateMachine.CurrentState() is not PatrolState)
+                _stateMachine.ChangeState(_patrolState);
         }
     }
 

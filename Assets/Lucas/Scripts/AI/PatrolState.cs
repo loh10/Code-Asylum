@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class PatrolState : State
 {
     private readonly Transform[] _waypoints;
+    private int _indexWaypoint;
     private Transform _currentWaypoint;
     
     private readonly NavMeshAgent _agent;
@@ -19,7 +20,9 @@ public class PatrolState : State
     
     public override void Enter()
     {
-        _currentWaypoint = _waypoints[Random.Range(0, _waypoints.Length)];
+        if (!_currentWaypoint)
+            _currentWaypoint = _waypoints[_indexWaypoint];
+        
         _agent.SetDestination(_currentWaypoint.position);
     }
     
@@ -33,7 +36,10 @@ public class PatrolState : State
             return;
         
         _timer = 0;
-        _currentWaypoint = _waypoints[Random.Range(0, _waypoints.Length)];
+        _indexWaypoint++;
+        if (_indexWaypoint >= _waypoints.Length)
+            _indexWaypoint = 0;
+        _currentWaypoint = _waypoints[_indexWaypoint];
         _agent.SetDestination(_currentWaypoint.position);
     }
     
@@ -41,4 +47,5 @@ public class PatrolState : State
     {
         _timer = 0;
     }
+    public void SetCurrentWaypoint(Vector3 currentWaypoint) => _currentWaypoint.position = currentWaypoint;
 }

@@ -31,28 +31,21 @@ public class SettingsManager : MonoBehaviour
             _toggleFullScreen.isOn = Screen.fullScreen;
 
         if (PlayerPrefs.HasKey("General") && _sliderGeneral != null)
-        {
             _sliderGeneral.value = PlayerPrefs.GetFloat("General");
-            SetTextValueSlider(_sliderGeneral, _textValueGeneral);
-        }
 
         if (PlayerPrefs.HasKey("SFX") && _sliderSFX != null)
-        {
             _sliderSFX.value = PlayerPrefs.GetFloat("SFX");
-            SetTextValueSlider(_sliderSFX, _textValueSFX);
-        }
 
         if (PlayerPrefs.HasKey("Music") && _sliderMusic != null)
-        {
-            _sliderMusic.value = PlayerPrefs.GetFloat("Music"); 
-            SetTextValueSlider(_sliderMusic, _textValueMusic);
-        }
+            _sliderMusic.value = PlayerPrefs.GetFloat("Music");
 
         if (PlayerPrefs.HasKey("Sensitivity") && _sliderSensitivity != null)
-        {
             _sliderSensitivity.value = PlayerPrefs.GetFloat("Sensitivity");
-            SetTextValueSlider(_sliderSensitivity, _textValueSensitivity);
-        }
+        
+        SetTextValueSlider(_sliderGeneral, _textValueGeneral);
+        SetTextValueSlider(_sliderSFX, _textValueSFX);
+        SetTextValueSlider(_sliderMusic, _textValueMusic);
+        SetTextValueSlider(_sliderSensitivity, _textValueSensitivity);
         
         if (_dropdownResolution != null)
             GetResolution();

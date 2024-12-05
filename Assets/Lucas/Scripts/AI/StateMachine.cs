@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    private State currentState;
+    private State _currentState;
 
     public void ChangeState(State newState)
     {
-        currentState?.Exit();
-        currentState = newState;
-        currentState.Enter();
+        _currentState?.Exit();
+        _currentState = newState;
+        _currentState.Enter();
     }
-    public State CurrentState() => currentState;
+    public State CurrentState() => _currentState;
 
     private void Update()
     {
-        currentState?.Update();
+        _currentState?.Update();
     }
 }

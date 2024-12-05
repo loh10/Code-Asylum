@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform _gameTransform;
     [SerializeField] private Transform _piecePrefab;
 
-    private List<Transform> pieces;
+    private List<Transform> _pieces;
     private int _emptyLocation;
     private int _size;
     private bool _shuffling = false;
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        pieces = new List<Transform>();
+        _pieces = new List<Transform>();
         _size = 3;
         CreateGamePieces(0.01f);
     }
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
             for(int col = 0; col < _size; col++)
             {
                 Transform piece = Instantiate(_piecePrefab, _gameTransform);
-                pieces.Add(piece);
+                _pieces.Add(piece);
                 // Pieces will be in a game board going from -1 to +1
                 piece.localPosition = new Vector3(-1 + (2 * width * col) + width,
                                                   +1 - (2 * width * row) + width,
@@ -70,9 +70,9 @@ public class GameManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit)
             {
-                for (int i = 0; i < pieces.Count; i++)
+                for (int i = 0; i < _pieces.Count; i++)
                 {
-                    if (pieces[i] == hit.transform)
+                    if (_pieces[i] == hit.transform)
                     {
                         // Check each direction to see if valid move
                         // We break out on success so we don't carry on and swap back again
@@ -98,9 +98,9 @@ public class GameManager : MonoBehaviour
         if (((i % _size) != colCheck) && ((i + offset) == _emptyLocation))
         {
             // Swap them in game state
-            (pieces[i], pieces[i + offset]) = (pieces[i + offset], pieces[i]);
+            (_pieces[i], _pieces[i + offset]) = (_pieces[i + offset], _pieces[i]);
             // Swap their transforms
-            (pieces[i].localPosition, pieces[i + offset].localPosition) = (pieces[i + offset].localPosition, pieces[i].localPosition);
+            (_pieces[i].localPosition, _pieces[i + offset].localPosition) = (_pieces[i + offset].localPosition, _pieces[i].localPosition);
             // Update empty location
             _emptyLocation = i;
             return true;
@@ -110,9 +110,9 @@ public class GameManager : MonoBehaviour
 
     private bool CheckCompletion()
     {
-        for(int i = 0; i < pieces.Count; i++)
+        for(int i = 0; i < _pieces.Count; i++)
         {
-            if (pieces[i].name != $"{i}")
+            if (_pieces[i].name != $"{i}")
             {
                 return false;
             }

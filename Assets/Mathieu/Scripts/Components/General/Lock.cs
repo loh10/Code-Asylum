@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 public class Lock : MonoBehaviour, IInteractable
 {
@@ -6,18 +7,15 @@ public class Lock : MonoBehaviour, IInteractable
     public string lockID; // Unique ID for this lock
     public bool isLocked = true;
 
-    [Header("Unlock Requirements")]
-    public string requiredKeyName; // Optional: Specific key name required
-
     public bool IsInteractable => isLocked; // Only interactable if locked
 
-    public string InteractionHint => isLocked 
-        ? "Press 'E' to unlock" 
+    public string InteractionHint => isLocked
+        ? "Press 'E' to unlock"
         : "This lock is already unlocked.";
 
-    /// <summary>
-    /// Handles player interaction with the lock (e.g., attempting to unlock it).
-    /// </summary>
+    // Event triggered when the lock is unlocked
+    public event Action OnUnlock;
+    
     public void Interact(GameObject interactor)
     {
         if (!IsInteractable)
@@ -26,9 +24,7 @@ public class Lock : MonoBehaviour, IInteractable
             return;
         }
 
-        // TODO: Verify InventoryManager implementation.
-        
-        /*InventoryManager inventory = interactor.GetComponent<InventoryManager>();
+        InventoryManager inventory = interactor.GetComponent<InventoryManager>();
         if (inventory == null)
         {
             Debug.Log("No inventory system found on interactor.");
@@ -36,7 +32,7 @@ public class Lock : MonoBehaviour, IInteractable
         }
 
         // Find a key that can unlock this lock
-        ItemData keyToUse = inventory.GetMatchingKey(lockID);
+        KeyItemData keyToUse = inventory.GetMatchingKey(lockID);
 
         if (keyToUse != null)
         {
@@ -51,21 +47,12 @@ public class Lock : MonoBehaviour, IInteractable
                 Debug.Log($"{keyToUse.itemName} has been consumed.");
             }
 
-            // Trigger door opening or other effects
-            OpenDoor();
+            // Trigger the OnUnlock event
+            OnUnlock?.Invoke();
         }
         else
         {
             Debug.Log("You don't have the required key to unlock this lock.");
-        }*/
-    }
-
-    /// <summary>
-    /// Placeholder method to handle door opening.
-    /// </summary>
-    private void OpenDoor()
-    {
-        // Implement door opening logic here (e.g., animation, state change)
-        Debug.Log("Door is now open!");
+        }
     }
 }

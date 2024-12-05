@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿// TODO: Extend the ItemData class to create a ToolItemData class, similar to KeyItemData. 
+using UnityEngine;
 
 public class Tool : MonoBehaviour, IInteractable
 {

@@ -19,7 +19,6 @@ public class ChangeControl : MonoBehaviour
         _control = _control[11..];
         ChangeQwerty();
         GetComponentInChildren<TextMeshProUGUI>().text = _control.ToUpper();
-        print(_control);
     }
     public void Change()
     {
@@ -35,7 +34,6 @@ public class ChangeControl : MonoBehaviour
         ChangeQwerty();
         GetComponentInChildren<TextMeshProUGUI>().text = _control.ToUpper();
         GetComponentInParent<GetButton>().SetListControl();
-        print(_actionAsset.actionMaps[_indexActionMap].actions[_indexAction].bindings[_indexBinding]);
     }
     private void ChangeQwerty()
     {

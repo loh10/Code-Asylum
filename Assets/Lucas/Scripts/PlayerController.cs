@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
         _camera = Camera.main.transform;
         _rb = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
+        
+        if (PlayerPrefs.HasKey("Sensitivity"))
+            _sensitivity = PlayerPrefs.GetFloat("Sensitivity");
     }
     
     private void Update()
@@ -55,6 +58,9 @@ public class PlayerController : MonoBehaviour
     
     public void GetMouseDelta(InputAction.CallbackContext ctx)
     {
+        if (PlayerPrefs.HasKey("Sensitivity"))
+            _sensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        
         _inputRotation = ctx.ReadValue<Vector2>() * _sensitivity;
     }
 

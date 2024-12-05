@@ -1,45 +1,47 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
 
-    [SerializeField] private Transform gameTransform;
-    [SerializeField] private Transform piecePrefab;
+    [SerializeField] private Transform _gameTransform;
+    [SerializeField] private Transform _piecePrefab;
 
-    private List<Transform> pieces;
-    private int emptyLocation;
-    private int size;
+    private List<Transform> _pieces;
+    private int _emptyLocation;
+    private int _size;
+    private bool _shuffling = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        pieces = new List<Transform>();
-        size = 3;
+        _pieces = new List<Transform>();
+        _size = 3;
         CreateGamePieces(0.01f);
     }
 
     private void CreateGamePieces(float gapThickness)
     // This is the width of each tile
     {
-        float width = 1 / (float)size; 
-        for(int row = 0; row < size; row++)
+        float width = 1 / (float)_size; 
+        for(int row = 0; row < _size; row++)
         {
-            for(int col = 0; col < size; col++)
+            for(int col = 0; col < _size; col++)
             {
-                Transform piece = Instantiate(piecePrefab, gameTransform);
-                pieces.Add(piece);
+                Transform piece = Instantiate(_piecePrefab, _gameTransform);
+                _pieces.Add(piece);
                 // Pieces will be in a game board going from -1 to +1
                 piece.localPosition = new Vector3(-1 + (2 * width * col) + width,
                                                   +1 - (2 * width * row) + width,
                                                   0);
                 piece.localScale = ((2 * width) - gapThickness) * Vector3.one;
-                piece.name = $"{(row * size) + col}";
+                piece.name = $"{(row * _size) + col}";
                 // We want an empty space in the bottom right
-                if((row == size - 1) && (col == size - 1))
+                if((row == _size - 1) && (col == _size - 1))
                 {
-                    emptyLocation = (size * size) - 1;
+                    _emptyLocation = (_size * _size) - 1;
                     piece.gameObject.SetActive(false);
                 }else
                 // We want to map the UV coordinates appropriately, they are 1 -> 0 
@@ -68,35 +70,90 @@ public class GameManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit)
             {
-                for (int i = 0; i < pieces.Count; i++)
+                for (int i = 0; i < _pieces.Count; i++)
                 {
-                    if (pieces[i] == hit.transform)
+                    if (_pieces[i] == hit.transform)
                     {
                         // Check each direction to see if valid move
                         // We break out on success so we don't carry on and swap back again
-                        if (SwapIfValid(i, -size, size)) { break; }
-                        if (SwapIfValid(i, +size, size)) { break; }
+                        if (SwapIfValid(i, -_size, _size)) { break; }
+                        if (SwapIfValid(i, +_size, _size)) { break; }
                         if (SwapIfValid(i, -1, 0)) { break; }
-                        if (SwapIfValid(i, +1, size - 1)) { break; }
+                        if (SwapIfValid(i, +1, _size - 1)) { break; }
                     }
                 }
             }
+        }
+
+        if(!_shuffling && CheckCompletion())
+        {
+            _shuffling = true;
+            StartCoroutine(WaitShuffle(0.5f));
         }
     }
 
     // colCheck is used to stop horizontal moves wrapping
     private bool SwapIfValid(int i, int offset, int colCheck)
     {
-        if (((i % size) != colCheck) && ((i + offset) == emptyLocation))
+        if (((i % _size) != colCheck) && ((i + offset) == _emptyLocation))
         {
             // Swap them in game state
-            (pieces[i], pieces[i + offset]) = (pieces[i + offset], pieces[i]);
+            (_pieces[i], _pieces[i + offset]) = (_pieces[i + offset], _pieces[i]);
             // Swap their transforms
-            (pieces[i].localPosition, pieces[i + offset].localPosition) = (pieces[i + offset].localPosition, pieces[i].localPosition);
+            (_pieces[i].localPosition, _pieces[i + offset].localPosition) = (_pieces[i + offset].localPosition, _pieces[i].localPosition);
             // Update empty location
-            emptyLocation = i;
+            _emptyLocation = i;
             return true;
         }
         return false;
+    }
+
+    private bool CheckCompletion()
+    {
+        for(int i = 0; i < _pieces.Count; i++)
+        {
+            if (_pieces[i].name != $"{i}")
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    private IEnumerator WaitShuffle(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        Shuffle();
+        _shuffling = false;
+    }
+
+
+    private void Shuffle()
+    {
+        int count = 0;
+        int last = 0;
+        while (count < (_size * _size * _size))
+        {
+            // Pick a random location
+            int rnd = Random.Range(0, _size * _size);
+            // Only thing we forbid is undoing the last move
+            if(rnd == last) { continue; }
+            last = _emptyLocation;
+            // Try surrounding spaces looking for valid move
+            if(SwapIfValid(rnd, -_size, _size))
+            {
+                count++;
+            }else if(SwapIfValid(rnd, +_size, _size))
+            {
+                count++;
+            }else if(SwapIfValid(rnd, -1, 0)) 
+            {
+                count++;
+            }else if(SwapIfValid(rnd, +1, _size - 1))
+            {
+                count++;
+            }       
+        }
     }
 }

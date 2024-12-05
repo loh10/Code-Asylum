@@ -3,8 +3,7 @@
 public class Key : MonoBehaviour, IInteractable
 {
     [Header("Key Data")]
-    public ItemData itemData; // Reference to the ScriptableObject holding item data
-    public string[] unlockTargetIDs; // List of lock IDs this key can unlock
+    public KeyItemData keyItemData; // Reference to the ScriptableObject holding key item data
 
     [Header("Interactable State")]
     public bool canBeInteractedWith = true; // Local condition for interactability
@@ -13,8 +12,9 @@ public class Key : MonoBehaviour, IInteractable
     public bool IsInteractable => canBeInteractedWith;
 
     // Provide a dynamic interaction hint based on the item's state
-    public string InteractionHint => IsInteractable 
-        ? $"Pick up {itemData.itemName}" 
+    // TODO: Replace this with the Dialogue System (Optional).
+    public string InteractionHint => IsInteractable
+        ? $"Pick up {keyItemData.itemName}"
         : "You can't pick this up right now.";
 
     /// <summary>
@@ -28,18 +28,15 @@ public class Key : MonoBehaviour, IInteractable
             return;
         }
 
-        // TODO: Verify InventoryManager implementation.
-        
-        /*InventoryManager inventory = interactor.GetComponent<InventoryManager>();
+        InventoryManager inventory = interactor.GetComponent<InventoryManager>();
         if (inventory != null)
         {
-            inventory.AddItem(itemData);
-            Debug.Log($"{itemData.itemName} added to inventory.");
+            inventory.AddItem(keyItemData);
             Destroy(gameObject); // Remove the key from the world
         }
         else
         {
             Debug.Log("No inventory system found on interactor.");
-        }*/
+        }
     }
 }

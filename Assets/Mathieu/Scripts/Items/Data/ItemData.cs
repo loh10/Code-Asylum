@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewItemData", menuName = "ScriptableObjects/Items/ItemData")]
-public class ItemData : ScriptableObject
+public class ItemData : ScriptableObject // TODO: Make this an abstract class.
 {
     [Header("Basic Info")]
     public string itemName; // Display name of the item

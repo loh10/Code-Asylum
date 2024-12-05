@@ -39,12 +39,12 @@ public class AIController : MonoBehaviour
 
     private void Update()
     {
-        if (IsVisible(_agentTransform.position, _mainCamera))
+        if (IsVisible(_agentTransform, _mainCamera))
         {
             if (_stateMachine.CurrentState() is not IdleState)
                 _stateMachine.ChangeState(_idleState);
         }
-        else if (IsVisible(_target.position, _agentCamera))
+        else if (IsVisible(_target, _agentCamera))
         {
             if (_stateMachine.CurrentState() is not FollowState)
                 _stateMachine.ChangeState(_followState);
@@ -55,9 +55,16 @@ public class AIController : MonoBehaviour
         }
     }
 
-    private static bool IsVisible(Vector3 target, Camera cam)
+    private static bool IsVisible(Transform target, Camera cam)
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cam);
-        return planes.All(plane => plane.GetDistanceToPoint(target) > -0.5f);
+        bool isVisible = planes.All(plane => plane.GetDistanceToPoint(target.position) > -0.5f);
+
+        if (!isVisible) return false;
+        
+        Vector3 direction = target.position - cam.transform.position;
+        if (!Physics.Raycast(cam.transform.position, direction.normalized, out RaycastHit hit, Mathf.Infinity)) return false;
+        
+        return hit.transform == target;
     }
 }

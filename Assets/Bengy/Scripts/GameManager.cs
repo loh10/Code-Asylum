@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     private List<Transform> pieces;
     private int emptyLocation;
     private int size;
+    private bool shuffling = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -82,6 +84,12 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        if(!shuffling && CheckCompletion())
+        {
+            shuffling = true;
+            StartCoroutine(WaitShuffle(0.5f));
+        }
     }
 
     // colCheck is used to stop horizontal moves wrapping
@@ -98,5 +106,54 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private bool CheckCompletion()
+    {
+        for(int i = 0; i < pieces.Count; i++)
+        {
+            if (pieces[i].name != $"{i}")
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    private IEnumerator WaitShuffle(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        Shuffle();
+        shuffling = false;
+    }
+
+
+    private void Shuffle()
+    {
+        int count = 0;
+        int last = 0;
+        while (count < (size * size * size))
+        {
+            // Pick a random location
+            int rnd = Random.Range(0, size * size);
+            // Only thing we forbid is undoing the last move
+            if(rnd == last) { continue; }
+            last = emptyLocation;
+            // Try surrounding spaces looking for valid move
+            if(SwapIfValid(rnd, -size, size))
+            {
+                count++;
+            }else if(SwapIfValid(rnd, +size, size))
+            {
+                count++;
+            }else if(SwapIfValid(rnd, -1, 0)) 
+            {
+                count++;
+            }else if(SwapIfValid(rnd, +1, size - 1))
+            {
+                count++;
+            }       
+        }
     }
 }

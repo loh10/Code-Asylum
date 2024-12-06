@@ -14,7 +14,7 @@ public class PlayerLabyrinthControl : MonoBehaviour
     void Start()
     {
         distanceFromCamera = Vector3.Distance(sphere.position,cam.transform.position);
-        r = sphere.GetComponent<Rigidbody>();
+        _r = sphere.GetComponent<Rigidbody>();
     }
 
 
@@ -31,7 +31,7 @@ public class PlayerLabyrinthControl : MonoBehaviour
             Vector3 pos = Input.mousePosition;
             pos.z = distanceFromCamera;
             pos = cam.ScreenToWorldPoint(pos);
-            r.linearVelocity = (pos - sphere.position) * 10;
+            _r.linearVelocity = (pos - sphere.position) * 10;
         }
     }
 }

@@ -87,13 +87,14 @@ public class PlayerController : MonoBehaviour
     {
         if (!ctx.canceled) return;
 
-        if (!Physics.Raycast(_camera.position, _camera.forward, 
-            out RaycastHit hit, _rangeInteraction, 1 << LayerMask.NameToLayer("Interactable"))) return;
-
-        // Lock locker = hit.collider.GetComponent<Lock>();
-        // if (locker == null) return;
-        //
-        // locker.Interact(this);
+        if (Physics.Raycast(_camera.position, _camera.forward, out RaycastHit hit, _rangeInteraction, 1 << LayerMask.NameToLayer("Interactable")))
+        {
+            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+            if (interactable != null)
+            {
+                interactable.Interact(gameObject); // Pass the player's GameObject as the interactor
+            }
+        }
     }
     
     private void RotateCamera()

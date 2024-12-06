@@ -69,7 +69,7 @@ public class AIController : MonoBehaviour
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cam);
         bool isVisible = planes.All(plane => plane.GetDistanceToPoint(target.position) > -0.5f);
-
+        
         if (!isVisible) return false;
         
         Vector3 direction = target.position - cam.transform.position;

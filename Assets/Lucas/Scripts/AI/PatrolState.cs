@@ -28,7 +28,6 @@ public class PatrolState : State
     
     public override void Update()
     {
-        Debug.Log("1");
         if (Vector3.Distance(_agent.transform.position, _currentWaypoint.position) > 0.5f)
             return;
         

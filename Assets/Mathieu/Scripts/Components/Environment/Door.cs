@@ -39,6 +39,7 @@ public class Door : MonoBehaviour
         }
         else
         {
+            gameObject.SetActive(false); // A enlever quand l'animation sera la
             Debug.LogWarning("No Animator component assigned to the door.");
         }
     }

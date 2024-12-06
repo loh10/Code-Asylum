@@ -16,7 +16,7 @@
                 },
                 {
                     "name": "Look",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "f4d2a1f9-e08c-4d2a-850d-45e7f1bc77a4",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -27,6 +27,15 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "119ea603-894c-428e-871f-bd602843a5a8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "895dcce1-1939-4809-97c3-9dbffa869f0e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -147,11 +156,22 @@
                 {
                     "name": "",
                     "id": "d766b52f-d3f5-4aea-858f-98355ac268fd",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/h",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e652bf34-57f8-460a-9758-bf0cc13f4093",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

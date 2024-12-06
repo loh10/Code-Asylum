@@ -1,12 +1,11 @@
 <Dialogues>
 	<Door>
-		<KeyActivated>The Door is Open</KeyActivated>
+		<KeyActivated>The door is Open</KeyActivated>
 		<KeyNotActivated>I need a Key</KeyNotActivated>
 	</Door>
 	
 	<Key>
 		<GotKey>You got a Key</GotKey>
-		<Text2></Text2>
 	</Key>
 	
 	<Player>
@@ -15,24 +14,19 @@
 	</Player>
 		
 	<Enigma>
-		<EnigmaActivated>I must to be faster</EnigmaActivated>
-		<EnigmaActivated2>ohhhh that's Hard</EnigmaActivated2>
+		<EnigmaActivated>I must to be fast</EnigmaActivated>
+		<EnigmaActivated2>Ohhhh that's Hard...</EnigmaActivated2>
 		<EnigmaFinished>I'm a crack</EnigmaFinished>  
 	</Enigma>
 		
 	<Monster>
 		<SeeMonster>What is that ???</SeeMonster>
-		<SeeMonster2>Ohhh Shit</SeeMonster2>
+		<SeeMonster2>Ohhh shit!!!</SeeMonster2>
 	</Monster>
 
 	<End>
-		<Exit>finally I'm out</Exit>
+		<Exit>Finally I'm out</Exit>
 		<Exit2>It's the End</Exit2>
 	</End>
-
-	<Monster>
-		<SeeMonster>What is that ???</SeeMonster>
-		<SeeMonster2></SeeMonster2>
-	</Monster>
 </Dialogues>
 

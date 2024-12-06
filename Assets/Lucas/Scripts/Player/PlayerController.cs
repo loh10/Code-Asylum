@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
         
         if (PlayerPrefs.HasKey("Sensitivity"))
             _sensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     
     private void Update()

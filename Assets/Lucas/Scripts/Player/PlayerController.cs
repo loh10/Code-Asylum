@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rb;
     private CapsuleCollider _capsuleCollider;
     
-    private bool _freezeInput;
+    public static bool freezeInput;
     private bool _isCrouched;
     
     private GameObject _itemHolder;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
-        if (_freezeInput) return;
+        if (freezeInput) return;
         
         Movement();
     }
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
     
     public void FreezeInput(bool value, int indexActionMap = 0)
     {
-        _freezeInput = value;
+        freezeInput = value;
         
         InputActionMap map = _actionAsset.actionMaps[indexActionMap];
         if (value)
@@ -126,7 +126,6 @@ public class PlayerController : MonoBehaviour
     
 
     #region Get and Set
-    public bool GetFreezeInput() => _freezeInput;
     public float GetSpeed() => _walkSpeed;
     public void SetSpeed(float value) => _walkSpeed = value;
     #endregion

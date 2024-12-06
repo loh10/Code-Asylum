@@ -25,6 +25,7 @@ public class Bonneteau : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
+
             MoveGobelet();
 
         }
@@ -36,8 +37,15 @@ public class Bonneteau : MonoBehaviour
             {
                 _gobeletList[_indexCurrentPos].transform.position = _targetPos;
                 _gobeletList[nextIndex].transform.position = _initPos;
+                _position[_indexCurrentPos] = 0;
+                _position[nextIndex] = 1;
+                _indexCurrentPos = nextIndex;
                 MoveGobelet();
             }
+        }
+        if (_changeTime <= 0 && Input.GetMouseButtonDown(0))
+        {
+            ChooseGobelet();
         }
 
 
@@ -50,8 +58,6 @@ public class Bonneteau : MonoBehaviour
         {
             nextIndex = Random.Range(0, _size);
         }
-        _position[_indexCurrentPos] = 0;
-        _position[nextIndex] = 1;
         _targetPos = _gobeletList[nextIndex].transform.position;
         _initPos = _gobeletList[_indexCurrentPos].transform.position;
         _isPlaying = true;
@@ -73,9 +79,30 @@ public class Bonneteau : MonoBehaviour
         {
             GameObject newGobelet = Instantiate(_gobeletPrefab,new Vector3(i*2,0,0), Quaternion.identity);
             newGobelet.transform.parent = transform;
-            newGobelet.name = "Pot" + i;
+            newGobelet.name = "0";
+            if(i ==0)
+            {
+                newGobelet.name = "1";
+            }
             _gobeletList.Add(newGobelet);
             _isPlaying = true;
+        }
+    }
+
+    void ChooseGobelet()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity))
+        {
+            if (hit.collider.name == 1.ToString())
+            {
+                Debug.Log("Win");  // to complete (Do)
+
+            }
+            else
+            {
+                Debug.Log("Loose");   // to complete (Do)
+            }
         }
     }
 }

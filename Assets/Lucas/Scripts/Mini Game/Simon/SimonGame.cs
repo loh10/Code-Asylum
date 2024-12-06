@@ -22,6 +22,7 @@ public class SimonGame : MonoBehaviour
         button.interactable = false;
         _startButton = button;
     }
+    
     private IEnumerator StartColor(int indexColor = 0)
     {
         yield return new WaitForSeconds(_timeToChangeColor);
@@ -51,7 +52,6 @@ public class SimonGame : MonoBehaviour
     {
         int indexColor = Random.Range(0, _listImages.Count);
         _sequence.Add(indexColor);
-        print(indexColor);
     }
 
     public void OnClick(int index)

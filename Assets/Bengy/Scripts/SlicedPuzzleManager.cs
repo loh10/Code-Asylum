@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class SlicedPuzzleManager : MonoBehaviour
 {
 
     [SerializeField] private Transform _gameTransform;

@@ -2,24 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerLabyrinthControl : MonoBehaviour
 {
-    public Rigidbody rb;
-    public float moveSpeed = 10f;
-    private float _xInput;
-    private float _zInput;
+    public Camera cam;
+    public Transform sphere;
+    public float distanceFromCamera;
+    Rigidbody r;
 
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        distanceFromCamera = Vector3.Distance(sphere.position,cam.transform.position);
+        r = sphere.GetComponent<Rigidbody>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -27,35 +24,14 @@ public class PlayerLabyrinthControl : MonoBehaviour
         ProcessInputs();
     }
 
-    private void FixedUpdate()
-    {
-        Move();
-    }
-
     private void ProcessInputs()
     { 
         if(Input.GetMouseButton(0))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, 3))
-
-            {
-
-                // Obtenir la position de la souris dans l'espace écran
-                Vector3 mousePosition = Input.mousePosition;
-
-                // Convertir la position de la souris en coordonnées du monde
-                mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.transform.position.y));
-
-                // Déplacer la boule vers la position de la souris
-                transform.position = new Vector3(mousePosition.x, 3, mousePosition.z);
-            }
+            Vector3 pos = Input.mousePosition;
+            pos.z = distanceFromCamera;
+            pos = cam.ScreenToWorldPoint(pos);
+            r.linearVelocity = (pos - sphere.position) * 10;
         }
-    }
-
-
-    private void Move()
-    {
-        rb.AddForce(new Vector3(_xInput, 0f, _zInput) * moveSpeed);
     }
 }

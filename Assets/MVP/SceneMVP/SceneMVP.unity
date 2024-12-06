@@ -238,10 +238,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3038642979847120518, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3772569551987076606, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.2
@@ -282,17 +278,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6482395080875675594, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7744653196689377028, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7744653196689377028, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1114,10 +1102,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 129310867}
     - target: {fileID: 3920884983921906838, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
-      propertyPath: _waypoints.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3920884983921906838, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
       propertyPath: '_waypoints.Array.data[0]'
       value: 
       objectReference: {fileID: 1086687260}
@@ -1145,18 +1129,6 @@ PrefabInstance:
       propertyPath: '_waypoints.Array.data[6]'
       value: 
       objectReference: {fileID: 1035395109}
-    - target: {fileID: 3920884983921906838, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
-      propertyPath: '_waypoints.Array.data[7]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3920884983921906838, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
-      propertyPath: '_waypoints.Array.data[8]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3920884983921906838, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
-      propertyPath: '_waypoints.Array.data[9]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3946669394903436806, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.56

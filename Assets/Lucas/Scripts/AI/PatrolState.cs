@@ -28,7 +28,8 @@ public class PatrolState : State
     
     public override void Update()
     {
-        if (Vector3.Distance(_agent.transform.position, _currentWaypoint.position) > 0.1f)
+        Debug.Log("1");
+        if (Vector3.Distance(_agent.transform.position, _currentWaypoint.position) > 0.5f)
             return;
         
         _timer += Time.deltaTime;
@@ -45,7 +46,7 @@ public class PatrolState : State
     
     public override void Exit()
     {
-        _timer = 0;
+        
     }
     public void SetCurrentWaypoint(Vector3 currentWaypoint) => _currentWaypoint.position = currentWaypoint;
 }

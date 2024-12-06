@@ -9,7 +9,7 @@ public class PlayerLabyrinthControl : MonoBehaviour
     public Camera cam;
     public Transform sphere;
     public float distanceFromCamera;
-    Rigidbody r;
+    private Rigidbody _r;
 
     void Start()
     {

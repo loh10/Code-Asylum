@@ -8,6 +8,7 @@ public class SlicedPuzzleManager : MonoBehaviour
 
     [SerializeField] private Transform _gameTransform;
     [SerializeField] private Transform _piecePrefab;
+    [SerializeField] private Camera _camera;
 
     private List<Transform> _pieces;
     private int _emptyLocation;
@@ -15,7 +16,7 @@ public class SlicedPuzzleManager : MonoBehaviour
     private bool _shuffling = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         _pieces = new List<Transform>();
         _size = 3;
@@ -62,12 +63,14 @@ public class SlicedPuzzleManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     // On click send out ray to see if we click a piece
     {
+        Debug.DrawRay(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.down * 100, Color.red);
         if(Input.GetMouseButtonDown(0))
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.down, Mathf.Infinity);
+            print(hit.transform);
             if (hit)
             {
                 for (int i = 0; i < _pieces.Count; i++)
@@ -155,5 +158,17 @@ public class SlicedPuzzleManager : MonoBehaviour
                 count++;
             }       
         }
+    }
+    private void OnEnable()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        PlayerController.freezeInput = true;
+    }
+    private void OnDisable()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        PlayerController.freezeInput = false;
     }
 }

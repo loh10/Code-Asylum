@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     //public Inventory _inventory;
 
+    SaveReload saveReload;
+
     private void Start()
     {
         PlayerPrefs.DeleteKey("Sensitivity");
@@ -119,9 +121,13 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("AI")) return;
+        if (other.gameObject.layer != LayerMask.NameToLayer("AI"))
+        {
+            saveReload.IsDead();
+            return;
+        }
+
         
-        //Dead
     }
     
 

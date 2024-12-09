@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +7,6 @@ using Random = UnityEngine.Random;
 public class DifferenceGame : MonoBehaviour
 {
     [SerializeField] private List<DifferenceNumber> _numbers = new List<DifferenceNumber>();
-    
     [SerializeField] private GameObject _cross;
     
     private int _index;
@@ -48,7 +46,7 @@ public class DifferenceGame : MonoBehaviour
         StartCoroutine(ResetGame(0.5f));
     }
 
-    private IEnumerator ResetGame(float time = 0.5f)
+    private IEnumerator ResetGame(float time)
     {
         _isEnd = true;
         yield return new WaitForSeconds(time);

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e47a6275ba54439b411905ba8a2236f, type: 3}
-  m_Name: Test_Key
+  m_Name: Test_Key 2
   m_EditorClassIdentifier: 
-  itemName: Test Key YELLOW
+  itemName: Test Key RED
   icon: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  description: This is is the GOOD key yaaay
+  description: This is the wrong key
   itemType: 0
   category: 1
   isStackable: 1
@@ -23,4 +23,4 @@ MonoBehaviour:
   useEffect: {fileID: 0}
   consumeOnUse: 1
   unlockTargetIDs:
-  - LOCK_Z1_01
+  - LOCK_Z1_02

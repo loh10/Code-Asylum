@@ -9,7 +9,36 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     private GameObject _inventoryUI;
     private bool _isDisplay;
+    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            DebugDisplayInventory();
+        }
+    }
 
+
+    /// <summary>
+    /// Displays the contents of the inventory in the console.
+    /// </summary>
+    public void DebugDisplayInventory()
+    {
+        Debug.Log("Inventory Contents:");
+        if (inventoryItems.Count == 0)
+        {
+            Debug.Log("Inventory is empty.");
+        }
+        else
+        {
+            foreach (InventoryItem inventoryItem in inventoryItems)
+            {
+                Debug.Log($"Item: {inventoryItem.itemData.itemName}, Quantity: {inventoryItem.quantity}");
+            }
+        }
+    }
+
+    
     /// <summary>
     /// Adds an item to the inventory.
     /// </summary>

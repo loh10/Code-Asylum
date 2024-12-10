@@ -5,6 +5,7 @@ public class PlayerLabyrinthControl : MonoBehaviour
     public Transform sphere;
     public float distanceFromCamera;
     private Rigidbody _r;
+    private bool _isDragging;
 
     private void Start()
     {
@@ -25,6 +26,12 @@ public class PlayerLabyrinthControl : MonoBehaviour
             pos.z = distanceFromCamera;
             pos = cam.ScreenToWorldPoint(pos);
             _r.linearVelocity = (pos - sphere.position) * 10;
+            _isDragging = true;
+        }
+        else if (!Input.GetMouseButton(0) && _isDragging)
+        {
+            _isDragging = false;
+            _r.linearVelocity = Vector3.zero;
         }
     }
     private void OnEnable()

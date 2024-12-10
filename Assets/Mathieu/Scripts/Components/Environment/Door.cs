@@ -35,11 +35,11 @@ public class Door : MonoBehaviour
         // Trigger the door opening animation
         if (doorAnimator != null)
         {
-            // doorAnimator.SetTrigger("Open"); // TODO: Uncomment when animation is ready
+            // doorAnimator.SetTrigger("Open"); // TODO: Uncomment this line when animation is ready
         }
         else
         {
-            gameObject.SetActive(false); // A enlever quand l'animation sera la
+            gameObject.SetActive(false); // TODO: Remove this line when animation is ready
             //Debug.LogWarning("No Animator component assigned to the door.");
         }
     }
@@ -48,7 +48,7 @@ public class Door : MonoBehaviour
     {
         if (doorAnimator != null)
         {
-            // doorAnimator.SetTrigger("Close"); // TODO: Uncomment when animation is ready
+            // doorAnimator.SetTrigger("Close"); // TODO: Uncomment this line when animation is ready
         }
         else
         {

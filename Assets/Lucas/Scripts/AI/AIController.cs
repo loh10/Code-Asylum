@@ -19,7 +19,7 @@ public class AIController : MonoBehaviour
     private FollowState _followState;
     private PatrolState _patrolState;
 
-    SaveReload saveReload;
+    private SaveReload saveReload;
     
     private void Awake()
     {
@@ -85,7 +85,6 @@ public class AIController : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             saveReload.IsDead();
-            return;
         }
     }
 }

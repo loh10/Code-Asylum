@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +12,7 @@ public class SlicedPuzzleManager : MonoBehaviour
     private List<Transform> _pieces;
     private int _emptyLocation;
     private int _size;
-    private bool _shuffling = false;
+    private bool _shuffling;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()

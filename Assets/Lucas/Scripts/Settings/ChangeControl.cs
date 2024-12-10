@@ -24,7 +24,7 @@ public class ChangeControl : MonoBehaviour
         if (EventSystem.current.currentSelectedGameObject != gameObject || control == _control)
             return true;
 
-        if (changeControls.Where((t, i) => i != _indexBinding).Where(t => 
+        if (changeControls.Where((_, i) => i != _indexBinding).Where(t => 
         t._actionReference.action.bindings[t._indexBinding].ToDisplayString().Length > 1).Any(t => 
         control == t._actionReference.action.bindings[t._indexBinding].ToDisplayString()[1..^1]))
         {

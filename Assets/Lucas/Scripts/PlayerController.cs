@@ -89,7 +89,6 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(_camera.position, _camera.forward, out RaycastHit hit, _rangeInteraction, 1 << LayerMask.NameToLayer("Interactable")))
         {
-            Debug.Log("Player pressed interact button.");
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
             if (interactable != null)
             {

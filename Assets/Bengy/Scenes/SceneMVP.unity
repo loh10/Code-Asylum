@@ -506,6 +506,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe6906135ffc5b248a377ba79f30769f, type: 3}
+--- !u!1 &994764461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8241385948871040550, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
+  m_PrefabInstance: {fileID: 5484598118665302017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1035395108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {x: 0, y: 0, z: 0}
+  ennemi: {fileID: 994764461}
 --- !u!1 &1522966450
 GameObject:
   m_ObjectHideFlags: 0

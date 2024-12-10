@@ -9,18 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e47a6275ba54439b411905ba8a2236f, type: 3}
-  m_Name: Test_Key
+  m_Script: {fileID: 11500000, guid: b1e4f326a7204ac08570ccb1a35f3ad9, type: 3}
+  m_Name: TestKey_WHITE
   m_EditorClassIdentifier: 
-  itemName: Test Key YELLOW
-  icon: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  description: This is is the GOOD key yaaay
+  itemName: Test Key (White)
+  icon: {fileID: -1738356654, guid: bdbee1eb46592fe4ea8fc85ad9c29424, type: 3}
+  description: This is a test key
   itemType: 0
   category: 1
   isStackable: 1
-  maxStackSize: 5
+  maxStackSize: 3
   useSound: {fileID: 0}
   useEffect: {fileID: 0}
   consumeOnUse: 1
-  unlockTargetIDs:
-  - LOCK_Z1_01

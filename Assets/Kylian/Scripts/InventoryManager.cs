@@ -1,15 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the player's inventory, allowing adding, removing, and querying items.
+/// </summary>
 public class InventoryManager : MonoBehaviour
 {
-    // List of items currently in the inventory
+    /// <summary>
+    /// The list of items currently in the player's inventory.
+    /// </summary>
     private List<InventoryItem> inventoryItems = new List<InventoryItem>();
 
     [SerializeField]
     private GameObject _inventoryUI;
     private bool _isDisplay;
-    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -18,9 +23,8 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-
     /// <summary>
-    /// Displays the contents of the inventory in the console.
+    /// Displays the inventory content in the console for debugging.
     /// </summary>
     public void DebugDisplayInventory()
     {
@@ -33,19 +37,17 @@ public class InventoryManager : MonoBehaviour
         {
             foreach (InventoryItem inventoryItem in inventoryItems)
             {
-                Debug.Log($"Item: {inventoryItem.itemData.itemName}, Quantity: {inventoryItem.quantity}");
+                Debug.Log($"Item: {inventoryItem.ItemConfig.itemName}, Quantity: {inventoryItem.quantity}");
             }
         }
     }
 
-    
     /// <summary>
     /// Adds an item to the inventory.
     /// </summary>
-    /// <param name="item">The item to add.</param>
-    public void AddItem(ItemData item)
+    public void AddItem(ItemConfig item)
     {
-        InventoryItem existingItem = inventoryItems.Find(i => i.itemData == item);
+        InventoryItem existingItem = inventoryItems.Find(i => i.ItemConfig == item);
 
         if (existingItem != null)
         {
@@ -55,7 +57,7 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                // Allow multiple instances of non-stackable items (Optional)
+                // Non-stackable item, add another instance
                 inventoryItems.Add(new InventoryItem(item, 1));
                 Debug.Log($"{item.itemName} added to inventory.");
             }
@@ -70,10 +72,9 @@ public class InventoryManager : MonoBehaviour
     /// <summary>
     /// Removes an item from the inventory.
     /// </summary>
-    /// <param name="item">The item to remove.</param>
-    public void RemoveItem(ItemData item)
+    public void RemoveItem(ItemConfig item)
     {
-        InventoryItem existingItem = inventoryItems.Find(i => i.itemData == item);
+        InventoryItem existingItem = inventoryItems.Find(i => i.ItemConfig == item);
 
         if (existingItem != null)
         {
@@ -93,66 +94,36 @@ public class InventoryManager : MonoBehaviour
     /// <summary>
     /// Checks if the inventory contains a specific item.
     /// </summary>
-    /// <param name="item">The item to check for.</param>
-    /// <returns>True if the item is in the inventory; otherwise, false.</returns>
-    public bool HasItem(ItemData item)
+    public bool HasItem(ItemConfig item)
     {
-        return inventoryItems.Exists(i => i.itemData == item);
+        return inventoryItems.Exists(i => i.ItemConfig == item);
     }
 
     /// <summary>
-    /// Gets a list of all items in the inventory.
+    /// Retrieves all items currently in the inventory.
     /// </summary>
-    /// <returns>A list of ItemData objects in the inventory.</returns>
-    public List<ItemData> GetAllItems()
+    public List<ItemConfig> GetAllItems()
     {
-        List<ItemData> items = new List<ItemData>();
+        List<ItemConfig> items = new List<ItemConfig>();
         foreach (InventoryItem inventoryItem in inventoryItems)
         {
-            items.Add(inventoryItem.itemData);
+            items.Add(inventoryItem.ItemConfig);
         }
         return items;
     }
-    
+
     /// <summary>
     /// Gets the quantity of a specific item in the inventory.
     /// </summary>
-    /// <param name="item">The item to check.</param>
-    /// <returns>The quantity of the item.</returns>
-    public int GetItemQuantity(ItemData item)
+    public int GetItemQuantity(ItemConfig item)
     {
-        InventoryItem existingItem = inventoryItems.Find(i => i.itemData == item);
+        InventoryItem existingItem = inventoryItems.Find(i => i.ItemConfig == item);
         return existingItem != null ? existingItem.quantity : 0;
-    }
-
-    /// <summary>
-    /// Finds a key in the inventory that can unlock the specified lock ID.
-    /// </summary>
-    /// <param name="lockID">The ID of the lock to unlock.</param>
-    /// <returns>The matching KeyItemData if found; otherwise, null.</returns>
-    public KeyItemData GetMatchingKey(string lockID)
-    {
-        foreach (InventoryItem inventoryItem in inventoryItems)
-        {
-            if (inventoryItem.itemData.itemType == ItemType.Key)
-            {
-                KeyItemData keyItemData = inventoryItem.itemData as KeyItemData;
-                if (keyItemData != null)
-                {
-                    if (System.Array.Exists(keyItemData.unlockTargetIDs, id => id == lockID))
-                    {
-                        return keyItemData;
-                    }
-                }
-            }
-        }
-        return null; // No matching key found
     }
 
     /// <summary>
     /// Toggles the display of the inventory UI.
     /// </summary>
-    /// <param name="display">True to display the UI; false to hide it.</param>
     public void ToggleInventoryDisplay(bool display)
     {
         _isDisplay = display;
@@ -165,16 +136,16 @@ public class InventoryManager : MonoBehaviour
 }
 
 /// <summary>
-/// Represents an item in the inventory along with its quantity.
+/// Represents an item stored in the inventory with a given quantity.
 /// </summary>
 public class InventoryItem
 {
-    public ItemData itemData;
+    public ItemConfig ItemConfig;
     public int quantity;
 
-    public InventoryItem(ItemData itemData, int quantity)
+    public InventoryItem(ItemConfig itemConfig, int quantity)
     {
-        this.itemData = itemData;
+        this.ItemConfig = itemConfig;
         this.quantity = quantity;
     }
 }

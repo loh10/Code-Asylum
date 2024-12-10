@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     //public Inventory _inventory;
 
-    SaveReload saveReload;
+    private SaveReload _saveReload;
 
     private void Start()
     {
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("AI"))
         {
-            saveReload.IsDead();
+            _saveReload.IsDead();
             return;
         }
 

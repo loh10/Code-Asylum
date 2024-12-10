@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class SimonGame : MonoBehaviour
 {
@@ -14,6 +16,19 @@ public class SimonGame : MonoBehaviour
     private int _sequenceIndex;
     private int _roundIndex;
     private Button _startButton;
+    private readonly List<Color> _initialColor = new List<Color>();
+
+    private void Awake()
+    {
+        foreach (Image image in _listImages)
+        {
+            _initialColor.Add(image.color);
+        }
+    }
+    private void Start()
+    {
+        AddColor();
+    }
 
     public void StartGame(Button button)
     {
@@ -56,6 +71,7 @@ public class SimonGame : MonoBehaviour
 
     public void OnClick(int index)
     {
+        _listImages[index].color = _initialColor[index];
         if (index != _sequence[_sequenceIndex])
         {
             ResetGame();
@@ -82,7 +98,6 @@ public class SimonGame : MonoBehaviour
     
     private void OnEnable()
     {
-        AddColor();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         PlayerController.freezeInput = true;
@@ -94,8 +109,8 @@ public class SimonGame : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         PlayerController.freezeInput = false;
-        ResetGame();
         StopAllCoroutines();
+        InteractableButton(false);
     }
     private void ResetGame()
     {

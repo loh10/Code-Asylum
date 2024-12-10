@@ -70,7 +70,6 @@ public class SlicedPuzzleManager : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.down, Mathf.Infinity);
-            print(hit.transform);
             if (hit)
             {
                 for (int i = 0; i < _pieces.Count; i++)

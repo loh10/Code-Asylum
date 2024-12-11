@@ -18,8 +18,6 @@ public class AIController : MonoBehaviour
     private IdleState _idleState;
     private FollowState _followState;
     private PatrolState _patrolState;
-
-    private SaveReload saveReload;
     
     private void Awake()
     {
@@ -78,13 +76,5 @@ public class AIController : MonoBehaviour
         if (!Physics.Raycast(cam.transform.position, direction.normalized, out RaycastHit hit, Mathf.Infinity)) return false;
         
         return hit.transform == target;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            saveReload.IsDead();
-        }
     }
 }

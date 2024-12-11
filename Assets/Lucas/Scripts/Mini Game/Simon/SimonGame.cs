@@ -16,6 +16,7 @@ public class SimonGame : MonoBehaviour
     private int _roundIndex;
     private Button _startButton;
     private readonly List<Color> _initialColor = new List<Color>();
+    private MiniGameManager _miniGame;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class SimonGame : MonoBehaviour
         {
             _initialColor.Add(image.color);
         }
+        _miniGame = GetComponentInParent<MiniGameManager>();
     }
     private void Start()
     {
@@ -86,7 +88,7 @@ public class SimonGame : MonoBehaviour
         _roundIndex++;
         
         if (_roundIndex == _round)
-            gameObject.SetActive(false);
+            _miniGame.Solve();
         else
         {
             InteractableButton(false);

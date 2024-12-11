@@ -14,11 +14,13 @@ public class DifferenceGame : MonoBehaviour
     private int _numberOfClicks = 2;
     private bool _isEnd;
     private GameObject _crossObject;
+    private MiniGameManager _miniGame;
 
     private void Start()
     {
         _crossObject = Instantiate(_cross, Vector3.zero, Quaternion.identity, _numbers[0].transform.parent);
         _crossObject.SetActive(false);
+        _miniGame = GetComponentInParent<MiniGameManager>();
     }
     public void OnClick(Button button)
     {
@@ -72,8 +74,7 @@ public class DifferenceGame : MonoBehaviour
     {
         _isEnd = true;
         yield return new WaitForSeconds(time);
-        gameObject.SetActive(false);
-        transform.parent.gameObject.layer = LayerMask.NameToLayer("Default");
+        _miniGame.Solve();
     }
     private void OnEnable()
     {

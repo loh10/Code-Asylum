@@ -1,50 +1,39 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.EventSystems;
-using System.Collections.Generic;
-using System.Linq;
 
 public class ChangeControl : MonoBehaviour
 {
-    private string _control = "";
-    private InputActionAsset _actionAsset;
-    public int _indexActionMap;
-    public int _indexAction;
-    public int _indexBinding;
+    [SerializeField] private TextMeshProUGUI _textControl;
+    [SerializeField] private int _indexBinding;
+    [SerializeField] private InputActionReference _actionReference;
+    
+    private string _control;
     private void Start()
     {
-        _actionAsset = GetComponentInParent<GetButton>()._actionAsset;
-        _control = _actionAsset.actionMaps[_indexActionMap].actions[_indexAction].bindings[_indexBinding].path.ToString();
-        _control = _control[11..];
-        ChangeQwerty();
-        GetComponentInChildren<TextMeshProUGUI>().text = _control.ToUpper();
+        _control = _actionReference.action.bindings[_indexBinding].ToDisplayString();
+        if (_control.Length > 1)
+            _control = _control[1..^1];
+        _textControl.text = _control;
     }
-    public void Change()
+    public bool Change(string control, List<ChangeControl> changeControls)
     {
-        _control = GetButton._text;
-        if (EventSystem.current.currentSelectedGameObject != gameObject)
-            return;
-        List<string> list = GetComponentInParent<GetButton>()._listControl;
-        if (list.Any(t => t == "<Keyboard>/" + _control))
+        if (EventSystem.current.currentSelectedGameObject != gameObject || control == _control)
+            return true;
+
+        if (changeControls.Where((_, i) => i != _indexBinding).Where(t => 
+        t._actionReference.action.bindings[t._indexBinding].ToDisplayString().Length > 1).Any(t => 
+        control == t._actionReference.action.bindings[t._indexBinding].ToDisplayString()[1..^1]))
         {
-            return;
+            return false;
         }
-        _actionAsset.actionMaps[_indexActionMap].actions[_indexAction].ChangeBinding(_indexBinding).WithPath("<Keyboard>/" + _control);
-        ChangeQwerty();
-        GetComponentInChildren<TextMeshProUGUI>().text = _control.ToUpper();
-        GetComponentInParent<GetButton>().SetListControl();
-    }
-    private void ChangeQwerty()
-    {
-        _control = _control switch
-        {
-            "q" => "a",
-            "a" => "q",
-            "w" => "z",
-            "z" => "w",
-            "semicolon" => "m",
-            _ => _control
-        };
+
+        _actionReference.action.ChangeBinding(_indexBinding).WithPath("<Keyboard>/#(" + control + ")");
+        _textControl.text = control;
+        _control = control;
+        return true;
     }
 }

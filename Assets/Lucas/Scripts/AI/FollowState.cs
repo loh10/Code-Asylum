@@ -7,6 +7,7 @@ public class FollowState : State
     private readonly NavMeshAgent _agent;
     private const float _speedMultiplier = 1.25f;
     private const float _distanceToTarget = 2f;
+
     
     public FollowState(Transform target, NavMeshAgent agent)
     {
@@ -23,10 +24,16 @@ public class FollowState : State
         _agent.SetDestination(_target.position);
 
         if (Vector3.Distance(_target.position, _agent.transform.position) < _distanceToTarget)
-            Debug.Log("Dead!");
+        {
+            _target.gameObject.GetComponent<SaveReload>().IsDead();
+            //Debug.Log("Dead!");
+        }
+
     }
     public override void Exit()
     {
         _agent.speed /= _speedMultiplier;
     }
+
+    
 }

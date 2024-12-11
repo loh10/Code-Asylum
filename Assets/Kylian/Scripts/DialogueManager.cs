@@ -1,9 +1,5 @@
-using UnityEngine;
-using System.Xml;
-using System.Xml.Serialization;
 using System.Xml.Linq;
 using System.Collections.Generic;
-using System;
 
 public static class DialogueManager 
 {
@@ -13,7 +9,7 @@ public static class DialogueManager
     public static string GetDialogue(string group, string dialogueName)
     {
         IEnumerable<XElement> dialoguePossibilities = _dialogueDoc.Descendants(group);
-        foreach (var item in dialoguePossibilities)
+        foreach (XElement item in dialoguePossibilities)
         {
             return item.Element(dialogueName).Value;
         }

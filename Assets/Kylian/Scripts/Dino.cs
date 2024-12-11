@@ -10,6 +10,14 @@ public class Dino : MonoBehaviour
     [SerializeField]
     private Transform _targetUp, _targetDown;
     private Vector3 _endPosition;
+    [HideInInspector]public int _tempNumberEnemyToSpawn;
+    public int numberEnemyToSpawn;
+    
+
+    private void Start()
+    {
+        _tempNumberEnemyToSpawn = numberEnemyToSpawn;
+    }
 
 
     private void Update()
@@ -26,6 +34,7 @@ public class Dino : MonoBehaviour
         {
             ChangePosition();
         }
+        
     }
 
     private void ChangePosition()
@@ -42,4 +51,16 @@ public class Dino : MonoBehaviour
         }
         _move = true;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<Obstacle>(out Obstacle obstacle))
+        {
+            transform.position = _targetDown.position;
+            _tempNumberEnemyToSpawn = numberEnemyToSpawn;
+            Destroy(obstacle.gameObject);
+            Debug.Log(_tempNumberEnemyToSpawn);
+        }
+    }
+
 }

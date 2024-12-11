@@ -982,11 +982,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-    You have won a biceh''s foot
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1501,7 +1497,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7744653196689377028, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1152165619}
   m_SourcePrefab: {fileID: 100100000, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
 --- !u!1 &743837276
 GameObject:
@@ -2799,6 +2798,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106088549}
   m_CullTransparentMesh: 1
+--- !u!1 &1152165614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7744653196689377028, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
+  m_PrefabInstance: {fileID: 742387082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1152165619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152165614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcd15172b0006945ba4e685f04dfcdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPoint: {x: 0, y: 0, z: 0}
+  ennemi: {fileID: 1887264313}
 --- !u!1 &1249065313
 GameObject:
   m_ObjectHideFlags: 0
@@ -3195,8 +3213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a824b68bfd4929aac34491e7721fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockID: LOCK_Z1_01
   isLocked: 1
+  unlockConditions: []
+  unlockRequiresAllConditions: 0
 --- !u!65 &1444617835
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3770,6 +3789,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.022963116, y: 0.0017208481, z: 0.01600001}
   m_Center: {x: 0.08273177, y: -0.032599896, z: 0.0079996735}
+--- !u!1 &1887264313 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8241385948871040550, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
+  m_PrefabInstance: {fileID: 5484598118665302017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1923835690
 GameObject:
   m_ObjectHideFlags: 0
@@ -5074,8 +5098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776e8d78cadfc0848ae909d298344dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _labyrinth: {fileID: 6719268017589316562}
-  _panelVictory: {fileID: 323435047}
+  _playerLabyrinthControl: {fileID: 0}
 --- !u!33 &2909045109787405609
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5997,6 +6020,9 @@ MonoBehaviour:
   cam: {fileID: 8803279337031747145}
   sphere: {fileID: 7559718874650136273}
   distanceFromCamera: 0
+  _panelVictory: {fileID: 323435047}
+  _textHint: {fileID: 509903392}
+  _labyrinth: {fileID: 6719268017589316562}
 --- !u!54 &6185678850167233312
 Rigidbody:
   m_ObjectHideFlags: 0

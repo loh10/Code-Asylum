@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.DeleteKey("Sensitivity");
         _rb = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
+        _saveReload = GetComponent<SaveReload>();
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -129,12 +130,9 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("AI"))
-        {
-            _saveReload.IsDead();
             return;
-        }
-
         
+        _saveReload.IsDead();
     }
     
 

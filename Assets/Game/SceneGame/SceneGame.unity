@@ -1211,6 +1211,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8834748975277671412, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1560,6 +1564,53 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.008000001, y: 0.00040000043, z: 0.020000005}
   m_Center: {x: -0.0040000025, y: 0.00020000394, z: 0.010000004}
+--- !u!1 &927116875 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2695663389700092047, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
+  m_PrefabInstance: {fileID: 1598687154}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &927116879
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927116875}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.008052247, y: 0.0020343382, z: 0.02401264}
+  m_Center: {x: -0.019975677, y: -0.0007171576, z: 0.012004698}
+--- !u!65 &927116880
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927116875}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.008004425, y: 0.0020343382, z: 0.02401264}
+  m_Center: {x: -0.0039946265, y: -0.0007171576, z: 0.012004698}
 --- !u!1 &950673437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,7 +1998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {x: 0, y: 0, z: 0}
-  ennemi: {fileID: 1887264313}
+  ennemi: {fileID: 1887264317}
 --- !u!1001 &1187794625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2483,6 +2534,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9086397773078589110, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1598687170}
+    - targetCorrespondingSourceObject: {fileID: 2695663389700092047, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 927116880}
+    - targetCorrespondingSourceObject: {fileID: 2695663389700092047, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 927116879}
     - targetCorrespondingSourceObject: {fileID: -7943541170048786922, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1598687160}
@@ -2747,9 +2804,9 @@ Transform:
   m_Children: []
   m_Father: {fileID: 554985710}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1887264313 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8241385948871040550, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
+--- !u!195 &1887264317 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 6326476679966215040, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
   m_PrefabInstance: {fileID: 5484598118665302017}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1955197614
@@ -2876,7 +2933,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.083333336
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 01fbc6ddd7b0f7a43b446abf3e8b9d7a, type: 2}
   m_BuildHeightMesh: 0
@@ -2992,7 +3049,7 @@ Transform:
   m_GameObject: {fileID: 2037721835}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.74, y: 0, z: 28.85}
+  m_LocalPosition: {x: 0, y: 0.5, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

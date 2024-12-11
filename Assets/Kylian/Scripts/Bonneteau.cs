@@ -82,7 +82,7 @@ public class Bonneteau : MonoBehaviour
     {
         for (int i = 0;i<_position.Length;i++)
         {
-            GameObject newGoblet = Instantiate(_gobletPrefab,transform.position + new Vector3(i * 2, 0, 0), Quaternion.identity);
+            GameObject newGoblet = Instantiate(_gobletPrefab,transform.position + new Vector3(0, 0, i * 2), Quaternion.identity);
             newGoblet.transform.parent = transform;
             newGoblet.name = "0";
             if(i == 0)

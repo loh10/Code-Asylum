@@ -8,33 +8,30 @@ public class SymbolManager : MonoBehaviour
 {
     public static SymbolManager Instance { get; private set; }
 
-    // Predefined symbols and their values
-    // We extend this to also store the ItemConfig for each symbol.
     [System.Serializable]
     public struct SymbolDefinition
     {
-        public string symbolChar; // e.g. "Φ"
-        public int value; // e.g. 12
+        public string symbolChar;    // e.g. "Φ"
+        public int value;            // e.g. 12
         public ItemConfig symbolItemConfig; // The item representing this symbol
     }
 
     [Header("Symbol Definitions")]
     public SymbolDefinition[] allSymbols; // Assign in Inspector
 
-    private Dictionary<string, SymbolDefinition> symbolDictionary = new Dictionary<string, SymbolDefinition>();
+    private Dictionary<string, SymbolDefinition> _symbolDictionary = new Dictionary<string, SymbolDefinition>();
 
     // We'll pick 3 random symbols for X, Y, Z puzzles
-    private string symbolX, symbolY, symbolZ;
-    private bool assigned = false;
+    private string _symbolX, _symbolY, _symbolZ;
+    private bool _assigned = false;
 
-    // Suppose we know the puzzleIDs in advance:
-    [Header("Puzzle IDs that reward symbols")]
-    public string puzzleID_X; 
-    public string puzzleID_Y; 
-    public string puzzleID_Z;
+    [Header("Puzzle IDs that reward symbols (X, Y, Z)")]
+    public int puzzleID_X; 
+    public int puzzleID_Y; 
+    public int puzzleID_Z;
 
-    private Dictionary<string, string> puzzleToSymbol = new Dictionary<string, string>(); 
-    // e.g. puzzleToSymbol[puzzleID_X] = symbolX
+    // Map from puzzleID to the assigned symbol char (e.g. puzzleID_X -> symbolX)
+    private Dictionary<int, string> _puzzleToSymbol = new Dictionary<int, string>();
 
     private void Awake()
     {
@@ -57,47 +54,55 @@ public class SymbolManager : MonoBehaviour
     /// </summary>
     private void AssignSymbols()
     {
+        // Populate symbolDictionary
         foreach (var symDef in allSymbols)
         {
-            symbolDictionary[symDef.symbolChar] = symDef;
+            _symbolDictionary[symDef.symbolChar] = symDef;
         }
 
-        List<string> keys = new List<string>(symbolDictionary.Keys);
-        // Shuffle keys
+        // Get a list of symbol chars
+        List<string> keys = new List<string>(_symbolDictionary.Keys);
+
+        // Shuffle keys to get random assignment
         for (int i = 0; i < keys.Count; i++)
         {
             int rand = Random.Range(i, keys.Count);
             (keys[i], keys[rand]) = (keys[rand], keys[i]);
         }
 
-        symbolX = keys[0];
-        symbolY = keys[1];
-        symbolZ = keys[2];
+        // Assign the first three unique symbols to X, Y, Z
+        // Assuming we have at least 3 symbols defined
+        _symbolX = keys[0];
+        _symbolY = keys[1];
+        _symbolZ = keys[2];
 
-        puzzleToSymbol[puzzleID_X] = symbolX;
-        puzzleToSymbol[puzzleID_Y] = symbolY;
-        puzzleToSymbol[puzzleID_Z] = symbolZ;
+        _puzzleToSymbol[puzzleID_X] = _symbolX;
+        _puzzleToSymbol[puzzleID_Y] = _symbolY;
+        _puzzleToSymbol[puzzleID_Z] = _symbolZ;
 
-        assigned = true;
-        Debug.Log($"Symbols assigned: X={symbolX}, Y={symbolY}, Z={symbolZ}");
+        _assigned = true;
+        Debug.Log($"Symbols assigned: X={_symbolX}, Y={_symbolY}, Z={_symbolZ}");
     }
 
     public int GetSymbolValue(string symbol)
     {
-        return symbolDictionary[symbol].value;
+        return _symbolDictionary[symbol].value;
     }
 
-    public ItemConfig GetSymbolItemConfigForPuzzleID(string puzzleID)
+    /// <summary>
+    /// Retrieves the ItemConfig for the symbol associated with a given puzzleID.
+    /// </summary>
+    public ItemConfig GetSymbolItemConfigForPuzzleID(int puzzleID)
     {
-        if (!assigned || !puzzleToSymbol.ContainsKey(puzzleID))
+        if (!_assigned || !_puzzleToSymbol.ContainsKey(puzzleID))
             return null;
 
-        string sym = puzzleToSymbol[puzzleID];
-        return symbolDictionary[sym].symbolItemConfig;
+        string sym = _puzzleToSymbol[puzzleID];
+        return _symbolDictionary[sym].symbolItemConfig;
     }
 
-    // For equations (Terminal code), we can also expose:
-    public string GetSymbolX() => symbolX;
-    public string GetSymbolY() => symbolY;
-    public string GetSymbolZ() => symbolZ;
+    // For equations (Terminal code) access:
+    public string GetSymbolX() => _symbolX;
+    public string GetSymbolY() => _symbolY;
+    public string GetSymbolZ() => _symbolZ;
 }

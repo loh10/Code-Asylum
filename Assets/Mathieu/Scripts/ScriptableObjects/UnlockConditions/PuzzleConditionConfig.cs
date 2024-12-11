@@ -4,7 +4,7 @@
 public class PuzzleConditionConfig : UnlockConditionConfig
 {
     [Tooltip("The puzzleID that must be solved.")]
-    public string puzzleID;
+    public int puzzleID;
 
     public override bool IsConditionMet(InventoryManager inventory)
     {

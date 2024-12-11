@@ -10,7 +10,7 @@ public class PuzzleManager : MonoBehaviour
 {
     public static PuzzleManager Instance { get; private set; }
 
-    private Dictionary<string, bool> puzzleStates = new Dictionary<string, bool>();
+    private Dictionary<int, bool> puzzleStates = new Dictionary<int, bool>();
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class PuzzleManager : MonoBehaviour
     /// <summary>
     /// Marks a puzzle as solved by puzzleID.
     /// </summary>
-    public void SetPuzzleSolved(string puzzleID)
+    public void SetPuzzleSolved(int puzzleID)
     {
         puzzleStates[puzzleID] = true;
         Debug.Log($"Puzzle {puzzleID} set to solved.");
@@ -35,7 +35,7 @@ public class PuzzleManager : MonoBehaviour
     /// <summary>
     /// Checks if a puzzle is solved.
     /// </summary>
-    public bool IsPuzzleSolved(string puzzleID)
+    public bool IsPuzzleSolved(int puzzleID)
     {
         return puzzleStates.TryGetValue(puzzleID, out bool solved) && solved;
     }

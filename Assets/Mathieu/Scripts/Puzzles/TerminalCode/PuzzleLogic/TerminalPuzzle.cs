@@ -4,12 +4,9 @@ using TMPro;
 
 public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
 {
-    [Header("Puzzle Settings")]
-    [Tooltip("Unique ID for this puzzle.")]
-    public string puzzleID = "terminalPuzzle";
-
-    public bool IsSolved { get; private set; }
-    public string PuzzleID => puzzleID;
+    [Header("Puzzle Configuration")]
+    [SerializeField] private int _PuzzleID;
+    [SerializeField] private string _PuzzleHint;
 
     [Header("UI References")]
     public GameObject terminalUI;
@@ -17,35 +14,57 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
     public TMP_InputField result2Field;
     public TMP_InputField result3Field;
     public Button confirmButton;
+    public Button closeButton;
+    
+    public bool IsSolved { get; set; }
+    public string PuzzleHint { get; set; }
+    public int PuzzleID { get; set; }
 
-    [Header("Player & Cursor")]
-    [SerializeField] private PlayerController playerController;
-
-    // Interaction state
     public bool IsInteractable => true;
     public string InteractionHint => "Press 'E' to enter code";
 
     private void Awake()
     {
+        PuzzleID = _PuzzleID;
+        PuzzleHint = _PuzzleHint;
+        
         if (confirmButton != null)
         {
             confirmButton.onClick.AddListener(OnConfirmClicked);
         }
+        
+        if (closeButton != null)
+        {
+            closeButton.onClick.AddListener(HideTerminal);
+        }
+        
         HideTerminal();
     }
 
     public void Interact(GameObject interactor)
     {
         if (terminalUI.activeSelf) HideTerminal();
-        else ShowTerminal();
+        else Activate();
     }
 
-    private void ShowTerminal()
+    public void Activate()
     {
+        if (IsSolved) return;
+        
         terminalUI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         PlayerController.freezeInput = true;
+    }
+
+    public void Solve()
+    {
+        if (!IsSolved)
+        {
+            IsSolved = true;
+            PuzzleManager.Instance.SetPuzzleSolved(PuzzleID);
+            Debug.Log($"Puzzle {PuzzleID} solved.");
+        }
     }
 
     private void HideTerminal()
@@ -81,7 +100,6 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
 
     private bool CheckCode(int R1, int R2, int R3)
     {
-        // Get assigned symbols from SymbolManager
         string Xs = SymbolManager.Instance.GetSymbolX();
         string Ys = SymbolManager.Instance.GetSymbolY();
         string Zs = SymbolManager.Instance.GetSymbolZ();
@@ -96,14 +114,5 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
 
         return (calcR1 == R1 && calcR2 == R2 && calcR3 == R3);
     }
-
-    public void Solve()
-    {
-        if (!IsSolved)
-        {
-            IsSolved = true;
-            PuzzleManager.Instance.SetPuzzleSolved(puzzleID);
-            Debug.Log($"Puzzle {puzzleID} solved.");
-        }
-    }
 }
+

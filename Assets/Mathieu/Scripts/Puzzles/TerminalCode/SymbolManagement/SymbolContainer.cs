@@ -1,32 +1,33 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Placed on the container in a puzzle room. Once unlocked, it spawns/assigns the correct symbol item.
+/// Placed on the container in a puzzle room. Once unlocked, it assigns the correct symbol item
+/// based on the puzzleID that rewards that symbol.
 /// </summary>
 public class SymbolContainer : MonoBehaviour
 {
     [Tooltip("The puzzleID that this container rewards. Must match the puzzle's ID.")]
-    public string puzzleID;
+    public int puzzleID;
 
-    [Tooltip("The collectible item inside the container, initially disabled or without config.")]
+    [Tooltip("The collectible item inside the container, initially without config.")]
     public SymbolCollectibleItem symbolItem;
 
-    private Lock containerLock;
+    private Lock _containerLock;
 
     private void Awake()
     {
-        containerLock = GetComponent<Lock>();
-        if (containerLock != null)
+        _containerLock = GetComponent<Lock>();
+        if (_containerLock != null)
         {
-            containerLock.OnUnlock += OnContainerUnlocked;
+            _containerLock.OnUnlock += OnContainerUnlocked;
         }
     }
 
     private void OnDestroy()
     {
-        if (containerLock != null)
+        if (_containerLock != null)
         {
-            containerLock.OnUnlock -= OnContainerUnlocked;
+            _containerLock.OnUnlock -= OnContainerUnlocked;
         }
     }
 

@@ -3,7 +3,7 @@
 public class Door : MonoBehaviour
 {
     [Header("Door Properties")]
-    public Animator doorAnimator; // TODO: Create a door opening animation
+    [SerializeField] private Animator doorAnimator; // TODO: Create a door opening animation
 
     private Lock _lockComponent;
 
@@ -35,7 +35,7 @@ public class Door : MonoBehaviour
         // Trigger the door opening animation
         if (doorAnimator != null)
         {
-            // doorAnimator.SetTrigger("Open"); // TODO: Uncomment this line when animation is ready
+            doorAnimator.enabled = true;
         }
         else
         {

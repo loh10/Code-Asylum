@@ -3,9 +3,14 @@ using UnityEngine.UI;
 
 public class SymbolRoomDisplay : MonoBehaviour
 {
-    [Header("Symbol Image References (X, Y, Z)")]
+    [Header("UI Image References for Symbols (X, Y, Z)")]
+    [Tooltip("UI Image for Symbol X.")]
     public Image symbolXImage;
+    
+    [Tooltip("UI Image for Symbol Y.")]
     public Image symbolYImage;
+    
+    [Tooltip("UI Image for Symbol Z.")]
     public Image symbolZImage;
 
     private ItemConfig xConfig;
@@ -13,6 +18,9 @@ public class SymbolRoomDisplay : MonoBehaviour
     private ItemConfig zConfig;
 
     private InventoryManager playerInventory;
+    
+    private Color transparent = new Color(1, 1, 1, 0);
+    private Color solid = new Color(1, 1, 1, 1);
 
     private void Start()
     {
@@ -29,10 +37,8 @@ public class SymbolRoomDisplay : MonoBehaviour
         yConfig = SymbolManager.Instance.GetSymbolItemConfigForPuzzleID(SymbolManager.Instance.puzzleID_Y);
         zConfig = SymbolManager.Instance.GetSymbolItemConfigForPuzzleID(SymbolManager.Instance.puzzleID_Z);
 
-        // Hide or set empty sprites initially
-        if (symbolXImage != null) symbolXImage.enabled = false;
-        if (symbolYImage != null) symbolYImage.enabled = false;
-        if (symbolZImage != null) symbolZImage.enabled = false;
+        // Hide or set empty images initially
+        ResetSymbolImages();
 
         // Subscribe to inventory events
         playerInventory.OnItemAdded += OnItemAdded;
@@ -46,23 +52,54 @@ public class SymbolRoomDisplay : MonoBehaviour
         }
     }
 
+    private void ResetSymbolImages()
+    {
+        if (symbolXImage != null)
+        {
+            symbolXImage.sprite = null;
+            symbolXImage.color = transparent;
+            symbolXImage.enabled = false;
+        }
+
+        if (symbolYImage != null)
+        {
+            symbolYImage.sprite = null;
+            symbolYImage.color = transparent;
+            symbolYImage.enabled = false;
+        }
+
+        if (symbolZImage != null)
+        {
+            symbolZImage.sprite = null;
+            symbolZImage.color = transparent;
+            symbolZImage.enabled = false;
+        }
+    }
+
     private void OnItemAdded(ItemConfig item)
     {
-        // Check if this item is one of the symbol items
+        // Check if the added item matches any of the configured symbols
         if (item == xConfig && symbolXImage != null)
         {
-            symbolXImage.sprite = xConfig.icon;
-            symbolXImage.enabled = true;
+            UpdateSymbolImage(symbolXImage, xConfig.icon);
         }
         else if (item == yConfig && symbolYImage != null)
         {
-            symbolYImage.sprite = yConfig.icon;
-            symbolYImage.enabled = true;
+            UpdateSymbolImage(symbolYImage, yConfig.icon);
         }
         else if (item == zConfig && symbolZImage != null)
         {
-            symbolZImage.sprite = zConfig.icon;
-            symbolZImage.enabled = true;
+            UpdateSymbolImage(symbolZImage, zConfig.icon);
+        }
+    }
+
+    private void UpdateSymbolImage(Image targetImage, Sprite icon)
+    {
+        if (targetImage != null)
+        {
+            targetImage.sprite = icon;
+            targetImage.color = solid;
+            targetImage.enabled = true;
         }
     }
 }

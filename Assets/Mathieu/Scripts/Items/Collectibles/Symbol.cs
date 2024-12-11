@@ -4,15 +4,14 @@
 /// A collectible symbol item that can be assigned an ItemConfig at runtime.
 /// Once player collects it, it's added to the inventory.
 /// </summary>
-public class SymbolCollectibleItem : MonoBehaviour, ICollectable
+public class Symbol : MonoBehaviour, ICollectable
 {
-    [SerializeField] private ItemConfig itemConfig; // Initially null or a placeholder
-    public bool canBeCollected = false;
+    [HideInInspector] public bool canBeCollected = false;
+    private ItemConfig _itemConfig; // Set dynamically by SymbolContainer when unlocked.
+    public bool CanCollect => canBeCollected && _itemConfig != null;
 
-    public bool CanCollect => canBeCollected && itemConfig != null;
-
-    public string CollectHint => itemConfig != null 
-        ? $"Pick up {itemConfig.itemName}" 
+    public string CollectHint => _itemConfig != null 
+        ? $"Pick up {_itemConfig.itemName}" 
         : "Nothing to collect.";
 
     /// <summary>
@@ -20,7 +19,7 @@ public class SymbolCollectibleItem : MonoBehaviour, ICollectable
     /// </summary>
     public void SetItemConfig(ItemConfig config)
     {
-        itemConfig = config;
+        _itemConfig = config;
         canBeCollected = true; 
     }
 
@@ -35,8 +34,8 @@ public class SymbolCollectibleItem : MonoBehaviour, ICollectable
         InventoryManager inventory = collector.GetComponent<InventoryManager>();
         if (inventory != null)
         {
-            inventory.AddItem(itemConfig);
-            Debug.Log($"{itemConfig.itemName} collected.");
+            inventory.AddItem(_itemConfig);
+            Debug.Log($"{_itemConfig.itemName} collected.");
             Destroy(gameObject);
         }
         else

@@ -9,8 +9,13 @@ public class GeneratorManual : MonoBehaviour, IInteractable
     public bool IsInteractable => true;
     public string InteractionHint => "Press 'E' to view equations";
 
-    [SerializeField] private GameObject manualUI; 
+    [SerializeField] private GameObject manualUI;
+    [SerializeField] private GameObject closeButton;
 
+    private void Start()
+    {
+        closeButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(HideManual);
+    }
     public void Interact(GameObject interactor)
     {
         if (manualUI.activeSelf) HideManual();

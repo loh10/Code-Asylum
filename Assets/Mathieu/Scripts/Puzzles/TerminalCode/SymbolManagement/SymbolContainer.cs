@@ -6,11 +6,16 @@
 /// </summary>
 public class SymbolContainer : MonoBehaviour
 {
-    [Tooltip("The puzzleID that this container rewards. Must match the puzzle's ID.")]
+    [Header("Container Settings")]
+    [Tooltip("Used to assign the correct symbol (X, Y, Z). See SymbolManager for puzzleID values.")]
     public int puzzleID;
 
-    [Tooltip("The collectible item inside the container, initially without config.")]
-    public SymbolCollectibleItem symbolItem;
+    [Tooltip("The collectible item inside this container.")]
+    public Symbol symbolItem;
+    
+    [Header("Door Reference")]
+    [Tooltip("Door that needs to be opened when the container is unlocked.")]
+    [SerializeField] private GameObject containerDoor;
 
     private Lock _containerLock;
 
@@ -37,8 +42,15 @@ public class SymbolContainer : MonoBehaviour
         ItemConfig config = SymbolManager.Instance.GetSymbolItemConfigForPuzzleID(puzzleID);
         if (config != null && symbolItem != null)
         {
+            // Assign the symbol item config to the collectible item.
             symbolItem.SetItemConfig(config);
             Debug.Log($"Assigned symbol item '{config.itemName}' for puzzleID {puzzleID}.");
+            
+            // Open the door.
+            if (containerDoor != null)
+            {
+                containerDoor.SetActive(false);
+            }
         }
         else
         {

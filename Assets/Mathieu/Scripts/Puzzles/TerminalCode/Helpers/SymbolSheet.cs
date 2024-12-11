@@ -10,7 +10,12 @@ public class SymbolSheet : MonoBehaviour, IInteractable
     public string InteractionHint => "Press 'E' to view symbol values";
 
     [SerializeField] private GameObject symbolSheetUI;
+    [SerializeField] private GameObject closeButton;
 
+    private void Start()
+    {
+        closeButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(HideSheet);
+    }
     public void Interact(GameObject interactor)
     {
         if (symbolSheetUI.activeSelf) HideSheet();

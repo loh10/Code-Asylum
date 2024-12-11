@@ -16,7 +16,7 @@ public class Door : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No Lock component found on the door.");
+            //Debug.LogWarning("No Lock component found on the door.");
         }
     }
 
@@ -31,15 +31,16 @@ public class Door : MonoBehaviour
     
     private void OpenDoor()
     {
-        Debug.Log("Door is now open!");
+        //Debug.Log("Door is now open!");
         // Trigger the door opening animation
         if (doorAnimator != null)
         {
-            // doorAnimator.SetTrigger("Open"); // TODO: Uncomment when animation is ready
+            // doorAnimator.SetTrigger("Open"); // TODO: Uncomment this line when animation is ready
         }
         else
         {
-            Debug.LogWarning("No Animator component assigned to the door.");
+            gameObject.SetActive(false); // TODO: Remove this line when animation is ready
+            //Debug.LogWarning("No Animator component assigned to the door.");
         }
     }
     
@@ -47,11 +48,11 @@ public class Door : MonoBehaviour
     {
         if (doorAnimator != null)
         {
-            // doorAnimator.SetTrigger("Close"); // TODO: Uncomment when animation is ready
+            // doorAnimator.SetTrigger("Close"); // TODO: Uncomment this line when animation is ready
         }
         else
         {
-            Debug.LogWarning("No Animator component assigned to the door.");
+            //Debug.LogWarning("No Animator component assigned to the door.");
         }
     }
 }

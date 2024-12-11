@@ -18,10 +18,7 @@ public enum ItemType
     /// </summary>
     Consumable,
 
-    /// <summary>
-    /// A clue item that provides narrative or informational content.
-    /// </summary>
-    Clue,
+
 
     /// <summary>
     /// Miscellaneous items.

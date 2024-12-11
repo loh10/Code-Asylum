@@ -1,64 +1,151 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static DialogueManager;
 
+/// <summary>
+/// Manages the player's inventory, allowing adding, removing, and querying items.
+/// </summary>
 public class InventoryManager : MonoBehaviour
 {
-    private Dictionary<string, int> _inventoryItem = new Dictionary<string, int>();
+    /// <summary>
+    /// The list of items currently in the player's inventory.
+    /// </summary>
+    private List<InventoryItem> inventoryItems = new List<InventoryItem>();
+
     [SerializeField]
     private GameObject _inventoryUI;
     private bool _isDisplay;
 
-    void AddItem(string item)
+    private void Update()
     {
-        Debug.Log(DialogueManager.GetDialogue("Dialogue", "Text"));
-        if (_inventoryItem.ContainsKey(item))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            _inventoryItem[item]++;
+            DebugDisplayInventory();
+        }
+    }
+
+    /// <summary>
+    /// Displays the inventory content in the console for debugging.
+    /// </summary>
+    public void DebugDisplayInventory()
+    {
+        Debug.Log("Inventory Contents:");
+        if (inventoryItems.Count == 0)
+        {
+            Debug.Log("Inventory is empty.");
         }
         else
         {
-            _inventoryItem[item] = 1;
+            foreach (InventoryItem inventoryItem in inventoryItems)
+            {
+                Debug.Log($"Item: {inventoryItem.ItemConfig.itemName}, Quantity: {inventoryItem.quantity}");
+            }
         }
-
     }
 
-
-
-    void UseItem(string item)
+    /// <summary>
+    /// Adds an item to the inventory.
+    /// </summary>
+    public void AddItem(ItemConfig item)
     {
-        //ToComplete thanks to Mathieu
-    }
+        InventoryItem existingItem = inventoryItems.Find(i => i.ItemConfig == item);
 
-
-
-    void RemoveItem(string item)
-    {
-        if (_inventoryItem.ContainsKey(item))
+        if (existingItem != null)
         {
-            _inventoryItem[item]--;
+            if (item.isStackable)
+            {
+                existingItem.quantity++;
+            }
+            else
+            {
+                // Non-stackable item, add another instance
+                inventoryItems.Add(new InventoryItem(item, 1));
+                Debug.Log($"{item.itemName} added to inventory.");
+            }
         }
         else
         {
-            _inventoryItem.Remove(item);
+            inventoryItems.Add(new InventoryItem(item, 1));
+            Debug.Log($"{item.itemName} added to inventory.");
         }
     }
 
+    /// <summary>
+    /// Removes an item from the inventory.
+    /// </summary>
+    public void RemoveItem(ItemConfig item)
+    {
+        InventoryItem existingItem = inventoryItems.Find(i => i.ItemConfig == item);
 
+        if (existingItem != null)
+        {
+            existingItem.quantity--;
+            if (existingItem.quantity <= 0)
+            {
+                inventoryItems.Remove(existingItem);
+            }
+            Debug.Log($"{item.itemName} removed from inventory.");
+        }
+        else
+        {
+            Debug.LogWarning($"{item.itemName} not found in inventory.");
+        }
+    }
 
-    void ToggleInventoryDisplay(bool display)
+    /// <summary>
+    /// Checks if the inventory contains a specific item.
+    /// </summary>
+    public bool HasItem(ItemConfig item)
+    {
+        return inventoryItems.Exists(i => i.ItemConfig == item);
+    }
+
+    /// <summary>
+    /// Retrieves all items currently in the inventory.
+    /// </summary>
+    public List<ItemConfig> GetAllItems()
+    {
+        List<ItemConfig> items = new List<ItemConfig>();
+        foreach (InventoryItem inventoryItem in inventoryItems)
+        {
+            items.Add(inventoryItem.ItemConfig);
+        }
+        return items;
+    }
+
+    /// <summary>
+    /// Gets the quantity of a specific item in the inventory.
+    /// </summary>
+    public int GetItemQuantity(ItemConfig item)
+    {
+        InventoryItem existingItem = inventoryItems.Find(i => i.ItemConfig == item);
+        return existingItem != null ? existingItem.quantity : 0;
+    }
+
+    /// <summary>
+    /// Toggles the display of the inventory UI.
+    /// </summary>
+    public void ToggleInventoryDisplay(bool display)
     {
         _isDisplay = display;
 
-        if (_isDisplay)
+        if (_inventoryUI != null)
         {
-            _inventoryUI.SetActive(true);
+            _inventoryUI.SetActive(display);
         }
-        else
-        {
-            _inventoryUI.SetActive(false);
-        }
+    }
+}
 
+/// <summary>
+/// Represents an item stored in the inventory with a given quantity.
+/// </summary>
+public class InventoryItem
+{
+    public ItemConfig ItemConfig;
+    public int quantity;
 
+    public InventoryItem(ItemConfig itemConfig, int quantity)
+    {
+        this.ItemConfig = itemConfig;
+        this.quantity = quantity;
     }
 }

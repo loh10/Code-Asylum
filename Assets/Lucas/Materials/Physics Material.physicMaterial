@@ -8,7 +8,7 @@ PhysicsMaterial:
   m_PrefabAsset: {fileID: 0}
   m_Name: Physics Material
   serializedVersion: 2
-  m_DynamicFriction: 0.2
+  m_DynamicFriction: 0.4
   m_StaticFriction: 0
   m_Bounciness: 0
   m_FrictionCombine: 1

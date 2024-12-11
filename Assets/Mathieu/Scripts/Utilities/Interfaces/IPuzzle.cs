@@ -17,7 +17,7 @@ public interface IPuzzle
     /// <summary>
     /// A unique identifier for the puzzle, useful for referencing it in conditions.
     /// </summary>
-    int PuzzleID { get; }
+    int PuzzleID { get; set; }
 
     /// <summary>
     /// Activates the puzzle, typically called when the player interacts with it.

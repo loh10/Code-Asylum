@@ -3214,7 +3214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLocked: 1
-  unlockConditions: []
+  unlockConditions:
+  - {fileID: 11400000, guid: c1117c05c7953bd429d8ebd9c638e529, type: 2}
   unlockRequiresAllConditions: 0
 --- !u!65 &1444617835
 BoxCollider:
@@ -5011,6 +5012,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8321516634997789045, guid: acb86eb2ac3898a4c8e5b41d02a7bef0, type: 3}
+      propertyPath: _round
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9074964837838039034, guid: acb86eb2ac3898a4c8e5b41d02a7bef0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -5098,7 +5103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776e8d78cadfc0848ae909d298344dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerLabyrinthControl: {fileID: 0}
+  _playerLabyrinthControl: {fileID: 6134964380882147243}
 --- !u!33 &2909045109787405609
 MeshFilter:
   m_ObjectHideFlags: 0

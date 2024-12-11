@@ -1,14 +1,29 @@
+using System;
 using UnityEngine;
 
-public class MiniGameManager : MonoBehaviour, IInteractable
+public class MiniGameManager : MonoBehaviour, IPuzzle
 {
     [SerializeField] private GameObject _miniGame;
+    [SerializeField] private string _puzzleHint;
+    [SerializeField] private int _puzzleID;
+    public bool IsSolved { get; set; }
+    public string PuzzleHint { get; set; }
+    public int PuzzleID { get; set; }
 
-
-    public bool IsInteractable { get; }
-    public string InteractionHint { get; }
-    public void Interact(GameObject interactor)
+    private void Awake()
     {
+        PuzzleID = _puzzleID;
+        PuzzleHint = _puzzleHint;
+    }
+    public void Activate()
+    {
+        if (IsSolved) return;
+        
         _miniGame.SetActive(true);
+    }
+    public void Solve()
+    {
+        _miniGame.SetActive(false);
+        IsSolved = true;
     }
 }

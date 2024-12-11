@@ -92,6 +92,12 @@ public class PlayerController : MonoBehaviour
             {
                 interactable.Interact(gameObject);
             }
+            
+            IPuzzle puzzle = hit.collider.GetComponent<IPuzzle>();
+            if (puzzle is { IsSolved: false })
+            {
+                puzzle.Activate();
+            }
         }
     }
     

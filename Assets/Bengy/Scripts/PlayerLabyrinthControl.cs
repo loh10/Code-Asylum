@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-public class PlayerLabyrinthControl : MonoBehaviour, IPuzzle
+public class PlayerLabyrinthControl : MonoBehaviour
 {
     public Camera cam;
     public Transform sphere;
@@ -10,10 +10,6 @@ public class PlayerLabyrinthControl : MonoBehaviour, IPuzzle
     [SerializeField] private GameObject _labyrinth;
     private Rigidbody _r;
     private bool _isDragging;
-    
-    public bool IsSolved { get; set; }
-    public string PuzzleHint { get; set; } = "You won a crowbar";
-    public int PuzzleID { get; }
 
     private void Start()
     {
@@ -53,17 +49,5 @@ public class PlayerLabyrinthControl : MonoBehaviour, IPuzzle
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         PlayerController.freezeInput = false;
-    }
-    
-    public void Activate()
-    {
-        
-    }
-    public void Solve()
-    {
-        _panelVictory.SetActive(true);
-        _labyrinth.layer = LayerMask.NameToLayer("Default");
-        IsSolved = true;
-        _textHint.text = PuzzleHint;
     }
 }

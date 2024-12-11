@@ -3,7 +3,7 @@
 /// <summary>
 /// Placed on the container in a puzzle room. Once unlocked, it spawns/assigns the correct symbol item.
 /// </summary>
-public class PuzzleSymbolContainer : MonoBehaviour
+public class SymbolContainer : MonoBehaviour
 {
     [Tooltip("The puzzleID that this container rewards. Must match the puzzle's ID.")]
     public string puzzleID;

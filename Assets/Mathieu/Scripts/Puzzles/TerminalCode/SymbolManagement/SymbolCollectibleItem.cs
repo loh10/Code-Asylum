@@ -16,7 +16,7 @@ public class SymbolCollectibleItem : MonoBehaviour, ICollectable
         : "Nothing to collect.";
 
     /// <summary>
-    /// Called by PuzzleSymbolContainer when unlocked.
+    /// Called by SymbolContainer when unlocked.
     /// </summary>
     public void SetItemConfig(ItemConfig config)
     {

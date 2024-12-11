@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class Bonneteau : MonoBehaviour
 {
-    public float speed = 2;
-    
+    public float speed = 2;    
     [SerializeField] private int _changeTime = 10;
     [SerializeField] private int _size = 3;
     [SerializeField] private GameObject _gobletPrefab;
@@ -49,10 +48,12 @@ public class Bonneteau : MonoBehaviour
                 _position[nextIndex] = 1;
                 _indexCurrentPos = nextIndex;
                 MoveGoblet();
+
             }
         }
         if (_changeTime <= 0 && Input.GetMouseButtonDown(0))
         {
+
             ChooseGoblet();
         }
     }

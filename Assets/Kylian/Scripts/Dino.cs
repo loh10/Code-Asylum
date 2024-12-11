@@ -60,6 +60,7 @@ public class Dino : MonoBehaviour
             _tempNumberEnemyToSpawn = numberEnemyToSpawn;
             Destroy(obstacle.gameObject);
             Debug.Log(_tempNumberEnemyToSpawn);
+            _isUp = false;
         }
     }
 

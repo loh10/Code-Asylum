@@ -2,13 +2,15 @@
 using UnityEngine;
 
 /// <summary>
-/// Global PuzzleManager handling puzzle states by PuzzleID.
+/// Manages the solved state of puzzles by their puzzleID.
+/// Puzzles call SetPuzzleSolved(puzzleID) when completed.
+/// PuzzleConditionConfig checks IsPuzzleSolved(puzzleID).
 /// </summary>
 public class PuzzleManager : MonoBehaviour
 {
     public static PuzzleManager Instance { get; private set; }
 
-    private HashSet<string> solvedPuzzles = new HashSet<string>(); // TODO: Replace string with an enum or a reference to a scriptable object
+    private Dictionary<string, bool> puzzleStates = new Dictionary<string, bool>();
 
     private void Awake()
     {
@@ -22,19 +24,19 @@ public class PuzzleManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks if a puzzle with the given ID is solved.
+    /// Marks a puzzle as solved by puzzleID.
     /// </summary>
-    public bool IsPuzzleSolved(string puzzleID) // TODO: Replace string with an enum or a reference to a scriptable object
+    public void SetPuzzleSolved(string puzzleID)
     {
-        return solvedPuzzles.Contains(puzzleID);
+        puzzleStates[puzzleID] = true;
+        Debug.Log($"Puzzle {puzzleID} set to solved.");
     }
 
     /// <summary>
-    /// Marks a puzzle as solved.
+    /// Checks if a puzzle is solved.
     /// </summary>
-    public void MarkPuzzleAsSolved(string puzzleID) // TODO: Replace string with an enum or a reference to a scriptable object
+    public bool IsPuzzleSolved(string puzzleID)
     {
-        solvedPuzzles.Add(puzzleID);
-        Debug.Log($"Puzzle {puzzleID} marked as solved.");
+        return puzzleStates.TryGetValue(puzzleID, out bool solved) && solved;
     }
 }

@@ -19,8 +19,8 @@ public class CodeUIManager : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] private PlayerController playerController;
     
-    private Lock currentLock;
-    private string requiredCode;
+    private Lock _currentLock;
+    private string _requiredCode;
 
     private void Awake()
     {
@@ -46,8 +46,8 @@ public class CodeUIManager : MonoBehaviour
     /// </summary>
     public void ShowCodePanel(string requiredCode, Lock lockReference)
     {
-        this.requiredCode = requiredCode;
-        this.currentLock = lockReference;
+        this._requiredCode = requiredCode;
+        this._currentLock = lockReference;
 
         if (codePanel != null)
         {
@@ -100,10 +100,10 @@ public class CodeUIManager : MonoBehaviour
         string enteredCode = codeInputField.text.Trim();
         if (!string.IsNullOrEmpty(enteredCode))
         {
-            if (enteredCode == requiredCode)
+            if (enteredCode == _requiredCode)
             {
                 Debug.Log("Correct code entered!");
-                CodeManager.Instance.RecordCode(requiredCode);
+                CodeManager.Instance.RecordCode(_requiredCode);
             }
             else
             {

@@ -14,6 +14,12 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     private GameObject _inventoryUI;
     private bool _isDisplay;
+    
+    /// <summary>
+    /// Event triggered when an item is added to the inventory.
+    /// </summary>
+    public delegate void ItemAddedEventHandler(ItemConfig item);
+    public event ItemAddedEventHandler OnItemAdded;
 
     private void Update()
     {
@@ -67,6 +73,8 @@ public class InventoryManager : MonoBehaviour
             inventoryItems.Add(new InventoryItem(item, 1));
             Debug.Log($"{item.itemName} added to inventory.");
         }
+        
+        OnItemAdded?.Invoke(item); // Fire event after adding the item
     }
 
     /// <summary>

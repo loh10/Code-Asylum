@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _crouchMultiplier: 0.5
-  _walkSpeed: 750
+  _walkSpeed: 500
   _crouchSpeed: 300
   _orientation: {fileID: 5685567764281292241}
   _rangeInteraction: 3
@@ -599,7 +599,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1.75
   m_Direction: 1
-  m_Center: {x: 0, y: -0.25, z: 0}
+  m_Center: {x: 0, y: -0.125, z: 0}
 --- !u!54 &5393016862070905198
 Rigidbody:
   m_ObjectHideFlags: 0

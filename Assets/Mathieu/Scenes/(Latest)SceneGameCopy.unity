@@ -7305,6 +7305,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 15405234}
     - target: {fileID: 3491714855205337132, guid: 0e650dd25b7e5b04784d50d3f186aa5c, type: 3}
+      propertyPath: shakeDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491714855205337132, guid: 0e650dd25b7e5b04784d50d3f186aa5c, type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1756094434}

@@ -17,11 +17,9 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
     public Button closeButton;
 
     [Header("Screen Shake Configuration")]
-    public Transform cameraTransform; // Assign the camera or parent object of the camera
+    public Transform cameraTransform;
     public float shakeDuration = 0.5f;
     public float shakeMagnitude = 0.1f;
-
-    private Vector3 _originalCameraPosition;
 
     public bool IsSolved { get; set; }
     public string PuzzleHint { get; set; }
@@ -51,16 +49,11 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
             if (mainCamera != null)
             {
                 cameraTransform = mainCamera.transform;
-                _originalCameraPosition = cameraTransform.localPosition;
             }
             else
             {
                 Debug.LogError("No cameraTransform assigned and no Main Camera found in the scene!");
             }
-        }
-        else
-        {
-            _originalCameraPosition = cameraTransform.localPosition;
         }
 
         HideTerminal();
@@ -155,28 +148,11 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
     {
         if (cameraTransform != null)
         {
-            StopAllCoroutines(); // Stop any ongoing shake to avoid stacking
-            StartCoroutine(ScreenShakeCoroutine());
+            StartCoroutine(ScreenShakeUtility.TriggerScreenShake(cameraTransform, shakeDuration, shakeMagnitude));
         }
         else
         {
-            Debug.LogWarning("No cameraTransform assigned for screen shake.");
+            Debug.LogWarning("No cameraTransform available for screen shake.");
         }
-    }
-
-    private System.Collections.IEnumerator ScreenShakeCoroutine()
-    {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < shakeDuration)
-        {
-            Vector3 randomOffset = Random.insideUnitSphere * shakeMagnitude;
-            cameraTransform.localPosition = _originalCameraPosition + randomOffset;
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        cameraTransform.localPosition = _originalCameraPosition; // Reset position after shaking
     }
 }

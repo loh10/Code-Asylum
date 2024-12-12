@@ -9,17 +9,19 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
     [SerializeField] private string _PuzzleHint;
 
     [Header("UI References")]
-    [Tooltip("Parent UI containing all terminal panels (code entry, manual panel, sheet panel, etc.).")]
-    public GameObject terminalUI; 
-    
-    [Tooltip("The panel for the code entry. Always shown when terminal is activated.")]
-    public GameObject codeEntryPanel; // Optional: Ensures the code entry panel is always shown when terminal is activated  
+    public GameObject terminalUI;
+    public GameObject codeEntryPanel;
 
     public TMP_InputField result1Field;
     public TMP_InputField result2Field;
     public TMP_InputField result3Field;
     public Button confirmButton;
     public Button closeButton;
+
+    [Header("Auto-Solve Button")]
+    public Button autoSolveButton;
+    [Tooltip("Input this code in the terminal and press Confirm to unlock the Auto-Solve button.")]
+    [SerializeField] private string devCode = "69 69 69";
 
     [Header("Screen Shake Configuration")]
     public Transform cameraTransform;
@@ -48,6 +50,12 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
             closeButton.onClick.AddListener(HideTerminal);
         }
 
+        if (autoSolveButton != null)
+        {
+            autoSolveButton.onClick.AddListener(AutoSolve);
+            autoSolveButton.gameObject.SetActive(false); // Hidden by default
+        }
+
         if (cameraTransform == null)
         {
             Camera mainCamera = Camera.main;
@@ -61,13 +69,11 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
             }
         }
 
-        // Initially hide the terminal UI
         HideTerminal();
     }
 
     public void Interact(GameObject interactor)
     {
-        // Toggle the terminal UI
         if (terminalUI.activeSelf) HideTerminal();
         else Activate();
     }
@@ -77,11 +83,10 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
         if (IsSolved) return;
 
         terminalUI.SetActive(true);
-        
-        // Optional: Ensures the code entry panel is always shown when terminal is activated
+
         if (codeEntryPanel != null)
             codeEntryPanel.SetActive(true);
-        
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         PlayerController.freezeInput = true;
@@ -107,6 +112,19 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
 
     private void OnConfirmClicked()
     {
+        string enteredCode = $"{result1Field.text.Trim()} {result2Field.text.Trim()} {result3Field.text.Trim()}";
+        
+        string normalizedEnteredCode = enteredCode.Replace(" ", string.Empty);
+        string normalizedDevCode = devCode.Replace(" ", string.Empty);
+        
+        if (normalizedEnteredCode == normalizedDevCode)
+        {
+            Debug.Log("Developer Code entered. Auto-Solve button unlocked.");
+            EnableAutoSolveButton();
+            ResetInputFields();
+            return;
+        }
+
         if (int.TryParse(result1Field.text.Trim(), out int R1) &&
             int.TryParse(result2Field.text.Trim(), out int R2) &&
             int.TryParse(result3Field.text.Trim(), out int R3))
@@ -166,5 +184,30 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
         {
             Debug.LogWarning("No cameraTransform available for screen shake.");
         }
+    }
+
+    private void EnableAutoSolveButton()
+    {
+        if (autoSolveButton != null)
+        {
+            autoSolveButton.gameObject.SetActive(true);
+        }
+    }
+
+    private void AutoSolve()
+    {
+        string Xs = SymbolManager.Instance.GetSymbolX();
+        string Ys = SymbolManager.Instance.GetSymbolY();
+        string Zs = SymbolManager.Instance.GetSymbolZ();
+
+        int X = SymbolManager.Instance.GetSymbolValue(Xs);
+        int Y = SymbolManager.Instance.GetSymbolValue(Ys);
+        int Z = SymbolManager.Instance.GetSymbolValue(Zs);
+
+        result1Field.text = (((3 * X + Y) / 2) - Z).ToString();
+        result2Field.text = (((2 * Y + Z) / 2) + X).ToString();
+        result3Field.text = (((X + Y + Z) / 2) + 4).ToString();
+
+        Debug.Log("Auto-solve filled the fields with correct values.");
     }
 }

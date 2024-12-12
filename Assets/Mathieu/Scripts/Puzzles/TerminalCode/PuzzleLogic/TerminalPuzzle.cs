@@ -15,7 +15,14 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
     public TMP_InputField result3Field;
     public Button confirmButton;
     public Button closeButton;
-    
+
+    [Header("Screen Shake Configuration")]
+    public Transform cameraTransform; // Assign the camera or parent object of the camera
+    public float shakeDuration = 0.5f;
+    public float shakeMagnitude = 0.1f;
+
+    private Vector3 _originalCameraPosition;
+
     public bool IsSolved { get; set; }
     public string PuzzleHint { get; set; }
     public int PuzzleID { get; set; }
@@ -27,17 +34,35 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
     {
         PuzzleID = _PuzzleID;
         PuzzleHint = _PuzzleHint;
-        
+
         if (confirmButton != null)
         {
             confirmButton.onClick.AddListener(OnConfirmClicked);
         }
-        
+
         if (closeButton != null)
         {
             closeButton.onClick.AddListener(HideTerminal);
         }
-        
+
+        if (cameraTransform == null)
+        {
+            Camera mainCamera = Camera.main;
+            if (mainCamera != null)
+            {
+                cameraTransform = mainCamera.transform;
+                _originalCameraPosition = cameraTransform.localPosition;
+            }
+            else
+            {
+                Debug.LogError("No cameraTransform assigned and no Main Camera found in the scene!");
+            }
+        }
+        else
+        {
+            _originalCameraPosition = cameraTransform.localPosition;
+        }
+
         HideTerminal();
     }
 
@@ -50,7 +75,7 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
     public void Activate()
     {
         if (IsSolved) return;
-        
+
         terminalUI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -90,11 +115,15 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
             else
             {
                 Debug.Log("Incorrect code. Try again.");
+                ResetInputFields();
+                TriggerScreenShake(); // Trigger screen shake for incorrect code
             }
         }
         else
         {
             Debug.Log("Invalid input. Please enter numeric values.");
+            ResetInputFields();
+            TriggerScreenShake(); // Trigger screen shake for invalid input
         }
     }
 
@@ -114,5 +143,40 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
 
         return (calcR1 == R1 && calcR2 == R2 && calcR3 == R3);
     }
-}
 
+    private void ResetInputFields()
+    {
+        result1Field.text = string.Empty;
+        result2Field.text = string.Empty;
+        result3Field.text = string.Empty;
+    }
+
+    private void TriggerScreenShake()
+    {
+        if (cameraTransform != null)
+        {
+            StopAllCoroutines(); // Stop any ongoing shake to avoid stacking
+            StartCoroutine(ScreenShakeCoroutine());
+        }
+        else
+        {
+            Debug.LogWarning("No cameraTransform assigned for screen shake.");
+        }
+    }
+
+    private System.Collections.IEnumerator ScreenShakeCoroutine()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < shakeDuration)
+        {
+            Vector3 randomOffset = Random.insideUnitSphere * shakeMagnitude;
+            cameraTransform.localPosition = _originalCameraPosition + randomOffset;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        cameraTransform.localPosition = _originalCameraPosition; // Reset position after shaking
+    }
+}

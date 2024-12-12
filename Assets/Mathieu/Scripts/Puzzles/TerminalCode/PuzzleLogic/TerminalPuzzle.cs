@@ -9,7 +9,12 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
     [SerializeField] private string _PuzzleHint;
 
     [Header("UI References")]
-    public GameObject terminalUI;
+    [Tooltip("Parent UI containing all terminal panels (code entry, manual panel, sheet panel, etc.).")]
+    public GameObject terminalUI; 
+    
+    [Tooltip("The panel for the code entry. Always shown when terminal is activated.")]
+    public GameObject codeEntryPanel; // Optional: Ensures the code entry panel is always shown when terminal is activated  
+
     public TMP_InputField result1Field;
     public TMP_InputField result2Field;
     public TMP_InputField result3Field;
@@ -26,7 +31,7 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
     public int PuzzleID { get; set; }
 
     public bool IsInteractable => true;
-    public string InteractionHint => "Press 'E' to enter code";
+    public string InteractionHint => "Press 'E' to access terminal";
 
     private void Awake()
     {
@@ -52,15 +57,17 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
             }
             else
             {
-                Debug.LogError("No cameraTransform assigned and no Main Camera found in the scene!");
+                Debug.LogError("No cameraTransform assigned and no Main Camera found!");
             }
         }
 
+        // Initially hide the terminal UI
         HideTerminal();
     }
 
     public void Interact(GameObject interactor)
     {
+        // Toggle the terminal UI
         if (terminalUI.activeSelf) HideTerminal();
         else Activate();
     }
@@ -70,6 +77,11 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
         if (IsSolved) return;
 
         terminalUI.SetActive(true);
+        
+        // Optional: Ensures the code entry panel is always shown when terminal is activated
+        if (codeEntryPanel != null)
+            codeEntryPanel.SetActive(true);
+        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         PlayerController.freezeInput = true;
@@ -109,14 +121,14 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
             {
                 Debug.Log("Incorrect code. Try again.");
                 ResetInputFields();
-                TriggerScreenShake(); // Trigger screen shake for incorrect code
+                TriggerScreenShake();
             }
         }
         else
         {
             Debug.Log("Invalid input. Please enter numeric values.");
             ResetInputFields();
-            TriggerScreenShake(); // Trigger screen shake for invalid input
+            TriggerScreenShake();
         }
     }
 

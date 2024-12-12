@@ -289,7 +289,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 0.4792453, g: 0.40886718, b: 0.20526166, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 27.854033
   m_Range: 10
   m_SpotAngle: 179
@@ -333,7 +333,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5030
+  m_ColorTemperature: 11778
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 4.9079e-41, y: 0, z: 2.5e-44, w: 4.9079e-41}
   m_UseBoundingSphereOverride: 0
@@ -1669,7 +1669,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 0.4792453, g: 0.40886718, b: 0.20526166, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 27.854033
   m_Range: 10
   m_SpotAngle: 179
@@ -1713,7 +1713,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5030
+  m_ColorTemperature: 11778
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 4.9079e-41, y: 0, z: 2.5e-44, w: 4.9079e-41}
   m_UseBoundingSphereOverride: 0
@@ -2825,7 +2825,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 0.4792453, g: 0.40886718, b: 0.20526166, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 27.854033
   m_Range: 10
   m_SpotAngle: 179
@@ -2869,7 +2869,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5030
+  m_ColorTemperature: 11778
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 4.9079e-41, y: 0, z: 2.5e-44, w: 4.9079e-41}
   m_UseBoundingSphereOverride: 0
@@ -4303,7 +4303,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 0.4792453, g: 0.40886718, b: 0.20526166, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 27.854033
   m_Range: 10
   m_SpotAngle: 179
@@ -4347,7 +4347,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5030
+  m_ColorTemperature: 11778
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 4.9079e-41, y: 0, z: 2.5e-44, w: 4.9079e-41}
   m_UseBoundingSphereOverride: 0
@@ -6340,6 +6340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorAnimator: {fileID: 0}
+  lockComponent: {fileID: 0}
 --- !u!65 &1986911277
 BoxCollider:
   m_ObjectHideFlags: 0

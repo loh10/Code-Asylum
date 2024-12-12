@@ -43,12 +43,11 @@ public class Door : MonoBehaviour
         if (doorAnimator != null)
         {
             // Trigger the door opening animation
-            // doorAnimator.SetTrigger("Open"); // TODO: Uncomment this line when animation is ready
+            doorAnimator.enabled = true;
         }
         else
         {
-            // Debug.LogWarning("No Animator component assigned to the door. Disabling the door GameObject as a fallback.");
-            gameObject.SetActive(false); // TODO: Remove this line when animation is implemented
+            Debug.LogWarning("No Animator component assigned to the door. Disabling the door GameObject as a fallback.");
         }
     }
 

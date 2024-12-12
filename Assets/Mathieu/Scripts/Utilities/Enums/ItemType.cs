@@ -18,7 +18,10 @@ public enum ItemType
     /// </summary>
     Consumable,
 
-
+    /// <summary>
+    /// Symbols required to solve the Terminal Code puzzle.
+    /// </summary>
+    Symbol,
 
     /// <summary>
     /// Miscellaneous items.

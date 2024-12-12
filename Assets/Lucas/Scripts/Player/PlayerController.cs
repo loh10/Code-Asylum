@@ -106,12 +106,12 @@ public class PlayerController : MonoBehaviour
         if (_rb == null || _inputDirection == Vector2.zero) return;
         
         float speed = _isCrouched ? _crouchSpeed : _walkSpeed;
-        float curSpeedX = speed * _inputDirection.y * Time.deltaTime;
-        float curSpeedY = speed * _inputDirection.x * Time.deltaTime;
+        float curSpeedX = speed * _inputDirection.y;
+        float curSpeedY = speed * _inputDirection.x;
 
         _moveDirection = _orientation.forward * curSpeedX + _orientation.right * curSpeedY;
 
-        _rb.linearVelocity = _moveDirection + new Vector3(0, _rb.linearVelocity.y, 0);
+        _rb.linearVelocity = _moveDirection * Time.deltaTime + new Vector3(0, _rb.linearVelocity.y, 0);
     }
     
     public bool IsGrounded()

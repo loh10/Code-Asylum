@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4749529068480183913}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: WhiteKey_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5558484415463122074}
   - component: {fileID: 1687332344189232847}
   - component: {fileID: 1935554240774514983}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

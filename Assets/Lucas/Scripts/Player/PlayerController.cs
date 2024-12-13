@@ -46,6 +46,12 @@ public class PlayerController : MonoBehaviour
         if (freezeInput) return;
         
         Movement();
+        
+        if (IsGrounded()) return;
+        
+        if (!Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity)) return;
+        
+        
     }
 
     public void GetInputPlayer(InputAction.CallbackContext ctx)
@@ -53,7 +59,7 @@ public class PlayerController : MonoBehaviour
         _inputDirection = ctx.ReadValue<Vector2>();
         
         if (ctx.canceled)
-            _rb.linearVelocity = new Vector3(0, _rb.linearVelocity.y,0);
+            _rb.linearVelocity = Vector3.zero;
     }
     
     
@@ -70,8 +76,8 @@ public class PlayerController : MonoBehaviour
 
         else if (ctx.canceled)
         {
-            _capsuleCollider.height /= _crouchMultiplier;
             _capsuleCollider.center += new Vector3(0, 1 - _crouchMultiplier, 0);
+            _capsuleCollider.height /= _crouchMultiplier;
             _camera.position += new Vector3(0, 1 - _crouchMultiplier, 0);
             _isCrouched = false;
         }
@@ -125,12 +131,12 @@ public class PlayerController : MonoBehaviour
 
         _moveDirection = _orientation.forward * curSpeedX + _orientation.right * curSpeedY;
 
-        _rb.linearVelocity = _moveDirection * Time.deltaTime + new Vector3(0, _rb.linearVelocity.y, 0);
+        _rb.linearVelocity = _moveDirection + new Vector3(0, _rb.linearVelocity.y, 0);
     }
     
     public bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, 1.01f);
+        return Physics.Raycast(transform.position, Vector3.down, 1.04f);
     }
     
     public void FreezeInput(bool value, int indexActionMap = 0)
@@ -152,6 +158,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer != LayerMask.NameToLayer("AI"))
             return;
         
+        freezeInput = true;
         _saveReload.IsDead();
     }
     

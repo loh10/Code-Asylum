@@ -6,14 +6,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 _inputDirection = Vector2.zero;
     private Vector3 _moveDirection = Vector3.zero;
     private Transform _camera;
-    
     private Rigidbody _rb;
     private CapsuleCollider _capsuleCollider;
+    private bool _isCrouched;
+    private GameObject _itemHolder;
+    private SaveReload _saveReload;
+    private Light flashingLight;
     
     public static bool freezeInput;
-    private bool _isCrouched;
-    
-    private GameObject _itemHolder;
     
     [Range(0f, 1f)][SerializeField] private float _crouchMultiplier = 0.5f;
     [SerializeField] private float _walkSpeed = 750f;
@@ -21,15 +21,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _orientation;
     [SerializeField] private float _rangeInteraction = 3f;
     [SerializeField] private InputActionAsset _actionAsset;
-    
-    private Light flashingLight;
-    //public Inventory _inventory;
-
-    private SaveReload _saveReload;
 
     private void Start()
     {
-        PlayerPrefs.DeleteKey("Sensitivity");
         _rb = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         _saveReload = GetComponent<SaveReload>();
@@ -84,13 +78,12 @@ public class PlayerController : MonoBehaviour
     }
     public void FlashLight(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        if (!ctx.performed)
+            return;
+        
+        if (flashingLight != null)
         {
-            
-            if (flashingLight != null)
-            {
-                flashingLight.enabled = !flashingLight.enabled;
-            }
+            flashingLight.enabled = !flashingLight.enabled;
         }
     }   
     
@@ -98,26 +91,26 @@ public class PlayerController : MonoBehaviour
     {
         if (!ctx.canceled) return;
 
-        if (Physics.Raycast(_camera.position, _camera.forward, out RaycastHit hit, _rangeInteraction, 1 << LayerMask.NameToLayer("Interactable")))
+        if (!Physics.Raycast(_camera.position, _camera.forward, out RaycastHit hit, _rangeInteraction, 1 << LayerMask.NameToLayer("Interactable")))
+            return;
+        
+        ICollectable collectable = hit.collider.GetComponent<ICollectable>();
+        if (collectable != null && collectable.CanCollect)
         {
-            ICollectable collectable = hit.collider.GetComponent<ICollectable>();
-            if (collectable != null && collectable.CanCollect)
-            {
-                collectable.OnCollect(gameObject);
-                return;
-            }
+            collectable.OnCollect(gameObject);
+            return;
+        }
 
-            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-            if (interactable != null && interactable.IsInteractable)
-            {
-                interactable.Interact(gameObject);
-            }
+        IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+        if (interactable != null && interactable.IsInteractable)
+        {
+            interactable.Interact(gameObject);
+        }
             
-            IPuzzle puzzle = hit.collider.GetComponent<IPuzzle>();
-            if (puzzle is { IsSolved: false })
-            {
-                puzzle.Activate();
-            }
+        IPuzzle puzzle = hit.collider.GetComponent<IPuzzle>();
+        if (puzzle is { IsSolved: false })
+        {
+            puzzle.Activate();
         }
     }
     
@@ -133,8 +126,8 @@ public class PlayerController : MonoBehaviour
 
         _rb.linearVelocity = _moveDirection + new Vector3(0, _rb.linearVelocity.y, 0);
     }
-    
-    public bool IsGrounded()
+
+    private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, 1.04f);
     }

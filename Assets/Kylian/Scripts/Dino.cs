@@ -1,17 +1,17 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Dino : MonoBehaviour
 {
-    private bool _isUp = false;
-    [SerializeField]
-    private float _speed = 1.0f;
-    private bool _move = false;
-    [SerializeField]
-    private Transform _targetUp, _targetDown;
+    
+    [SerializeField] private float _speed = 1.0f;
+    [SerializeField] private int numberEnemyToSpawn;
+    [SerializeField] private Transform _targetUp, _targetDown;
+    
+    private int _tempNumberEnemyToSpawn;
+    private bool _isUp;
+    private bool _move;
     private Vector3 _endPosition;
-    [HideInInspector]public int _tempNumberEnemyToSpawn;
-    public int numberEnemyToSpawn;
+    
     
 
     private void Start()
@@ -34,7 +34,6 @@ public class Dino : MonoBehaviour
         {
             ChangePosition();
         }
-        
     }
 
     private void ChangePosition()
@@ -54,14 +53,16 @@ public class Dino : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Obstacle>(out Obstacle obstacle))
-        {
-            transform.position = _targetDown.position;
-            _tempNumberEnemyToSpawn = numberEnemyToSpawn;
-            Destroy(obstacle.gameObject);
-            Debug.Log(_tempNumberEnemyToSpawn);
-            _isUp = false;
-        }
+        if (!collision.gameObject.TryGetComponent<Obstacle>(out Obstacle obstacle)) return;
+        
+        transform.position = _targetDown.position;
+        _tempNumberEnemyToSpawn = numberEnemyToSpawn;
+        Destroy(obstacle.gameObject);
+        Debug.Log(_tempNumberEnemyToSpawn);
+        _isUp = false;
     }
+    
+    public int GetNumberEnemyToSpawn() => _tempNumberEnemyToSpawn;
+    public void SetNumberEnemyToSpawn(int number) => _tempNumberEnemyToSpawn = number;
 
 }

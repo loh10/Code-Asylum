@@ -254,10 +254,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
+  numberEnemyToSpawn: 20
   _targetUp: {fileID: 471534499773426674}
   _targetDown: {fileID: 3020048025126431449}
-  _tempNumberEnemyToSpawn: 0
-  numberEnemyToSpawn: 20
 --- !u!212 &3273200921619670844
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -833,7 +832,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2043514249853897912}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MiniGameManager, Assembly-CSharp
+        m_MethodName: Solve
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5863335939055623719
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,7 +991,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6607118271531560307}
   - component: {fileID: 3613025119120303614}
-  - component: {fileID: 6323554212632146611}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -1058,18 +1068,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6323554212632146611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6045872917091281183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f878ee82d2c66a34ab906addc962df0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7244491661483988765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,11 +1078,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2581881156834223717}
   - component: {fileID: 4402112348380752347}
-  - component: {fileID: 302765662557843177}
   - component: {fileID: 1183633361121999138}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1098,7 +1095,7 @@ Transform:
   m_GameObject: {fileID: 7244491661483988765}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 5, z: -12.3}
+  m_LocalPosition: {x: 2, y: 5, z: -16.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1140,7 +1137,7 @@ Camera:
   field of view: 63.34846
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1155,14 +1152,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &302765662557843177
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7244491661483988765}
-  m_Enabled: 1
 --- !u!114 &1183633361121999138
 MonoBehaviour:
   m_ObjectHideFlags: 0

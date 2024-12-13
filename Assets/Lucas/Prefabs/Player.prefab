@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clearColorMode: 0
-  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  backgroundColorHDR: {r: 0, g: 0, b: 0, a: 0}
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
@@ -758,6 +758,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6ee7efa1-34dd-4ae5-a9f7-51ec3f6c62f8
     m_ActionName: 'Player/FlashLight[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: Escape
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0d30a129-dd58-4750-ab8f-289ebb040341
+    m_ActionName: 'Player/Escape[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -829,8 +845,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _crouchMultiplier: 0.5
-  _walkSpeed: 500
-  _crouchSpeed: 300
+  _walkSpeed: 7
+  _crouchSpeed: 4
   _orientation: {fileID: 5685567764281292241}
   _rangeInteraction: 3
   _actionAsset: {fileID: -944628639613478452, guid: c2c6205f0e37e81419ebc7e0cdc96b50, type: 3}

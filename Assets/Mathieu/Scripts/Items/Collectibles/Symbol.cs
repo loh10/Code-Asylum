@@ -35,7 +35,6 @@ public class Symbol : MonoBehaviour, ICollectable
         if (inventory != null)
         {
             inventory.AddItem(_itemConfig);
-            Debug.Log($"{_itemConfig.itemName} collected.");
             Destroy(gameObject);
         }
         else

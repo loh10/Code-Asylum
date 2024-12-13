@@ -9,16 +9,18 @@ public class Door : MonoBehaviour
     [Tooltip("Animator for the door. Used for opening/closing animations.")]
     public Animator doorAnimator;
 
-    [Tooltip("The Lock component controlling the door.")]
+    [Tooltip("If your lock is on a different GameObject, assign it here.")]
     [SerializeField] private Lock lockComponent;
 
     private void Awake()
     {
+        // Try to get the lock component from the same GameObject if not assigned in the inspector
         if (lockComponent == null)
         {
             lockComponent = GetComponent<Lock>();
         }
 
+        // Subscribe to the OnUnlock event if a lock component is found
         if (lockComponent != null)
         {
             lockComponent.OnUnlock += OpenDoor;
@@ -31,7 +33,7 @@ public class Door : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Unsubscribe from the event
+        // Unsubscribe from the OnUnlock event
         if (lockComponent != null)
         {
             lockComponent.OnUnlock -= OpenDoor;

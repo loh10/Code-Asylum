@@ -42,11 +42,13 @@ public class SymbolManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        
+        AssignSymbols();
     }
 
     private void Start()
     {
-        AssignSymbols();
+        // AssignSymbols();
     }
 
     /// <summary>

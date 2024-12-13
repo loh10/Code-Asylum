@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _orientation;
     [SerializeField] private float _rangeInteraction = 3f;
     [SerializeField] private InputActionAsset _actionAsset;
-
+    
+    private Light flashingLight;
     //public Inventory _inventory;
 
     private SaveReload _saveReload;
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         _camera = Camera.main.transform;
+        
+        flashingLight = GetComponentInChildren<Light>();
     }
     
     private void Update()
@@ -79,6 +82,17 @@ public class PlayerController : MonoBehaviour
             _isCrouched = false;
         }
     }
+    public void FlashLight(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            
+            if (flashingLight != null)
+            {
+                flashingLight.enabled = !flashingLight.enabled;
+            }
+        }
+    }   
     
     public void Interact(InputAction.CallbackContext ctx)
     {

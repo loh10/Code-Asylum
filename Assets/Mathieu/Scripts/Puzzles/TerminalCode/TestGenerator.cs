@@ -1,16 +1,23 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// A basic test script for a generator that can be interacted with after being unlocked.
+/// A basic test script for a generator that visually indicates power state using material color.
 /// </summary>
-public class TestGenerator : MonoBehaviour, IInteractable
+public class TestGenerator : MonoBehaviour
 {
     [Header("Generator Configuration")]
     [Tooltip("The lock component that restricts access to the generator.")]
     [SerializeField] private Lock generatorLock;
 
-    public bool IsInteractable => generatorLock != null && !generatorLock.isLocked;
-    public string InteractionHint => IsInteractable ? "Press 'E' to turn on the power" : "Locked";
+    [Header("Visual Indicator")]
+    [Tooltip("The sphere representing the generator's power state.")]
+    [SerializeField] private Renderer powerIndicatorSphere;
+
+    [Tooltip("Material for the 'off' state.")]
+    [SerializeField] private Material offMaterial;
+
+    [Tooltip("Material for the 'on' state.")]
+    [SerializeField] private Material onMaterial;
 
     private bool isPowerOn = false;
 
@@ -18,21 +25,39 @@ public class TestGenerator : MonoBehaviour, IInteractable
     {
         if (generatorLock == null)
         {
-            Debug.LogWarning("No Lock component assigned to the generator. Assign one in the Inspector.");
+            generatorLock = GetComponent<Lock>();
+        }
+
+        if (generatorLock != null)
+        {
+            generatorLock.OnUnlock += OnGeneratorUnlocked;
+        }
+        else
+        {
+            Debug.LogWarning($"No Lock component assigned or found on the GameObject '{gameObject.name}'. Power will not be controllable.");
+        }
+
+        if (powerIndicatorSphere == null)
+        {
+            Debug.LogWarning($"No sphere assigned for visual power indicator on '{gameObject.name}'.");
+        }
+
+        UpdatePowerIndicator();
+    }
+
+    private void OnDestroy()
+    {
+        if (generatorLock != null)
+        {
+            generatorLock.OnUnlock -= OnGeneratorUnlocked;
         }
     }
 
-    public void Interact(GameObject interactor)
+    private void OnGeneratorUnlocked()
     {
-        if (!IsInteractable)
-        {
-            Debug.Log("Generator is locked. Solve the puzzle to unlock it.");
-            return;
-        }
-
         if (isPowerOn)
         {
-            Debug.Log("The power is already on.");
+            Debug.Log("Power is already on.");
             return;
         }
 
@@ -43,5 +68,17 @@ public class TestGenerator : MonoBehaviour, IInteractable
     {
         isPowerOn = true;
         Debug.Log("Power has been turned on!");
+        UpdatePowerIndicator();
+    }
+
+    /// <summary>
+    /// Updates the sphere's material to indicate the current power state.
+    /// </summary>
+    private void UpdatePowerIndicator()
+    {
+        if (powerIndicatorSphere != null)
+        {
+            powerIndicatorSphere.material = isPowerOn ? onMaterial : offMaterial;
+        }
     }
 }

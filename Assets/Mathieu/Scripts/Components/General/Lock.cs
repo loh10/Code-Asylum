@@ -8,16 +8,16 @@ using System.Collections.Generic;
 /// </summary>
 public class Lock : MonoBehaviour, IInteractable
 {
-    [Header("Lock Properties")]
+    [Header("Lock Initial State")]
+    [Tooltip("Determines the initial state of the lock.")]
     public bool isLocked = true;
-
-    /// <summary>
-    /// A list of condition assets (ScriptableObjects) that must be met to unlock this lock.
-    /// </summary>
-    public List<UnlockConditionConfig> unlockConditions = new List<UnlockConditionConfig>();
-
+    
+    [Header("Unlock Conditions")]
     [Tooltip("If true, ALL conditions must be met to unlock. If false, ANY one condition is enough.")]
     public bool unlockRequiresAllConditions = false;
+    
+    [Tooltip("A list of condition assets that must be met to unlock this lock.")]
+    public List<UnlockConditionConfig> unlockConditions = new List<UnlockConditionConfig>();
 
     public bool IsInteractable => isLocked;
     public string InteractionHint => isLocked ? "Press 'E' to unlock" : "Already unlocked.";

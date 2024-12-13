@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour
     public delegate void ItemAddedEventHandler(ItemConfig item);
     public event ItemAddedEventHandler OnItemAdded;
 
-    private void Update()
+    private void Update() // TODO: Remove this when UI is implemented
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -32,7 +32,7 @@ public class InventoryManager : MonoBehaviour
     /// <summary>
     /// Displays the inventory content in the console for debugging.
     /// </summary>
-    public void DebugDisplayInventory()
+    public void DebugDisplayInventory() // TODO: Remove this when UI is implemented
     {
         Debug.Log("Inventory Contents:");
         if (inventoryItems.Count == 0)

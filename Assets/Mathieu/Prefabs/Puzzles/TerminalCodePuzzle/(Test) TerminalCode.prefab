@@ -157,11 +157,15 @@ MonoBehaviour:
   _PuzzleID: 9900
   _PuzzleHint: 
   terminalUI: {fileID: 0}
+  codeEntryPanel: {fileID: 0}
   result1Field: {fileID: 0}
   result2Field: {fileID: 0}
   result3Field: {fileID: 0}
   confirmButton: {fileID: 0}
   closeButton: {fileID: 0}
+  cameraTransform: {fileID: 0}
+  shakeDuration: 0.3
+  shakeMagnitude: 0.1
 --- !u!1 &7861391334256192201
 GameObject:
   m_ObjectHideFlags: 0

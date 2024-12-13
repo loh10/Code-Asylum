@@ -23,7 +23,6 @@ public class Key : MonoBehaviour, ICollectable
         if (inventory != null)
         {
             inventory.AddItem(keyItemConfig);
-            Debug.Log($"{keyItemConfig.itemName} collected.");
             Destroy(gameObject);
         }
         else

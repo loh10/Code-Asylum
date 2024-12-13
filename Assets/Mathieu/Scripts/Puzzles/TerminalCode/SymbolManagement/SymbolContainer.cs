@@ -13,26 +13,31 @@ public class SymbolContainer : MonoBehaviour
     [Tooltip("The collectible item inside this container.")]
     public Symbol symbolItem;
     
-    [Header("Door Reference")]
-    [Tooltip("Door that needs to be opened when the container is unlocked.")]
-    [SerializeField] private GameObject containerDoor;
-
-    private Lock _containerLock;
+    [Tooltip("If your lock is on a different GameObject, assign it here.")]
+    [SerializeField] private Lock lockComponent;
 
     private void Awake()
     {
-        _containerLock = GetComponent<Lock>();
-        if (_containerLock != null)
+        if (lockComponent == null)
         {
-            _containerLock.OnUnlock += OnContainerUnlocked;
+            lockComponent = GetComponent<Lock>();
+        }
+
+        if (lockComponent != null)
+        {
+            lockComponent.OnUnlock += OnContainerUnlocked;
+        }
+        else
+        {
+            Debug.LogWarning($"No Lock component assigned or found on the GameObject '{gameObject.name}'.");
         }
     }
 
     private void OnDestroy()
     {
-        if (_containerLock != null)
+        if (lockComponent != null)
         {
-            _containerLock.OnUnlock -= OnContainerUnlocked;
+            lockComponent.OnUnlock -= OnContainerUnlocked;
         }
     }
 
@@ -45,12 +50,6 @@ public class SymbolContainer : MonoBehaviour
             // Assign the symbol item config to the collectible item.
             symbolItem.SetItemConfig(config);
             Debug.Log($"Assigned symbol item '{config.itemName}' for puzzleID {puzzleID}.");
-            
-            // Open the door.
-            if (containerDoor != null)
-            {
-                containerDoor.SetActive(false);
-            }
         }
         else
         {

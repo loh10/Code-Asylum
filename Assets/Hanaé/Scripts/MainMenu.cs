@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
         {
             Close(_pauseMenu);
         }
-        else
+        else if (!Cursor.visible)
         {
             Open(_pauseMenu);
         }

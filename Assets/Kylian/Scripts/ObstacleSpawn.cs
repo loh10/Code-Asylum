@@ -45,6 +45,8 @@ public class ObstacleSpawn : MonoBehaviour
             if (_obstacleParent.childCount == 0)
             {
                 Panel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             yield return new WaitForSeconds(.5f);
         }

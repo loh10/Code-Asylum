@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.DeleteKey("Sensitivity");
         _rb = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         _saveReload = GetComponent<SaveReload>();

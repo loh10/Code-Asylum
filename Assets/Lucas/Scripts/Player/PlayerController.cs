@@ -43,8 +43,6 @@ public class PlayerController : MonoBehaviour
         if (freezeInput) return;
         
         Movement();
-
-        print(IsGrounded());
         
         if (IsGrounded()) return;
         

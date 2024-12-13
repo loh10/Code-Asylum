@@ -14,29 +14,27 @@ public class InventoryManager : MonoBehaviour
     public delegate void ItemAddedEventHandler(ItemConfig item);
     public event ItemAddedEventHandler OnItemAdded;
 
-    private void Update() // TODO: Remove this when UI is implemented
+    private void Update() // TODO: Change this to let PlayerController handle input
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            DebugDisplayInventory();
             ToggleInventoryDisplay(!_isDisplay);
         }
     }
-
-    public void DebugDisplayInventory() // TODO: Remove this when UI is implemented
+    
+    public void ToggleInventoryDisplay(bool display)
     {
-        Debug.Log("Inventory Contents:");
-        if (inventoryItems.Count == 0)
+        _isDisplay = display;
+
+        if (_inventoryUI != null)
         {
-            Debug.Log("Inventory is empty.");
+            _inventoryUI.SetActive(display);
         }
-        else
-        {
-            foreach (InventoryItem inventoryItem in inventoryItems)
-            {
-                Debug.Log($"Item: {inventoryItem.ItemConfig.itemName}, Quantity: {inventoryItem.quantity}");
-            }
-        }
+
+        // Manage cursor visibility and player input    
+        Cursor.lockState = display ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = display;
+        PlayerController.freezeInput = display;
     }
 
     public void AddItem(ItemConfig item)
@@ -97,15 +95,6 @@ public class InventoryManager : MonoBehaviour
     public List<InventoryItem> GetInventoryItems()
     {
         return inventoryItems;
-    }
-
-    public void ToggleInventoryDisplay(bool display)
-    {
-        _isDisplay = display;
-        if (_inventoryUI != null)
-        {
-            _inventoryUI.SetActive(display);
-        }
     }
 }
 

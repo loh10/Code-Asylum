@@ -14,7 +14,6 @@ public class ItemInspectionUI : MonoBehaviour
     [SerializeField] private GameObject inspectionWindow;
     [SerializeField] private TMP_Text itemNameText;
     [SerializeField] private TMP_Text itemDescriptionText;
-    [SerializeField] private Button closeButton;
 
     [Header("Model Display")]
     [SerializeField] private Transform modelParent;
@@ -25,10 +24,6 @@ public class ItemInspectionUI : MonoBehaviour
 
     private void Start()
     {
-        if (closeButton != null)
-        {
-            closeButton.onClick.AddListener(HideItem);
-        }
         HideItem();
     }
 

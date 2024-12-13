@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -15,23 +16,32 @@ public class InventoryUI : MonoBehaviour
     [Header("Item Inspection UI")]
     [SerializeField] private ItemInspectionUI inspectionUI;
 
-    private InventoryManager inventoryManager;
+    [Header("Navigation")]
+    [SerializeField] private Button closeInventoryButton;
+
+    private InventoryManager _inventoryManager;
 
     private void Start()
     {
-        inventoryManager = FindFirstObjectByType<InventoryManager>();
-        if (inventoryManager != null)
+        _inventoryManager = FindFirstObjectByType<InventoryManager>();
+        if (_inventoryManager != null)
         {
-            inventoryManager.OnItemAdded += OnItemAdded;
+            _inventoryManager.OnItemAdded += OnItemAdded;
         }
+
+        if (closeInventoryButton != null)
+        {
+            closeInventoryButton.onClick.AddListener(OnCloseInventoryClicked);
+        }
+
         RefreshUI();
     }
 
     private void OnDestroy()
     {
-        if (inventoryManager != null)
+        if (_inventoryManager != null)
         {
-            inventoryManager.OnItemAdded -= OnItemAdded;
+            _inventoryManager.OnItemAdded -= OnItemAdded;
         }
     }
 
@@ -42,13 +52,14 @@ public class InventoryUI : MonoBehaviour
 
     public void RefreshUI()
     {
-        if (inventoryManager == null) return;
+        if (_inventoryManager == null) return;
 
         ClearPanel(keyPanel);
         ClearPanel(symbolPanel);
         ClearPanel(toolsPanel);
 
-        List<InventoryItem> items = inventoryManager.GetInventoryItems();
+        // Retrieve the inventory items directly
+        List<InventoryItem> items = _inventoryManager.GetInventoryItems();
         foreach (var invItem in items)
         {
             Transform parentPanel = GetPanelForItem(invItem.ItemConfig);
@@ -93,4 +104,25 @@ public class InventoryUI : MonoBehaviour
             inspectionUI.ShowItem(item);
         }
     }
+    
+    private void OnCloseInventoryClicked()
+    {
+        // Hide the inventory UI
+        if (inspectionUI != null)
+        {
+            inspectionUI.HideItem();
+        }
+
+        if (_inventoryManager != null)
+        {
+            _inventoryManager.ToggleInventoryDisplay(false);
+        }
+    }
+    
+    private void ToggleCursor(bool enableCursor)
+    {
+        Cursor.lockState = enableCursor ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = enableCursor;
+    }
+
 }

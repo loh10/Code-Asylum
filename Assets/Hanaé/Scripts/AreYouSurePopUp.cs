@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SO_AreYouSurePopUp : MonoBehaviour
+public class AreYouSurePopUp : MonoBehaviour
 {
     public void Yes()
     {

@@ -7,7 +7,6 @@ public class InventoryUI : MonoBehaviour
     [Header("UI Category Panels")]
     [SerializeField] private Transform keyPanel;
     [SerializeField] private Transform symbolPanel;
-    [SerializeField] private Transform documentsPanel;
     [SerializeField] private Transform toolsPanel;
 
     [Header("Prefabs")]
@@ -20,7 +19,7 @@ public class InventoryUI : MonoBehaviour
 
     private void Start()
     {
-        inventoryManager = FindObjectOfType<InventoryManager>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
         if (inventoryManager != null)
         {
             inventoryManager.OnItemAdded += OnItemAdded;
@@ -47,7 +46,6 @@ public class InventoryUI : MonoBehaviour
 
         ClearPanel(keyPanel);
         ClearPanel(symbolPanel);
-        ClearPanel(documentsPanel);
         ClearPanel(toolsPanel);
 
         List<InventoryItem> items = inventoryManager.GetInventoryItems();
@@ -74,9 +72,6 @@ public class InventoryUI : MonoBehaviour
                 return toolsPanel;
             case ItemType.Symbol:
                 return symbolPanel;
-            case ItemType.Generic:
-                // Assume documents are generic
-                return documentsPanel;
             default:
                 return null;
         }

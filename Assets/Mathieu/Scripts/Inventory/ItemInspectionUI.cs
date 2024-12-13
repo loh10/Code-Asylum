@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Displays the selected item's model, name, and description.
@@ -8,8 +9,9 @@ using TMPro;
 /// </summary>
 public class ItemInspectionUI : MonoBehaviour
 {
+    [FormerlySerializedAs("inspectionPanel")]
     [Header("UI References")]
-    [SerializeField] private GameObject inspectionPanel;
+    [SerializeField] private GameObject inspectionWindow;
     [SerializeField] private TMP_Text itemNameText;
     [SerializeField] private TMP_Text itemDescriptionText;
     [SerializeField] private Button closeButton;
@@ -34,8 +36,8 @@ public class ItemInspectionUI : MonoBehaviour
     {
         if (item == null) return;
 
-        if (inspectionPanel != null)
-            inspectionPanel.SetActive(true);
+        if (inspectionWindow != null)
+            inspectionWindow.SetActive(true);
 
         itemNameText.text = item.itemName;
         itemDescriptionText.text = item.description;
@@ -58,8 +60,8 @@ public class ItemInspectionUI : MonoBehaviour
 
     public void HideItem()
     {
-        if (inspectionPanel != null)
-            inspectionPanel.SetActive(false);
+        if (inspectionWindow != null)
+            inspectionWindow.SetActive(false);
 
         if (currentModelInstance != null)
         {
@@ -70,7 +72,7 @@ public class ItemInspectionUI : MonoBehaviour
 
     private void Update()
     {
-        if (inspectionPanel != null && inspectionPanel.activeSelf && currentModelInstance != null)
+        if (inspectionWindow != null && inspectionWindow.activeSelf && currentModelInstance != null)
         {
             if (Input.GetMouseButtonDown(0))
             {

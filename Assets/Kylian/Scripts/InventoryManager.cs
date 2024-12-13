@@ -6,18 +6,11 @@ using UnityEngine;
 /// </summary>
 public class InventoryManager : MonoBehaviour
 {
-    /// <summary>
-    /// The list of items currently in the player's inventory.
-    /// </summary>
     private List<InventoryItem> inventoryItems = new List<InventoryItem>();
 
-    [SerializeField]
-    private GameObject _inventoryUI;
+    [SerializeField] private GameObject _inventoryUI;
     private bool _isDisplay;
     
-    /// <summary>
-    /// Event triggered when an item is added to the inventory.
-    /// </summary>
     public delegate void ItemAddedEventHandler(ItemConfig item);
     public event ItemAddedEventHandler OnItemAdded;
 
@@ -26,12 +19,10 @@ public class InventoryManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             DebugDisplayInventory();
+            ToggleInventoryDisplay(!_isDisplay);
         }
     }
 
-    /// <summary>
-    /// Displays the inventory content in the console for debugging.
-    /// </summary>
     public void DebugDisplayInventory() // TODO: Remove this when UI is implemented
     {
         Debug.Log("Inventory Contents:");
@@ -48,13 +39,9 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Adds an item to the inventory.
-    /// </summary>
     public void AddItem(ItemConfig item)
     {
         InventoryItem existingItem = inventoryItems.Find(i => i.ItemConfig == item);
-
         if (existingItem != null)
         {
             if (item.isStackable)
@@ -63,27 +50,21 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                // Non-stackable item, add another instance
                 inventoryItems.Add(new InventoryItem(item, 1));
-                Debug.Log($"{item.itemName} added to inventory.");
             }
         }
         else
         {
             inventoryItems.Add(new InventoryItem(item, 1));
-            Debug.Log($"{item.itemName} added to inventory.");
         }
-        
-        OnItemAdded?.Invoke(item); // Fire event after adding the item
+
+        Debug.Log($"{item.itemName} added to inventory.");
+        OnItemAdded?.Invoke(item);
     }
 
-    /// <summary>
-    /// Removes an item from the inventory.
-    /// </summary>
     public void RemoveItem(ItemConfig item)
     {
         InventoryItem existingItem = inventoryItems.Find(i => i.ItemConfig == item);
-
         if (existingItem != null)
         {
             existingItem.quantity--;
@@ -99,30 +80,11 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Checks if the inventory contains a specific item.
-    /// </summary>
     public bool HasItem(ItemConfig item)
     {
         return inventoryItems.Exists(i => i.ItemConfig == item);
     }
 
-    /// <summary>
-    /// Retrieves all items currently in the inventory.
-    /// </summary>
-    public List<ItemConfig> GetAllItems()
-    {
-        List<ItemConfig> items = new List<ItemConfig>();
-        foreach (InventoryItem inventoryItem in inventoryItems)
-        {
-            items.Add(inventoryItem.ItemConfig);
-        }
-        return items;
-    }
-
-    /// <summary>
-    /// Gets the quantity of a specific item in the inventory.
-    /// </summary>
     public int GetItemQuantity(ItemConfig item)
     {
         InventoryItem existingItem = inventoryItems.Find(i => i.ItemConfig == item);
@@ -130,12 +92,16 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggles the display of the inventory UI.
+    /// Returns the raw list of inventory items (ItemConfig + quantity)
     /// </summary>
+    public List<InventoryItem> GetInventoryItems()
+    {
+        return inventoryItems;
+    }
+
     public void ToggleInventoryDisplay(bool display)
     {
         _isDisplay = display;
-
         if (_inventoryUI != null)
         {
             _inventoryUI.SetActive(display);
@@ -143,9 +109,6 @@ public class InventoryManager : MonoBehaviour
     }
 }
 
-/// <summary>
-/// Represents an item stored in the inventory with a given quantity.
-/// </summary>
 public class InventoryItem
 {
     public ItemConfig ItemConfig;

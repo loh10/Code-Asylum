@@ -405,6 +405,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2852000d-696c-457d-b0f4-029acdfc8d78
     m_ActionName: 'Any/New action[/Keyboard/anyKey,/Mouse/leftButton,/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ee7efa1-34dd-4ae5-a9f7-51ec3f6c62f8
+    m_ActionName: 'Player/FlashLight[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0d30a129-dd58-4750-ab8f-289ebb040341
+    m_ActionName: 'Player/Escape[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1004,7 +1012,6 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 500, y: -300}
   m_SizeDelta: {x: 300, y: 75}
-
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &718872938
 MonoBehaviour:
@@ -2411,6 +2418,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679e487436dea4345bafe5bbd569ec04, type: 3}
+--- !u!224 &1788524492 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7957060004059398443, guid: 679e487436dea4345bafe5bbd569ec04, type: 3}
+  m_PrefabInstance: {fileID: 1788524491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1824942672
 GameObject:
   m_ObjectHideFlags: 0
@@ -2499,7 +2511,7 @@ MonoBehaviour:
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
-          m_ObjectArgument: {fileID: 131215444}
+          m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2622,7 +2634,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -2647,7 +2659,8 @@ RectTransform:
   - {fileID: 564129245}
   - {fileID: 931962494}
   - {fileID: 1299725686}
-  - {fileID: 131215445}
+  - {fileID: 283581468}
+  - {fileID: 1788524492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2667,6 +2680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d07df24d29bf4747878d87816ca15e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pauseMenu: {fileID: 0}
 --- !u!1 &2018199469
 GameObject:
   m_ObjectHideFlags: 0

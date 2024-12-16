@@ -1,59 +1,70 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// A door that can be opened and closed. Requires a Lock component to unlock, either assigned in the inspector or found on the same GameObject.
+/// </summary>
 public class Door : MonoBehaviour
 {
     [Header("Door Properties")]
-    public Animator doorAnimator; // TODO: Create a door opening animation
+    [Tooltip("Animator for the door. Used for opening/closing animations.")]
+    public Animator doorAnimator;
 
-    private Lock _lockComponent;
+    [Tooltip("If your lock is on a different GameObject, assign it here.")]
+    [SerializeField] private Lock lockComponent;
 
     private void Awake()
     {
-        _lockComponent = GetComponent<Lock>();
-        if (_lockComponent != null)
+        // Try to get the lock component from the same GameObject if not assigned in the inspector
+        if (lockComponent == null)
         {
-            _lockComponent.OnUnlock += OpenDoor;
+            lockComponent = GetComponent<Lock>();
+        }
+
+        // Subscribe to the OnUnlock event if a lock component is found
+        if (lockComponent != null)
+        {
+            lockComponent.OnUnlock += OpenDoor;
         }
         else
         {
-            //Debug.LogWarning("No Lock component found on the door.");
+            Debug.LogWarning("No Lock component assigned or found on the door.");
         }
     }
 
     private void OnDestroy()
     {
-        // Unsubscribe from the event
-        if (_lockComponent != null)
+        // Unsubscribe from the OnUnlock event
+        if (lockComponent != null)
         {
-            _lockComponent.OnUnlock -= OpenDoor;
+            lockComponent.OnUnlock -= OpenDoor;
         }
     }
-    
+
     private void OpenDoor()
     {
-        //Debug.Log("Door is now open!");
-        AudioManager.Instance.PlaySound(AudioType.door, AudioSourceType.player);
-        // Trigger the door opening animation
         if (doorAnimator != null)
         {
-            // doorAnimator.SetTrigger("Open"); // TODO: Uncomment when animation is ready
+            // Trigger the door opening animation
+            doorAnimator.enabled = true;
         }
         else
         {
-            gameObject.SetActive(false); // A enlever quand l'animation sera la
-            //Debug.LogWarning("No Animator component assigned to the door.");
+            Debug.LogWarning("No Animator component assigned to the door. Disabling the door GameObject as a fallback.");
+            gameObject.SetActive(false);
         }
     }
-    
+
     public void CloseDoor()
     {
         if (doorAnimator != null)
         {
-            // doorAnimator.SetTrigger("Close"); // TODO: Uncomment when animation is ready
+            // Trigger the door closing animation
+            // doorAnimator.SetTrigger("Close"); // TODO: Uncomment this line when animation is ready
         }
         else
         {
-            Debug.LogWarning("No Animator component assigned to the door.");
+            // Debug.LogWarning("No Animator component assigned to the door. Enabling the door GameObject as a fallback.");
+            gameObject.SetActive(true); // TODO: Remove this line when animation is implemented
         }
     }
 }

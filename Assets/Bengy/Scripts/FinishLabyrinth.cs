@@ -1,15 +1,16 @@
 using UnityEngine;
 
+
 public class ReplayLabyrinth : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        Time.timeScale = 1;
-    }
+    private MiniGameManager _miniGame;
 
+    private void Start()
+    {
+        _miniGame = GetComponentInParent<MiniGameManager>();
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        Time.timeScale = 0;
+        _miniGame.Solve();
     }
 }

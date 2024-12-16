@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,8 +5,8 @@ public class CamPosition : MonoBehaviour
 {
     
     private Vector2 _inputRotation = Vector2.zero;
-    private float _xRotation = 0f;
-    private float _yRotation = 0f;
+    private float _xRotation;
+    private float _yRotation;
     private const float _yRotationLimit = 88f;
     private Transform _transform;
     
@@ -20,6 +19,8 @@ public class CamPosition : MonoBehaviour
     }
     private void Update()
     {
+        if (PlayerController.freezeInput) return;
+        
         RotateCamera();
     }
     public void GetMouseDelta(InputAction.CallbackContext ctx)
@@ -38,7 +39,7 @@ public class CamPosition : MonoBehaviour
         _xRotation -= mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -_yRotationLimit, _yRotationLimit);
         
-        transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
+        _transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
         _orientation.rotation = Quaternion.Euler(0, _yRotation, 0);
     }
 }

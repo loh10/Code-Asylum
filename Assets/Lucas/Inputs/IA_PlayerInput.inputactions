@@ -40,6 +40,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FlashLight",
+                    "type": "Button",
+                    "id": "6ee7efa1-34dd-4ae5-a9f7-51ec3f6c62f8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "0d30a129-dd58-4750-ab8f-289ebb040341",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -57,7 +75,7 @@
                 {
                     "name": "up",
                     "id": "e2062cb9-1b15-46a2-838c-2f8d72a0bdd9",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/#(Z)",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -79,7 +97,7 @@
                 {
                     "name": "down",
                     "id": "320bffee-a40b-4347-ac70-c210eb8bc73a",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/#(S)",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -101,7 +119,7 @@
                 {
                     "name": "left",
                     "id": "d2581a9b-1d11-4566-b27d-b92aff5fabbc",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/#(Q)",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -123,7 +141,7 @@
                 {
                     "name": "right",
                     "id": "fcfe95b8-67b9-4526-84b5-5d0bc98d6400",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/#(D)",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -156,7 +174,7 @@
                 {
                     "name": "",
                     "id": "d766b52f-d3f5-4aea-858f-98355ac268fd",
-                    "path": "<Keyboard>/h",
+                    "path": "<Keyboard>/#(H)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -167,11 +185,33 @@
                 {
                     "name": "",
                     "id": "e652bf34-57f8-460a-9758-bf0cc13f4093",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/#(E)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e29d82fa-0d5e-4731-8537-ac37d9424f6e",
+                    "path": "<Keyboard>/#(F)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FlashLight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6acefdc3-93d9-4d36-a31c-0ae2378152a0",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -188,7 +228,7 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -205,7 +245,7 @@
                 },
                 {
                     "name": "",
-                    "id": "0dfaf6df-17b3-4c34-9e29-0ac63ed216b3",
+                    "id": "12f9566b-6e8e-4652-b705-af729877db18",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -216,7 +256,7 @@
                 },
                 {
                     "name": "",
-                    "id": "f14d51a9-7635-4964-9ed8-3689534f4d13",
+                    "id": "71c0f5f9-5fc2-438b-8388-9e7dc87b023a",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",

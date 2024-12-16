@@ -19,9 +19,9 @@ public enum ItemType
     Consumable,
 
     /// <summary>
-    /// A clue item that provides narrative or informational content.
+    /// Symbols required to solve the Terminal Code puzzle.
     /// </summary>
-    Clue,
+    Symbol,
 
     /// <summary>
     /// Miscellaneous items.

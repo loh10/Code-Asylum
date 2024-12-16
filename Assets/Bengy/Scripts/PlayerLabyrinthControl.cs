@@ -1,25 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
-
 public class PlayerLabyrinthControl : MonoBehaviour
 {
     public Camera cam;
     public Transform sphere;
     public float distanceFromCamera;
+    [SerializeField] private GameObject _panelVictory;
+    [SerializeField] private TextMeshProUGUI _textHint;
+    [SerializeField] private GameObject _labyrinth;
     private Rigidbody _r;
+    private bool _isDragging;
 
-    void Start()
+    private void Start()
     {
         distanceFromCamera = Vector3.Distance(sphere.position,cam.transform.position);
         _r = sphere.GetComponent<Rigidbody>();
     }
-
-
-    // Update is called once per frame
-    void Update()
+    
+    private void Update()
     {
         ProcessInputs();
     }
@@ -32,9 +30,24 @@ public class PlayerLabyrinthControl : MonoBehaviour
             pos.z = distanceFromCamera;
             pos = cam.ScreenToWorldPoint(pos);
             _r.linearVelocity = (pos - sphere.position) * 10;
-
-            AudioManager.Instance.StopSound(AudioType.labyrinth, AudioSourceType.player);
-
+            _isDragging = true;
         }
+        else if (!Input.GetMouseButton(0) && _isDragging)
+        {
+            _isDragging = false;
+            _r.linearVelocity = Vector3.zero;
+        }
+    }
+    private void OnEnable()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        PlayerController.freezeInput = true;
+    }
+    private void OnDisable()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        PlayerController.freezeInput = false;
     }
 }

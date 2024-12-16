@@ -697,7 +697,7 @@ Transform:
   m_GameObject: {fileID: 994291744}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.05, y: 1.51, z: 1.6277548}
+  m_LocalPosition: {x: -34.16, y: 1.6, z: 1.6277548}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1217,8 +1217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a824b68bfd4929aac34491e7721fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockID: LOCK_Z1_01
   isLocked: 1
+  unlockRequiresAllConditions: 0
+  unlockConditions: []
 --- !u!114 &1469346844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,6 +1233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorAnimator: {fileID: 0}
+  lockComponent: {fileID: 0}
 --- !u!1 &1488267950
 GameObject:
   m_ObjectHideFlags: 0

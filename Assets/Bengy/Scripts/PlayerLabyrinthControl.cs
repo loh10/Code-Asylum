@@ -37,6 +37,9 @@ public class PlayerLabyrinthControl : MonoBehaviour
             _isDragging = false;
             _r.linearVelocity = Vector3.zero;
         }
+
+        if(Input.GetMouseButtonDown(0))
+            AudioManager.Instance.PlaySound(AudioType.labyrinth, AudioSourceType.player);
     }
     private void OnEnable()
     {

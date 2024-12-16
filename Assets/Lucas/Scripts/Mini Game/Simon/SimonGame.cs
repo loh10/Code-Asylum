@@ -44,6 +44,11 @@ public class SimonGame : MonoBehaviour
         yield return new WaitForSeconds(_timeToChangeColor);
         Color initialColor = _listImages[_sequence[indexColor]].color;
         _listImages[_sequence[indexColor]].color *= 2f;
+
+
+        AudioManager.Instance.PlaySound(AudioType.simon, AudioSourceType.player);
+
+
         yield return new WaitForSeconds(_timeStayColor);
         _listImages[_sequence[indexColor]].color = initialColor;
         indexColor++;
@@ -73,6 +78,10 @@ public class SimonGame : MonoBehaviour
     public void OnClick(int index)
     {
         _listImages[index].color = _initialColor[index];
+
+        AudioManager.Instance.PlaySound(AudioType.simon, AudioSourceType.player);
+
+
         if (index != _sequence[_sequenceIndex])
         {
             ResetGame();

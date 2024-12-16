@@ -49,6 +49,10 @@ public class Dino : MonoBehaviour
             _isUp = true;
         }
         _move = true;
+
+
+
+        AudioManager.Instance.PlaySound(AudioType.dino, AudioSourceType.player);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

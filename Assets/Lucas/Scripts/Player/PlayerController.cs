@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
         _camera = Camera.main.transform;
         
         flashingLight = GetComponentInChildren<Light>();
+
+        AudioManager.Instance.PlaySound(AudioType.atmosphere, AudioSourceType.player);
     }
     
     private void Update()
@@ -44,8 +46,6 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded()) return;
         
         if (!Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity)) return;
-        
-        
     }
 
     public void GetInputPlayer(InputAction.CallbackContext ctx)
@@ -53,7 +53,15 @@ public class PlayerController : MonoBehaviour
         _inputDirection = ctx.ReadValue<Vector2>();
         
         if (ctx.canceled)
+        {
             _rb.linearVelocity = Vector3.zero;
+            AudioManager.Instance.StopSound(AudioType.walk,AudioSourceType.player);
+        }
+        else
+        {
+
+            AudioManager.Instance.PlaySound(AudioType.walk,AudioSourceType.player);
+        }
     }
     
     

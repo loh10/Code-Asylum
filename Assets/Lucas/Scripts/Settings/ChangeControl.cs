@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
@@ -24,11 +23,15 @@ public class ChangeControl : MonoBehaviour
         if (EventSystem.current.currentSelectedGameObject != gameObject || control == _control)
             return true;
 
-        if (changeControls.Where((_, i) => i != _indexBinding).Where(t => 
-        t._actionReference.action.bindings[t._indexBinding].ToDisplayString().Length > 1).Any(t => 
-        control == t._actionReference.action.bindings[t._indexBinding].ToDisplayString()[1..^1]))
+        foreach (ChangeControl changeControl in changeControls)
         {
-            return false;
+            string currentControl = changeControl._actionReference.action.bindings[changeControl._indexBinding].ToDisplayString();
+
+            if (currentControl.Length > 1)
+                currentControl = currentControl[1..^1];
+
+            if (currentControl == control)
+                return false;
         }
 
         _actionReference.action.ChangeBinding(_indexBinding).WithPath("<Keyboard>/#(" + control + ")");

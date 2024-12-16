@@ -8,14 +8,19 @@ public class Obstacle : MonoBehaviour
     [SerializeField]
     private int _offset = 2;
 
-    
-    void Update()
+    private Transform _transform;
+
+    private void Start()
     {
-        transform.position += Vector3.left * _speed * Time.deltaTime;
-        if (dino.transform.position.x - _offset >= transform.position.x)
+        _transform = transform;
+    }
+    
+    private void Update()
+    {
+        _transform.position += Vector3.left * (_speed * Time.deltaTime);
+        if (dino.transform.position.x - _offset >= _transform.position.x)
         {
             Destroy(gameObject);
-            
-        }                                 // si il dépasse le x du joueur, il se détruit 
+        }                                 // If it exceeds the X position of the player, it destroys itself.
     }
 }

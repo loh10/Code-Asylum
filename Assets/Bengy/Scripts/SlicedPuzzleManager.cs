@@ -45,13 +45,8 @@ public class SlicedPuzzleManager : MonoBehaviour
                 {
                     _emptyLocation = (_size * _size) - 1;
                     piece.gameObject.SetActive(false);
-<<<<<<< Updated upstream
                 }else
-                // We want to map the UV coordinates appropriately, they are 1 -> 0 
-=======
-                }
-                else
->>>>>>> Stashed changes
+
                 {
                     // Set the sprite
                     piece.GetComponent<SpriteRenderer>().sprite = _sprites[currentPiece];

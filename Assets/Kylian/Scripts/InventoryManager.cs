@@ -23,6 +23,8 @@ public class InventoryManager : MonoBehaviour
     
     public void ToggleInventoryDisplay(bool display)
     {
+        if (Cursor.visible == display) return;
+        
         _isDisplay = display;
 
         if (_inventoryUI != null)

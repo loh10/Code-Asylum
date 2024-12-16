@@ -16,7 +16,7 @@ public class Door : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No Lock component found on the door.");
+            //Debug.LogWarning("No Lock component found on the door.");
         }
     }
 
@@ -31,7 +31,8 @@ public class Door : MonoBehaviour
     
     private void OpenDoor()
     {
-        Debug.Log("Door is now open!");
+        //Debug.Log("Door is now open!");
+        AudioManager.Instance.PlaySound(AudioType.door, AudioSourceType.player);
         // Trigger the door opening animation
         if (doorAnimator != null)
         {
@@ -40,7 +41,7 @@ public class Door : MonoBehaviour
         else
         {
             gameObject.SetActive(false); // A enlever quand l'animation sera la
-            Debug.LogWarning("No Animator component assigned to the door.");
+            //Debug.LogWarning("No Animator component assigned to the door.");
         }
     }
     

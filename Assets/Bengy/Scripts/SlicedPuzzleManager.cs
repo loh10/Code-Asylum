@@ -83,9 +83,10 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
+            AudioManager.Instance.StopSound(AudioType.slicedPuzzle, AudioSourceType.player);
         }
 
-        if(!_shuffling && CheckCompletion())
+        if (!_shuffling && CheckCompletion())
         {
             _shuffling = true;
             StartCoroutine(WaitShuffle(0.5f));

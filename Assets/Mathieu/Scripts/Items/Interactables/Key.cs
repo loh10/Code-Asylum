@@ -27,6 +27,10 @@ public class Key : MonoBehaviour, IInteractable
             Debug.Log("This key cannot be interacted with right now.");
             return;
         }
+        else
+        {
+            AudioManager.Instance.PlaySound(AudioType.button, AudioSourceType.player);
+        }
 
         InventoryManager inventory = interactor.GetComponent<InventoryManager>();
         if (inventory != null)

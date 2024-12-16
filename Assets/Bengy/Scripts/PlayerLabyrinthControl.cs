@@ -32,6 +32,9 @@ public class PlayerLabyrinthControl : MonoBehaviour
             pos.z = distanceFromCamera;
             pos = cam.ScreenToWorldPoint(pos);
             _r.linearVelocity = (pos - sphere.position) * 10;
+
+            AudioManager.Instance.StopSound(AudioType.labyrinth, AudioSourceType.player);
+
         }
     }
 }

@@ -49,7 +49,14 @@ public class PlayerController : MonoBehaviour
         _inputDirection = ctx.ReadValue<Vector2>();
         
         if (ctx.canceled)
-            _rb.linearVelocity = new Vector3(0, _rb.linearVelocity.y,0);
+        {
+            _rb.linearVelocity = new Vector3(0, _rb.linearVelocity.y, 0);
+            AudioManager.Instance.StopSound(AudioType.walk, AudioSourceType.player);
+        }
+        else if (ctx.performed)
+        {
+            AudioManager.Instance.PlaySound(AudioType.walk, AudioSourceType.player);
+        }
     }
     
     

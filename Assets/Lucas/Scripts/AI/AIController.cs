@@ -82,7 +82,7 @@ public class AIController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer != LayerMask.NameToLayer("Player"))
         {
             saveReload.IsDead();
             return;

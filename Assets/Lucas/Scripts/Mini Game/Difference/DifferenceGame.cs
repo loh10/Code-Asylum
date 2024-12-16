@@ -62,7 +62,7 @@ public class DifferenceGame : MonoBehaviour
         number.gameObject.SetActive(false);
         _numbers.Remove(_numbers[_index]);
         _index = Random.Range(0, _numbers.Count);
-        _numberOfDifferences = _numbers[_index].numberOfDifferences;
+        _numberOfDifferences = _numbers[_index].listButtons.Count;
         _numbers[_index].gameObject.SetActive(true);
         _numbers.Add(number);
         _numberOfClicks = 2;
@@ -79,7 +79,8 @@ public class DifferenceGame : MonoBehaviour
     private void OnEnable()
     {
         _index = Random.Range(0, _numbers.Count);
-        _numberOfDifferences = _numbers[_index].numberOfDifferences;
+        _numberOfDifferences = _numbers[_index].listButtons.Count;
+        print(_numberOfDifferences);
         _numbers[_index].gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

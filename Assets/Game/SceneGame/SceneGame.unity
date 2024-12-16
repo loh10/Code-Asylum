@@ -5001,6 +5001,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DifferenceGame
       objectReference: {fileID: 0}
+    - target: {fileID: 8113234863572811725, guid: 875a5c236e14b914e8ad026d2ed4996a, type: 3}
+      propertyPath: _numbers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9074964837838039034, guid: 875a5c236e14b914e8ad026d2ed4996a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.19
@@ -11753,6 +11757,16 @@ MonoBehaviour:
   _gameTransform: {fileID: 398968373}
   _piecePrefab: {fileID: 7635892299788744776, guid: 9df3bf6f2c2603741a58f83f00016e7f, type: 3}
   _camera: {fileID: 1467685233}
+  _sprites:
+  - {fileID: -480394848, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
+  - {fileID: -27709187, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
+  - {fileID: -1551355123, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
+  - {fileID: 176869910, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
+  - {fileID: 1592915305, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
+  - {fileID: 1312702435, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
+  - {fileID: 1000204869, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
+  - {fileID: 576420439, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
+  - {fileID: 380885712, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
 --- !u!1 &2066528277
 GameObject:
   m_ObjectHideFlags: 0

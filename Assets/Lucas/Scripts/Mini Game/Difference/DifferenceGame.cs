@@ -58,13 +58,20 @@ public class DifferenceGame : MonoBehaviour
             button.interactable = true;
             button.image.color = Color.white - new Color { a = 1f };
         }
-        
-        number.gameObject.SetActive(false);
-        _numbers.Remove(_numbers[_index]);
-        _index = Random.Range(0, _numbers.Count);
-        _numberOfDifferences = _numbers[_index].listButtons.Count;
-        _numbers[_index].gameObject.SetActive(true);
-        _numbers.Add(number);
+
+        if (_numbers.Count > 1)
+        {
+            number.gameObject.SetActive(false);
+            _numbers.Remove(_numbers[_index]);
+            _index = Random.Range(0, _numbers.Count);
+            _numberOfDifferences = _numbers[_index].listButtons.Count;
+            _numbers[_index].gameObject.SetActive(true);
+            _numbers.Add(number);
+        }
+        else
+        {
+            _numberOfDifferences = _numbers[0].listButtons.Count;
+        }
         _numberOfClicks = 2;
         _isEnd = false;
         _crossObject.SetActive(false);
@@ -80,7 +87,6 @@ public class DifferenceGame : MonoBehaviour
     {
         _index = Random.Range(0, _numbers.Count);
         _numberOfDifferences = _numbers[_index].listButtons.Count;
-        print(_numberOfDifferences);
         _numbers[_index].gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -88,6 +94,7 @@ public class DifferenceGame : MonoBehaviour
     }
     public void OnDisable()
     {
+        //StartCoroutine(ResetGame(0));
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         PlayerController.freezeInput = false;

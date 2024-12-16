@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
         }
             
         IPuzzle puzzle = hit.collider.GetComponent<IPuzzle>();
-        if (puzzle is { IsSolved: false })
+        if (puzzle is { IsSolved: false } && !Cursor.visible)
         {
             puzzle.Activate();
         }

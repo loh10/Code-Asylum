@@ -15,7 +15,6 @@ public class SaveReload : MonoBehaviour
     
     public void IsDead()
     {
-        PlayerController.freezeInput = true;
         ennemi.enabled = false;
         
         transform.position = respawnPoint;

@@ -25,5 +25,7 @@ public class MiniGameManager : MonoBehaviour, IPuzzle
     {
         _miniGame.SetActive(false);
         IsSolved = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

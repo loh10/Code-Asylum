@@ -6,14 +6,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 _inputDirection = Vector2.zero;
     private Vector3 _moveDirection = Vector3.zero;
     private Transform _camera;
-    
     private Rigidbody _rb;
     private CapsuleCollider _capsuleCollider;
+    private bool _isCrouched;
+    private GameObject _itemHolder;
+    private SaveReload _saveReload;
+    private Light flashingLight;
     
     public static bool freezeInput;
-    private bool _isCrouched;
-    
-    private GameObject _itemHolder;
     
     [Range(0f, 1f)][SerializeField] private float _crouchMultiplier = 0.5f;
     [SerializeField] private float _walkSpeed = 750f;
@@ -22,13 +22,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _rangeInteraction = 3f;
     [SerializeField] private InputActionAsset _actionAsset;
 
-    //public Inventory _inventory;
-
-    private SaveReload _saveReload;
-
     private void Start()
     {
-        PlayerPrefs.DeleteKey("Sensitivity");
         _rb = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         _saveReload = GetComponent<SaveReload>();
@@ -36,6 +31,8 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         _camera = Camera.main.transform;
+        
+        flashingLight = GetComponentInChildren<Light>();
     }
     
     private void Update()
@@ -43,6 +40,12 @@ public class PlayerController : MonoBehaviour
         if (freezeInput) return;
         
         Movement();
+        
+        if (IsGrounded()) return;
+        
+        if (!Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity)) return;
+        
+        
     }
 
     public void GetInputPlayer(InputAction.CallbackContext ctx)
@@ -50,7 +53,7 @@ public class PlayerController : MonoBehaviour
         _inputDirection = ctx.ReadValue<Vector2>();
         
         if (ctx.canceled)
-            _rb.linearVelocity = new Vector3(0, _rb.linearVelocity.y,0);
+            _rb.linearVelocity = Vector3.zero;
     }
     
     
@@ -67,37 +70,47 @@ public class PlayerController : MonoBehaviour
 
         else if (ctx.canceled)
         {
-            _capsuleCollider.height /= _crouchMultiplier;
             _capsuleCollider.center += new Vector3(0, 1 - _crouchMultiplier, 0);
+            _capsuleCollider.height /= _crouchMultiplier;
             _camera.position += new Vector3(0, 1 - _crouchMultiplier, 0);
             _isCrouched = false;
         }
     }
+    public void FlashLight(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed)
+            return;
+        
+        if (flashingLight != null)
+        {
+            flashingLight.enabled = !flashingLight.enabled;
+        }
+    }   
     
     public void Interact(InputAction.CallbackContext ctx)
     {
         if (!ctx.canceled) return;
 
-        if (Physics.Raycast(_camera.position, _camera.forward, out RaycastHit hit, _rangeInteraction, 1 << LayerMask.NameToLayer("Interactable")))
+        if (!Physics.Raycast(_camera.position, _camera.forward, out RaycastHit hit, _rangeInteraction, 1 << LayerMask.NameToLayer("Interactable")))
+            return;
+        
+        ICollectable collectable = hit.collider.GetComponent<ICollectable>();
+        if (collectable != null && collectable.CanCollect)
         {
-            ICollectable collectable = hit.collider.GetComponent<ICollectable>();
-            if (collectable != null && collectable.CanCollect)
-            {
-                collectable.OnCollect(gameObject);
-                return;
-            }
+            collectable.OnCollect(gameObject);
+            return;
+        }
 
-            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-            if (interactable != null && interactable.IsInteractable)
-            {
-                interactable.Interact(gameObject);
-            }
+        IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+        if (interactable != null && interactable.IsInteractable)
+        {
+            interactable.Interact(gameObject);
+        }
             
-            IPuzzle puzzle = hit.collider.GetComponent<IPuzzle>();
-            if (puzzle is { IsSolved: false })
-            {
-                puzzle.Activate();
-            }
+        IPuzzle puzzle = hit.collider.GetComponent<IPuzzle>();
+        if (puzzle is { IsSolved: false })
+        {
+            puzzle.Activate();
         }
     }
     
@@ -111,12 +124,12 @@ public class PlayerController : MonoBehaviour
 
         _moveDirection = _orientation.forward * curSpeedX + _orientation.right * curSpeedY;
 
-        _rb.linearVelocity = _moveDirection * Time.deltaTime + new Vector3(0, _rb.linearVelocity.y, 0);
+        _rb.linearVelocity = _moveDirection + new Vector3(0, _rb.linearVelocity.y, 0);
     }
-    
-    public bool IsGrounded()
+
+    private bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, 1.01f);
+        return Physics.Raycast(transform.position, Vector3.down, 1.04f);
     }
     
     public void FreezeInput(bool value, int indexActionMap = 0)
@@ -138,6 +151,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer != LayerMask.NameToLayer("AI"))
             return;
         
+        freezeInput = true;
         _saveReload.IsDead();
     }
     

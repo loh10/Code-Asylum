@@ -1,10 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ObstacleSpawn : MonoBehaviour
 {
-    private float _speed = 1;
     [SerializeField]
     private Transform _targetUp, _targetDown;
     [SerializeField]
@@ -15,36 +13,31 @@ public class ObstacleSpawn : MonoBehaviour
     private Vector3 _position;
     [SerializeField]
     private Dino _dino;
-    public GameObject Panel;
+    [SerializeField]
+    private GameObject Panel;
     [SerializeField]
     private Transform _obstacleParent;
 
-    void Start()
+    private void Start()
     {
         StartCoroutine(SpawnEnemy());
         Panel.SetActive(false);
     }
 
-    IEnumerator SpawnEnemy()
+    private IEnumerator SpawnEnemy()
     {
-        if ( Random.Range(0,2) == 0)   // 0 = Down 
-        {
-            _position = _targetDown.position;
+        _position = Random.Range(0,2) == 0 ? _targetDown.position : _targetUp.position;
+            // 0 = Down 
+            // 1 = Up
+            
 
-        }
-        else                           // 1 = Up
-        {
-            _position = _targetUp.position;
-        }
-
-        if (_dino._tempNumberEnemyToSpawn >= 0)
+        if (_dino.GetNumberEnemyToSpawn() >= 0)
         {
             GameObject _obstacle = Instantiate(obstaclePrefab, _position, Quaternion.identity, _obstacleParent);
             _obstacle.GetComponent<Obstacle>().dino = _dino.gameObject;
-            _dino._tempNumberEnemyToSpawn--;
+            _dino.SetNumberEnemyToSpawn(_dino.GetNumberEnemyToSpawn() - 1);
             float _spawnTime = Random.Range(_minTime, _maxTime);                             //random entre min time et max time 
             yield return new WaitForSeconds(_spawnTime);
-            StartCoroutine(SpawnEnemy());
         }
         else
         {
@@ -52,11 +45,12 @@ public class ObstacleSpawn : MonoBehaviour
             if (_obstacleParent.childCount == 0)
             {
                 Panel.SetActive(true);
-
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             yield return new WaitForSeconds(.5f);
-            StartCoroutine(SpawnEnemy());
         }
+        StartCoroutine(SpawnEnemy());
     }
 
 }

@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     private bool _isPaused;
+    private GameObject _popUp;
     [SerializeField] private GameObject _pauseMenu;
     
     public void Escape(InputAction.CallbackContext ctx)
     {
         if (!ctx.canceled) return;
         
-        if (_isPaused)
+        if (_isPaused && (_popUp == null || !_popUp.activeSelf))
         {
             Close(_pauseMenu);
         }
@@ -59,6 +60,7 @@ public class MainMenu : MonoBehaviour
     public void TitleScreen(GameObject popUp)
     {
         popUp.SetActive(true);
+        _popUp = popUp;
     }
 
     public void Quit()

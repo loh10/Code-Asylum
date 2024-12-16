@@ -3,9 +3,9 @@ using UnityEngine.AI;
 
 public class SaveReload : MonoBehaviour
 {
-    public Vector3 respawnPoint;
-    public NavMeshAgent ennemi;
+    [SerializeField] private NavMeshAgent ennemi;
     private Vector3 _startEnnemiPos;
+    private Vector3 respawnPoint;
     
     private void Awake()
     {

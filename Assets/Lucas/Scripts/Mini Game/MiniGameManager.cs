@@ -24,7 +24,10 @@ public class MiniGameManager : MonoBehaviour, IPuzzle
     public void Solve()
     {
         _miniGame.SetActive(false);
+        
         IsSolved = true;
+        PuzzleManager.Instance.SetPuzzleSolved(PuzzleID);
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

@@ -14,9 +14,13 @@
 	</Player>
 		
 	<Enigma>
-		<EnigmaActivated>I must to be fast</EnigmaActivated>
+		<EnigmaActivated>I must be fast</EnigmaActivated>
 		<EnigmaActivated2>Ohhhh that's Hard...</EnigmaActivated2>
-		<EnigmaFinished>I'm a crack</EnigmaFinished>  
+		<EnigmaFinished>I'm a crack</EnigmaFinished>
+		
+		<BonneteauActivated> Hmmm what are these boxes for?</BonneteauActivated>
+		<BonneteauFailed>Damn it, wrong one...</BonneteauFailed>
+		<BonneteauFinished> Yes! Huh...Looks like this container just unlocked...</BonneteauFinished>
 	</Enigma>
 		
 	<Monster>

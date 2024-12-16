@@ -50,6 +50,7 @@ public class Door : MonoBehaviour
         else
         {
             Debug.LogWarning("No Animator component assigned to the door. Disabling the door GameObject as a fallback.");
+            gameObject.SetActive(false);
         }
     }
 

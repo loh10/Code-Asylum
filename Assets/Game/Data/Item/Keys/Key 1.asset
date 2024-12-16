@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1e4f326a7204ac08570ccb1a35f3ad9, type: 3}
-  m_Name: GeneratorManual
+  m_Name: Key 1
   m_EditorClassIdentifier: 
-  itemName: Generator Manual
+  itemName: 
   icon: {fileID: 0}
   description: 
-  itemType: 4
+  itemType: 0
   category: 1
   isStackable: 0
   maxStackSize: 0

@@ -6325,7 +6325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorAnimator: {fileID: 0}
-  lockComponent: {fileID: 0}
+  lockComponent: {fileID: 1986911275}
 --- !u!65 &1986911277
 BoxCollider:
   m_ObjectHideFlags: 0

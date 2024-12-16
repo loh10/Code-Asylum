@@ -774,6 +774,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0d30a129-dd58-4750-ab8f-289ebb040341
     m_ActionName: 'Player/Escape[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4736500383229562574}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: OpenInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 41c26041-9209-404e-bf6e-28c301baa093
+    m_ActionName: 'Player/Inventory[/Keyboard/tab]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -790,9 +806,9 @@ GameObject:
   - component: {fileID: 3772569551987076606}
   - component: {fileID: 4736500383229562574}
   - component: {fileID: 3937505472537250946}
+  - component: {fileID: 9162907779073811016}
   - component: {fileID: 1932127554338752270}
   - component: {fileID: 5393016862070905198}
-  - component: {fileID: 9162907779073811016}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -850,6 +866,20 @@ MonoBehaviour:
   _orientation: {fileID: 5685567764281292241}
   _rangeInteraction: 3
   _actionAsset: {fileID: -944628639613478452, guid: c2c6205f0e37e81419ebc7e0cdc96b50, type: 3}
+--- !u!114 &9162907779073811016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7744653196689377028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcd15172b0006945ba4e685f04dfcdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPoint: {x: 0, y: 0, z: 0}
+  ennemi: {fileID: 0}
 --- !u!136 &1932127554338752270
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -900,17 +930,3 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &9162907779073811016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7744653196689377028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebcd15172b0006945ba4e685f04dfcdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnPoint: {x: 0, y: 0, z: 0}
-  ennemi: {fileID: 0}

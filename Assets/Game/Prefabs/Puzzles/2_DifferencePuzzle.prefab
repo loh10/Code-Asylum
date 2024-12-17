@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186559703689101356}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.773, y: 0.24999988, z: 1.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -354,14 +354,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5552674773374883091, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
-      propertyPath: 'unlockConditions.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 0c9d6fe6d10d62c4dbba39b4864cec00, type: 2}
-    - target: {fileID: 8690187438425689267, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
-      propertyPath: puzzleID
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -387,6 +379,22 @@ PrefabInstance:
     - target: {fileID: 1949649069227400152, guid: 875a5c236e14b914e8ad026d2ed4996a, type: 3}
       propertyPath: m_Name
       value: DifferenceGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904154980144519623, guid: 875a5c236e14b914e8ad026d2ed4996a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904154980144519623, guid: 875a5c236e14b914e8ad026d2ed4996a, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904154980144519623, guid: 875a5c236e14b914e8ad026d2ed4996a, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904154980144519623, guid: 875a5c236e14b914e8ad026d2ed4996a, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8113234863572811725, guid: 875a5c236e14b914e8ad026d2ed4996a, type: 3}
       propertyPath: _numbers.Array.size

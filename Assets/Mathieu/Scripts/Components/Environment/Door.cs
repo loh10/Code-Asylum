@@ -46,7 +46,7 @@ public class Door : MonoBehaviour
         {
             // Trigger the door opening animation
             doorAnimator.enabled = true;
-            AudioManager.Instance.PlaySound(AudioType.door, AudioSourceType.player);
+            AudioManager.Instance.PlaySound(AudioType.door);
         }
         else
         {

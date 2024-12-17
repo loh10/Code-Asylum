@@ -16,85 +16,47 @@ public enum AudioType
     voiceInTheHead
 }
 
-public enum AudioSourceType
-{
-    game,
-    player
-}
-
 public class AudioManager : MonoBehaviour
 {
-    static public AudioManager Instance;
-
-    public float volume = 1.0f;
-
-    public AudioSource gameSource;
-    public AudioSource playerSource;
+    public static AudioManager Instance;
 
     [System.Serializable]
     public struct AudioData
     {
-        public AudioClip clip;
         public AudioType type;
+        public AudioSource source;
     }
 
     public AudioData[] audioData;
 
-    void Awake()
+    private void Awake()
     {
         Instance = this;
     }
 
-    void Start()
+    public void PlaySound(AudioType type)
     {
-        gameSource.volume = volume;
-        playerSource.volume = volume;
+        AudioData data = GetAudioData(type);
+        data.source.Play();
+    }
+    
+    public void StopSound(AudioType type)
+    {
+        AudioData data = GetAudioData(type);
+        data.source.Stop();
     }
 
-    public void PlaySound(AudioType type, AudioSourceType sourceType)
+    public AudioData GetAudioData(AudioType type)
     {
-        AudioClip clip = getClip(type);
-
-        if (clip == null) return;
-
-        if (sourceType == AudioSourceType.game)
+        for (int i = 0; i < audioData.Length; i++)
         {
-            gameSource.PlayOneShot(clip);
-        }
-
-        else if (sourceType == AudioSourceType.player)
-        {
-            playerSource.PlayOneShot(clip);
-        }
-    }
-
-     public AudioClip getClip(AudioType type)
-    {
-        foreach (AudioData data in audioData)
-        {
-            if (data.type == type)
+            if (audioData[i].type == type)
             {
-                return data.clip;
+                return audioData[i];
             }
         }
-
         Debug.LogError("AudioManager: No clip found for type " + type);
-        return null;
-    }
-
-    public void StopSound(AudioType type, AudioSourceType sourceType)
-    {
-        AudioClip clip = getClip(type);
-
-        if (sourceType == AudioSourceType.game)
-        {
-            gameSource.Stop();
-        }
-
-        else if (sourceType == AudioSourceType.player)
-        {
-            playerSource.Stop();
-        }
+        return new AudioData();
     }
 }
     

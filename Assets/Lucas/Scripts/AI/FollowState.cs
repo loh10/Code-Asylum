@@ -26,7 +26,6 @@ public class FollowState : State
         {
             _target.gameObject.GetComponent<SaveReload>().IsDead();
         }
-
     }
     public override void Exit()
     {

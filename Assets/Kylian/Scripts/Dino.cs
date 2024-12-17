@@ -52,7 +52,7 @@ public class Dino : MonoBehaviour
 
 
 
-        AudioManager.Instance.PlaySound(AudioType.dino, AudioSourceType.player);
+        AudioManager.Instance.PlaySound(AudioType.dino);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

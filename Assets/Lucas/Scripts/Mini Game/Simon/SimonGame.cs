@@ -46,7 +46,7 @@ public class SimonGame : MonoBehaviour
         _listImages[_sequence[indexColor]].color *= 2f;
 
 
-        AudioManager.Instance.PlaySound(AudioType.simon, AudioSourceType.player);
+        AudioManager.Instance.PlaySound(AudioType.simon);
 
 
         yield return new WaitForSeconds(_timeStayColor);
@@ -79,7 +79,7 @@ public class SimonGame : MonoBehaviour
     {
         _listImages[index].color = _initialColor[index];
 
-        AudioManager.Instance.PlaySound(AudioType.simon, AudioSourceType.player);
+        AudioManager.Instance.PlaySound(AudioType.simon);
 
 
         if (index != _sequence[_sequenceIndex])

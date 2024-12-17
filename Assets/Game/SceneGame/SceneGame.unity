@@ -789,7 +789,7 @@ Transform:
   m_GameObject: {fileID: 305535364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 23.79, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1635,7 +1635,7 @@ Transform:
   m_GameObject: {fileID: 416946595}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 23.79, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3189,7 +3189,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 01fbc6ddd7b0f7a43b446abf3e8b9d7a, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a50d238c710320240bcb379347147bbc, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &666978980
 Transform:
@@ -5489,7 +5489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1811526423310147122, guid: 9c9b2467a891a064c913cae7976e4e0b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.38
       objectReference: {fileID: 0}
     - target: {fileID: 1811526423310147122, guid: 9c9b2467a891a064c913cae7976e4e0b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7756,7 +7756,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1361473024}
-  - component: {fileID: 1361473025}
   m_Layer: 0
   m_Name: BonneteauPuzzle
   m_TagString: Untagged
@@ -7888,7 +7887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3946669394903436806, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 3946669394903436806, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7928,7 +7927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8241385948871040550, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12892,6 +12891,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1659910127}
     m_Modifications:
+    - target: {fileID: 2374447256408805180, guid: 073392debcbf7e046981b91602835528, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6734256762050090176, guid: 073392debcbf7e046981b91602835528, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.3499975
@@ -12935,6 +12938,30 @@ PrefabInstance:
     - target: {fileID: 6805988934597909817, guid: 073392debcbf7e046981b91602835528, type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139136470697268211, guid: 073392debcbf7e046981b91602835528, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.723
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139136470697268211, guid: 073392debcbf7e046981b91602835528, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139136470697268211, guid: 073392debcbf7e046981b91602835528, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.622
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234614805874601512, guid: 073392debcbf7e046981b91602835528, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234614805874601512, guid: 073392debcbf7e046981b91602835528, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234614805874601512, guid: 073392debcbf7e046981b91602835528, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

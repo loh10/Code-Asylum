@@ -12,7 +12,8 @@ public enum AudioType
     dino,
     slicedPuzzle,
     button,
-    atmosphere
+    atmosphere,
+    voiceInTheHead
 }
 
 public enum AudioSourceType

@@ -7230,12 +7230,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8241385948871040550, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8241385948871040550, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1758861873}
   m_SourcePrefab: {fileID: 100100000, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
 --- !u!195 &1430931080 stripped
 NavMeshAgent:
@@ -9516,6 +9519,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 850305845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1758861868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8241385948871040550, guid: 10cfabe9d766c42478db7612e648ac90, type: 3}
+  m_PrefabInstance: {fileID: 1430931079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1758861873
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758861868}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 95d9edabea5d05245a8da1478783c430, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1760828214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11909,6 +11939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef8fe4b3842f461438542ef8825b6dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miniGameManager: {fileID: 0}
   _gameTransform: {fileID: 398968373}
   _piecePrefab: {fileID: 7635892299788744776, guid: 9df3bf6f2c2603741a58f83f00016e7f, type: 3}
   _camera: {fileID: 1467685233}
@@ -11922,6 +11953,8 @@ MonoBehaviour:
   - {fileID: 1000204869, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
   - {fileID: 576420439, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
   - {fileID: 380885712, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
+  CheatEnabled: 0
+  autoSolveButton: {fileID: 0}
 --- !u!1 &2121852641
 GameObject:
   m_ObjectHideFlags: 0
@@ -11969,6 +12002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776e8d78cadfc0848ae909d298344dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _miniGame: {fileID: 0}
 --- !u!65 &2121852644
 BoxCollider:
   m_ObjectHideFlags: 0

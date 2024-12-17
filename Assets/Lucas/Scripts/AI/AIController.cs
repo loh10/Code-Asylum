@@ -19,6 +19,10 @@ public class AIController : MonoBehaviour
     private FollowState _followState;
     private PatrolState _patrolState;
     
+    //List Positions
+    [SerializeField] private Animator _animations;
+    public Animator GetAnimations() => _animations;
+    
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();

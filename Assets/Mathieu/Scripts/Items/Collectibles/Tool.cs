@@ -23,7 +23,6 @@ public class Tool : MonoBehaviour, ICollectable
         if (inventory != null)
         {
             inventory.AddItem(toolItemConfig);
-            Debug.Log($"{toolItemConfig.itemName} collected.");
             Destroy(gameObject);
         }
         else

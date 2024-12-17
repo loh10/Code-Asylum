@@ -9,7 +9,7 @@ public class CodeManager : MonoBehaviour
     public static CodeManager Instance { get; private set; }
 
     // Store entered codes
-    private HashSet<string> enteredCodes = new HashSet<string>();
+    private readonly HashSet<string> _enteredCodes = new HashSet<string>();
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class CodeManager : MonoBehaviour
     /// </summary>
     public void RecordCode(string code)
     {
-        enteredCodes.Add(code);
+        _enteredCodes.Add(code);
     }
 
     /// <summary>
@@ -35,6 +35,6 @@ public class CodeManager : MonoBehaviour
     /// </summary>
     public bool HasEnteredCode(string code)
     {
-        return enteredCodes.Contains(code);
+        return _enteredCodes.Contains(code);
     }
 }

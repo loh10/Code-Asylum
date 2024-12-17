@@ -3,14 +3,11 @@
 [CreateAssetMenu(fileName = "PuzzleCondition", menuName = "ScriptableObjects/Conditions/PuzzleCondition")]
 public class PuzzleConditionConfig : UnlockConditionConfig
 {
-    [Tooltip("Reference to the puzzle ID that must be solved.")]
-    public string puzzleID; 
-    // Alternatively, you can store a reference to a PuzzleManager that checks puzzle states.
+    [Tooltip("The puzzleID that must be solved.")]
+    public int puzzleID;
 
     public override bool IsConditionMet(InventoryManager inventory)
     {
-        // If you have a PuzzleManager to check solved puzzles by ID:
-        // return PuzzleManager.Instance.IsPuzzleSolved(puzzleID);
-        return false; // Placeholder
+        return PuzzleManager.Instance != null && PuzzleManager.Instance.IsPuzzleSolved(puzzleID);
     }
 }

@@ -23,7 +23,11 @@ public class Key : MonoBehaviour, ICollectable
         if (inventory != null)
         {
             inventory.AddItem(keyItemConfig);
-            Debug.Log($"{keyItemConfig.itemName} collected.");
+            
+            // Show a message to the player
+            string message = DialogueManager.GetDialogue("Key", "GotKey");
+            DialogueMessageBoxUI.Instance.ShowMessage(message, 3f);
+            
             Destroy(gameObject);
         }
         else

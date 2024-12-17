@@ -1,0 +1,37 @@
+<Dialogues>
+	<Door>
+		<KeyActivated>The door is Open</KeyActivated>
+		<KeyNotActivated>I need a Key</KeyNotActivated>
+	</Door>
+	
+	<Key>
+		<GotKey>You got a Key</GotKey>
+	</Key>
+	
+	<Player>
+		<Dead>You are Dead</Dead>
+		<Respawn>I must do better</Respawn>
+	</Player>
+		
+	<Enigma>
+		<EnigmaActivated>I must be fast</EnigmaActivated>
+		<EnigmaActivated2>Ohhhh that's Hard...</EnigmaActivated2>
+		<EnigmaFinished>I'm a crack</EnigmaFinished>
+		
+		<BonneteauActivated> Hmmm what are these boxes for?</BonneteauActivated>
+		<BonneteauFailed>Damn it, wrong one...</BonneteauFailed>
+		<BonneteauFinished> Yes! Huh...Looks like this container just unlocked...</BonneteauFinished>
+		<GotSymbol>You got a Symbol</GotSymbol>	
+	</Enigma>
+		
+	<Monster>
+		<SeeMonster>What is that ???</SeeMonster>
+		<SeeMonster2>Ohhh shit!!!</SeeMonster2>
+	</Monster>
+
+	<End>
+		<Exit>Finally I'm out</Exit>
+		<Exit2>It's the End</Exit2>
+	</End>
+</Dialogues>
+

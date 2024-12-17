@@ -823,9 +823,9 @@ MonoBehaviour:
   _shuffleCount: 10
   speed: 2
   boxTransforms:
-  - {fileID: 4963534171592201230}
-  - {fileID: 6180000336634903904}
-  - {fileID: 4823046325035741048}
+  - {fileID: 265172120002935171}
+  - {fileID: 3516789887960312719}
+  - {fileID: 6391110451939281141}
   ball: {fileID: 2323573171787040256}
   raiseOffset: 0.6
   lowerOffset: 0

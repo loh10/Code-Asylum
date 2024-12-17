@@ -30,8 +30,11 @@ public class ChangeControl : MonoBehaviour
             if (currentControl.Length > 1)
                 currentControl = currentControl[1..^1];
 
-            if (currentControl == control)
-                return false;
+            if (currentControl != control)
+                continue;
+            
+            EventSystem.current.SetSelectedGameObject(null);
+            return false;
         }
 
         _actionReference.action.ChangeBinding(_indexBinding).WithPath("<Keyboard>/#(" + control + ")");

@@ -116,6 +116,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8631111160245280953}
+  - {fileID: 2389544775449435630}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3546366657337290739
@@ -169,6 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorAnimator: {fileID: 0}
   lockComponent: {fileID: 0}
+  handleRenderer: {fileID: 1008763914800685411}
+  lockedMaterial: {fileID: 2100000, guid: 546612e971b7ec24a90b2781a5ba0e6c, type: 2}
+  unlockedMaterial: {fileID: 2100000, guid: cd372961ee25f9549b5424b4425e77de, type: 2}
 --- !u!114 &8732378672219052854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,6 +666,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8386056774382160823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2389544775449435630}
+  m_Layer: 0
+  m_Name: RewardItem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2389544775449435630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8386056774382160823}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.17126676, y: 0.02866022, z: 0.16254012, w: 0.97130173}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8545966778309078059}
+  m_LocalEulerAnglesHint: {x: -20, y: 0, z: 19}
 --- !u!1 &8401471929571174890
 GameObject:
   m_ObjectHideFlags: 0

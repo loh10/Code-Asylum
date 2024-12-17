@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8468293109410791471}
-  - component: {fileID: 2018766741073307996}
   - component: {fileID: 7532891571654918463}
+  - component: {fileID: 2018766741073307996}
   m_Layer: 7
   m_Name: Key_Base
   m_TagString: Untagged
@@ -34,6 +34,20 @@ Transform:
   - {fileID: 7419165107709104579}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7532891571654918463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164885000384004586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210c74287c1d4c519955a8f49497948e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyItemConfig: {fileID: 11400000, guid: 0434c8eeb6b60c84da5ad96ab657857e, type: 2}
+  canBeCollected: 1
 --- !u!135 &2018766741073307996
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -55,20 +69,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7532891571654918463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164885000384004586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 210c74287c1d4c519955a8f49497948e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyItemConfig: {fileID: 11400000, guid: 0434c8eeb6b60c84da5ad96ab657857e, type: 2}
-  canBeCollected: 1
 --- !u!1 &644981465995731378
 GameObject:
   m_ObjectHideFlags: 0

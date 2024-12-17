@@ -686,7 +686,7 @@ GameObject:
   - component: {fileID: 4894162557395145415}
   - component: {fileID: 921762127458389076}
   m_Layer: 0
-  m_Name: BonneteauPuzzle
+  m_Name: 3_BonneteauPuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

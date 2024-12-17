@@ -8,7 +8,6 @@ public class ObstacleSpawn : MonoBehaviour
     [SerializeField] private GameObject obstaclePrefab;
     [SerializeField] private Vector3 _position;
     [SerializeField] private Dino _dino;
-    [SerializeField] private GameObject Panel;
     [SerializeField] private Transform _obstacleParent;
 
     // Add a reference to the MiniGameManager
@@ -18,7 +17,6 @@ public class ObstacleSpawn : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SpawnEnemy());
-        Panel.SetActive(false);
     }
 
     private IEnumerator SpawnEnemy()
@@ -47,11 +45,6 @@ public class ObstacleSpawn : MonoBehaviour
                 {
                     _miniGame.Solve();
                 }
-
-                // Show panel after solving the puzzle
-                Panel.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
             }
             yield return new WaitForSeconds(.5f);
         }

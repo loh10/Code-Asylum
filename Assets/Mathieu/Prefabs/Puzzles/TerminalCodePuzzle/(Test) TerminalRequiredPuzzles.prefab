@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &975017087568170644
 Transform:
   m_ObjectHideFlags: 0
@@ -51,6 +51,18 @@ PrefabInstance:
     - target: {fileID: 2329065466469648804, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
       propertyPath: _PuzzleID
       value: 9901
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414197084051661914, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414197084051661914, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414197084051661914, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 3523494183083700849, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -144,6 +156,18 @@ PrefabInstance:
       propertyPath: _PuzzleID
       value: 9902
       objectReference: {fileID: 0}
+    - target: {fileID: 2414197084051661914, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414197084051661914, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414197084051661914, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 3523494183083700849, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -235,6 +259,18 @@ PrefabInstance:
     - target: {fileID: 2329065466469648804, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
       propertyPath: _PuzzleID
       value: 9903
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414197084051661914, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414197084051661914, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414197084051661914, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 3523494183083700849, guid: 368e8e1dd051a9d4c85f114a8b98ee6a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

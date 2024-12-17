@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 3562719812758396867}
   - component: {fileID: 392368824831603355}
   m_Layer: 7
-  m_Name: SlidingPuzzle
+  m_Name: 1_SlidingPuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026345131143585649}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.72, y: 0.95, z: 12.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   - {fileID: 1000204869, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
   - {fileID: 576420439, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
   - {fileID: 380885712, guid: c4d633b6cfbf84b4483ec5a168d3d88e, type: 3}
-  CheatEnabled: 0
+  CheatEnabled: 1
   autoSolveButton: {fileID: 6609566800378114737}
 --- !u!1 &3575588792783909806
 GameObject:

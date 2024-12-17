@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
         flashingLight = GetComponentInChildren<Light>();
 
         AudioManager.Instance.PlaySound(AudioType.atmosphere, AudioSourceType.player);
-
         AudioManager.Instance.PlaySound(AudioType.voiceInTheHead, AudioSourceType.player);
     }
     
@@ -62,8 +61,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (audioManager.playerSource.clip != audioManager.getClip(AudioType.walk))
-                audioManager.PlaySound(AudioType.walk,AudioSourceType.player);
+            AudioManager.Instance.PlaySound(AudioType.walk,AudioSourceType.player);
         }
     }
     

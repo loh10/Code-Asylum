@@ -83,6 +83,7 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
         if (IsSolved) return;
 
         terminalUI.SetActive(true);
+        MiniGameManager.currentMiniGame = terminalUI;
 
         if (codeEntryPanel != null)
             codeEntryPanel.SetActive(true);

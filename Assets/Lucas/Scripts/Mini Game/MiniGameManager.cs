@@ -9,6 +9,8 @@ public class MiniGameManager : MonoBehaviour, IPuzzle
     public bool IsSolved { get; set; }
     public string PuzzleHint { get; set; }
     public int PuzzleID { get; set; }
+    
+    public static GameObject currentMiniGame;
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class MiniGameManager : MonoBehaviour, IPuzzle
         if (IsSolved) return;
         
         _miniGame.SetActive(true);
+        currentMiniGame = _miniGame;
     }
     public void Solve()
     {

@@ -46,6 +46,7 @@ public class SymbolSheet : MonoBehaviour, IInteractable
     private void ShowSheet()
     {
         symbolSheetUI.SetActive(true);
+        MiniGameManager.currentMiniGame = symbolSheetUI;
         
         // Unlock cursor and freeze player input
         Cursor.lockState = CursorLockMode.None;

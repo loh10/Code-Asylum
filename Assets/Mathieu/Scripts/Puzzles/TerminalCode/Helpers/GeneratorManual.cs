@@ -47,6 +47,7 @@ public class GeneratorManual : MonoBehaviour, IInteractable
     private void ShowManual()
     {
         manualUI.SetActive(true);
+        MiniGameManager.currentMiniGame = manualUI;
         
         // Unlock cursor and freeze player input
         Cursor.lockState = CursorLockMode.None;

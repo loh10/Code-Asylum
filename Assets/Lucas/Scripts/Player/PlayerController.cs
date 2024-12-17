@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
         flashingLight = GetComponentInChildren<Light>();
 
         AudioManager.Instance.PlaySound(AudioType.atmosphere, AudioSourceType.player);
+
+        AudioManager.Instance.PlaySound(AudioType.voiceInTheHead, AudioSourceType.player);
     }
     
     private void Update()
@@ -51,16 +53,17 @@ public class PlayerController : MonoBehaviour
     public void GetInputPlayer(InputAction.CallbackContext ctx)
     {
         _inputDirection = ctx.ReadValue<Vector2>();
+        AudioManager audioManager = AudioManager.Instance;
         
         if (ctx.canceled)
         {
             _rb.linearVelocity = Vector3.zero;
-            AudioManager.Instance.StopSound(AudioType.walk,AudioSourceType.player);
+            audioManager.StopSound(AudioType.walk,AudioSourceType.player);
         }
         else
         {
-
-            AudioManager.Instance.PlaySound(AudioType.walk,AudioSourceType.player);
+            if (audioManager.playerSource.clip != audioManager.getClip(AudioType.walk))
+                audioManager.PlaySound(AudioType.walk,AudioSourceType.player);
         }
     }
     

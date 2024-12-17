@@ -12,7 +12,8 @@ public enum AudioType
     dino,
     slicedPuzzle,
     button,
-    atmosphere
+    atmosphere,
+    voiceInTheHead
 }
 
 public enum AudioSourceType
@@ -41,7 +42,14 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     void Start()
@@ -54,6 +62,8 @@ public class AudioManager : MonoBehaviour
     {
         AudioClip clip = getClip(type);
 
+        if (clip == null) return;
+
         if (sourceType == AudioSourceType.game)
         {
             gameSource.PlayOneShot(clip);
@@ -65,7 +75,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    AudioClip getClip(AudioType type)
+     public AudioClip getClip(AudioType type)
     {
         foreach (AudioData data in audioData)
         {

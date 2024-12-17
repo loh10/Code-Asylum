@@ -76,10 +76,11 @@ public class SlicedPuzzleManager : MonoBehaviour
                         if (SwapIfValid(i, +1, _size - 1)) { break; }
                     }
                 }
+                AudioManager.Instance.PlaySound(AudioType.slicedPuzzle, AudioSourceType.player);
             }
         }
 
-        if(!_shuffling && CheckCompletion())
+        if (!_shuffling && CheckCompletion())
         {
             _shuffling = true;
             StartCoroutine(WaitShuffle(0.5f));

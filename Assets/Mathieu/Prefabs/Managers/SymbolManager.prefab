@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8671756145696951144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5082339492061706911}
+  - component: {fileID: 1010752720880216093}
+  m_Layer: 0
+  m_Name: SymbolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5082339492061706911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8671756145696951144}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1010752720880216093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8671756145696951144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1429c4f67bdf4c5ba0c3fda22ccbb157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allSymbols:
+  - symbolChar: Phi
+    value: 12
+    symbolItemConfig: {fileID: 11400000, guid: c9a5bd234003052439565449c4f6a739, type: 2}
+  - symbolChar: Lambda
+    value: 14
+    symbolItemConfig: {fileID: 11400000, guid: fe3f733019465474fac9866a174a72c0, type: 2}
+  - symbolChar: Omega
+    value: 16
+    symbolItemConfig: {fileID: 11400000, guid: 8464f4ffcfb200c4b91085954652914e, type: 2}
+  - symbolChar: Delta
+    value: 18
+    symbolItemConfig: {fileID: 11400000, guid: 39e111167d5404e4e9e665f63c1206a1, type: 2}
+  - symbolChar: Sigma
+    value: 20
+    symbolItemConfig: {fileID: 11400000, guid: 6e16e3531855050419fb4cad2efd3bdd, type: 2}
+  - symbolChar: Psi
+    value: 22
+    symbolItemConfig: {fileID: 11400000, guid: adb040ce729717e4095615b0a2854990, type: 2}
+  puzzleID_X: 9901
+  puzzleID_Y: 9902
+  puzzleID_Z: 9903

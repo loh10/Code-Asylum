@@ -1,12 +1,16 @@
 using UnityEngine;
 
+
 public class ReplayLabyrinth : MonoBehaviour
 {
-    [SerializeField] private GameObject _labyrinth;
-    [SerializeField] private GameObject _panelVictory;
+    private MiniGameManager _miniGame;
+
+    private void Start()
+    {
+        _miniGame = GetComponentInParent<MiniGameManager>();
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        _panelVictory.SetActive(true);
-        _labyrinth.layer = LayerMask.NameToLayer("Default");
+        _miniGame.Solve();
     }
 }

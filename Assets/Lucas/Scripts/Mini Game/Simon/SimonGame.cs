@@ -16,6 +16,7 @@ public class SimonGame : MonoBehaviour
     private int _roundIndex;
     private Button _startButton;
     private readonly List<Color> _initialColor = new List<Color>();
+    private MiniGameManager _miniGame;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class SimonGame : MonoBehaviour
         {
             _initialColor.Add(image.color);
         }
+        _miniGame = GetComponentInParent<MiniGameManager>();
     }
     private void Start()
     {
@@ -42,6 +44,11 @@ public class SimonGame : MonoBehaviour
         yield return new WaitForSeconds(_timeToChangeColor);
         Color initialColor = _listImages[_sequence[indexColor]].color;
         _listImages[_sequence[indexColor]].color *= 2f;
+
+
+        AudioManager.Instance.PlaySound(AudioType.simon, AudioSourceType.player);
+
+
         yield return new WaitForSeconds(_timeStayColor);
         _listImages[_sequence[indexColor]].color = initialColor;
         indexColor++;
@@ -71,6 +78,10 @@ public class SimonGame : MonoBehaviour
     public void OnClick(int index)
     {
         _listImages[index].color = _initialColor[index];
+
+        AudioManager.Instance.PlaySound(AudioType.simon, AudioSourceType.player);
+
+
         if (index != _sequence[_sequenceIndex])
         {
             ResetGame();
@@ -86,7 +97,7 @@ public class SimonGame : MonoBehaviour
         _roundIndex++;
         
         if (_roundIndex == _round)
-            gameObject.SetActive(false);
+            _miniGame.Solve();
         else
         {
             InteractableButton(false);

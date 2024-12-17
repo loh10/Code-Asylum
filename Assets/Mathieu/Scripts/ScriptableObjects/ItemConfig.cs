@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Base scriptable object defining general item properties.
-/// </summary>
 [CreateAssetMenu(fileName = "NewItemData", menuName = "ScriptableObjects/Items/ItemConfig")]
 public class ItemConfig : ScriptableObject
 {
@@ -25,4 +22,7 @@ public class ItemConfig : ScriptableObject
 
     [Header("Usage Rules")]
     public bool consumeOnUse;
+
+    [Header("3D Model")]
+    public GameObject modelPrefab;
 }

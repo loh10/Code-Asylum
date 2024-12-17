@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlicedPuzzleManager : MonoBehaviour
@@ -8,7 +9,7 @@ public class SlicedPuzzleManager : MonoBehaviour
     [SerializeField] private Transform _gameTransform;
     [SerializeField] private Transform _piecePrefab;
     [SerializeField] private Camera _camera;
-
+    [SerializeField] private Sprite[] _sprites;
     private List<Transform> _pieces;
     private int _emptyLocation;
     private int _size;
@@ -37,25 +38,18 @@ public class SlicedPuzzleManager : MonoBehaviour
                                                   +1 - (2 * width * row) + width,
                                                   0);
                 piece.localScale = ((2 * width) - gapThickness) * Vector3.one;
-                piece.name = $"{(row * _size) + col}";
+                int currentPiece = (row * _size) + col;
+                piece.name = currentPiece.ToString();
                 // We want an empty space in the bottom right
                 if((row == _size - 1) && (col == _size - 1))
                 {
                     _emptyLocation = (_size * _size) - 1;
                     piece.gameObject.SetActive(false);
                 }else
-                // We want to map the UV coordinates appropriately, they are 1 -> 0 
+
                 {
-                    float gap = gapThickness / 2;
-                    Mesh mesh = piece.GetComponent<MeshFilter>().mesh;
-                    Vector2[] uv = new Vector2[4];
-                    // UV coord order: (0, 1), (1, 1), (0, 0), (1, 0)
-                    uv[0] = new Vector2((width * col) + gap, 1 - ((width * (row + 1)) - gap));
-                    uv[1] = new Vector2((width * (col + 1) - gap), 1 - ((width * (row + 1)) - gap));
-                    uv[2] = new Vector2((width * col) + gap, 1 - ((width * row) + gap));
-                    uv[3] = new Vector2((width * (col + 1)) - gap, 1 - ((width * row) + gap));
-                    // Assign our new UVs to the mesh
-                    mesh.uv = uv;
+                    // Set the sprite
+                    piece.GetComponent<SpriteRenderer>().sprite = _sprites[currentPiece];
                 }
             }
         }
@@ -65,7 +59,6 @@ public class SlicedPuzzleManager : MonoBehaviour
     private void Update()
     // On click send out ray to see if we click a piece
     {
-        Debug.DrawRay(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.down * 100, Color.red);
         if(Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.down, Mathf.Infinity);
@@ -83,10 +76,11 @@ public class SlicedPuzzleManager : MonoBehaviour
                         if (SwapIfValid(i, +1, _size - 1)) { break; }
                     }
                 }
+                AudioManager.Instance.PlaySound(AudioType.slicedPuzzle, AudioSourceType.player);
             }
         }
 
-        if(!_shuffling && CheckCompletion())
+        if (!_shuffling && CheckCompletion())
         {
             _shuffling = true;
             StartCoroutine(WaitShuffle(0.5f));

@@ -48,20 +48,20 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseColorMap:
-        m_Texture: {fileID: 2800000, guid: 797b3ed4c204cc44195f0af5d594d57a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5c8f07e502b8ac44aa862f95917c4c85, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 797b3ed4c204cc44195f0af5d594d57a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5c8f07e502b8ac44aa862f95917c4c85, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 59c1063cc1957734092050570553703b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 60fd516e6e7630c4e832d204578a67fa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _NormalScale: 1
+    - _NormalScale: 0.5
     - _Smoothness: 0
     m_Colors: []
   m_BuildTextureStacks: []

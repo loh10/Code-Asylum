@@ -119,7 +119,7 @@ public class Bonneteau : MonoBehaviour, IPuzzle
     {
         if (IsSolved) return;
         _isActive = true;
-        Debug.Log("Bonneteau puzzle activated. Player sees the ball and boxes raised.");
+        // Debug.Log("Bonneteau puzzle activated. Player sees the ball and boxes raised.");
     }
 
     public void Solve()
@@ -127,14 +127,15 @@ public class Bonneteau : MonoBehaviour, IPuzzle
         if (IsSolved) return;
         IsSolved = true;
         PuzzleManager.Instance.SetPuzzleSolved(PuzzleID);
-        Debug.Log($"Puzzle {PuzzleID} solved! The player guessed correctly.");
+        // Debug.Log($"Puzzle {PuzzleID} solved! The player guessed correctly.");
 
         _isActive = false;
     }
 
     private void ResetPuzzle()
     {
-        Debug.Log("Player chose incorrectly. Resetting puzzle...");
+        // Debug.Log("Player chose incorrectly. Resetting puzzle...");
+        
         // Move boxes back up
         foreach (Transform box in boxTransforms)
         {

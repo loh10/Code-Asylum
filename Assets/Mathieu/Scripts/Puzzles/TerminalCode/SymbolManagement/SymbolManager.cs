@@ -46,11 +46,6 @@ public class SymbolManager : MonoBehaviour
         AssignSymbols();
     }
 
-    private void Start()
-    {
-        // AssignSymbols();
-    }
-
     /// <summary>
     /// Assigns 3 random distinct symbols for the three puzzleIDs.
     /// </summary>

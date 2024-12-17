@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5742081985512504411}
+  - component: {fileID: 4338033092488576395}
   - component: {fileID: 6812473790582449482}
   - component: {fileID: 4108914110282415682}
   - component: {fileID: 855084285625271204}
-  - component: {fileID: 4338033092488576395}
   m_Layer: 0
   m_Name: TerminalPuzzle
   m_TagString: Untagged
@@ -40,6 +40,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &4338033092488576395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619644932932093054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ab0e90a58f4e95bad32323fdcc611e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manualItemConfig: {fileID: 11400000, guid: 77541f93adf104a4ba5fb150025885e0, type: 2}
+  sheetItemConfig: {fileID: 11400000, guid: 4000b26e4905afd4fbba862364492a60, type: 2}
+  manualPanelInTerminal: {fileID: 8503036295301070821}
+  sheetPanelInTerminal: {fileID: 8267174400639724356}
 --- !u!223 &6812473790582449482
 Canvas:
   m_ObjectHideFlags: 0
@@ -103,22 +119,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4338033092488576395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619644932932093054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57ab0e90a58f4e95bad32323fdcc611e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manualItemConfig: {fileID: 11400000, guid: 77541f93adf104a4ba5fb150025885e0, type: 2}
-  sheetItemConfig: {fileID: 11400000, guid: 4000b26e4905afd4fbba862364492a60, type: 2}
-  manualPanelInTerminal: {fileID: 8503036295301070821}
-  sheetPanelInTerminal: {fileID: 8267174400639724356}
 --- !u!1001 &8890295407107767903
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,14 +1,10 @@
 using UnityEngine;
 
 
-public class ReplayLabyrinth : MonoBehaviour
+public class FinishLabyrinth : MonoBehaviour
 {
-    private MiniGameManager _miniGame;
-
-    private void Start()
-    {
-        _miniGame = GetComponentInParent<MiniGameManager>();
-    }
+    [SerializeField] private MiniGameManager _miniGame;
+    
     private void OnCollisionEnter(Collision collision)
     {
         _miniGame.Solve();

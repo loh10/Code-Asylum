@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e4f326a7204ac08570ccb1a35f3ad9, type: 3}
+  m_Name: MagKey_LabyrinthRoom
+  m_EditorClassIdentifier: 
+  itemName: Labyrinth Room Key
+  icon: {fileID: -1674625451, guid: 72a27b0e4e0ad154bb2978c88cbb1a98, type: 3}
+  description: This key can open doors O_O
+  itemType: 0
+  category: 1
+  isStackable: 0
+  maxStackSize: 0
+  useSound: {fileID: 0}
+  useEffect: {fileID: 0}
+  consumeOnUse: 1
+  modelPrefab: {fileID: 3453403177695350296, guid: bbaeab74d9135504d92dc2960aec4ca9, type: 3}

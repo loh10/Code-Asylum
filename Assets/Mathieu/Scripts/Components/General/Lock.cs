@@ -9,28 +9,20 @@ using System.Collections.Generic;
 public class Lock : MonoBehaviour, IInteractable
 {
     [Header("Lock Initial State")]
-    [Tooltip("Determines the initial state of the lock.")]
     public bool isLocked = true;
-    
+
     [Header("Unlock Conditions")]
-    [Tooltip("If true, ALL conditions must be met to unlock. If false, ANY one condition is enough.")]
-    public bool unlockRequiresAllConditions = false;
-    
-    [Tooltip("A list of condition assets that must be met to unlock this lock.")]
+    public bool unlockRequiresAllConditions = true;
     public List<UnlockConditionConfig> unlockConditions = new List<UnlockConditionConfig>();
 
-    public bool IsInteractable => isLocked;
-    public string InteractionHint => isLocked ? "Press 'E' to unlock" : "Already unlocked.";
+    public bool IsInteractable => true;
+    public string InteractionHint => "Press 'E' to interact";
 
     public event Action OnUnlock;
 
     public void Interact(GameObject interactor)
     {
-        if (!IsInteractable)
-        {
-            Debug.Log("This lock is already unlocked.");
-            return;
-        }
+        if (!isLocked) return;
 
         InventoryManager inventory = interactor.GetComponent<InventoryManager>();
         if (inventory == null)
@@ -39,9 +31,8 @@ public class Lock : MonoBehaviour, IInteractable
             return;
         }
 
-        // Get the conditions that are currently met
+        // Check conditions
         List<UnlockConditionConfig> metConditions = GetMetConditions(inventory);
-
         bool conditionMet = metConditions.Count > 0;
 
         if (unlockConditions.Count <= 0)
@@ -53,22 +44,35 @@ public class Lock : MonoBehaviour, IInteractable
 
         if (conditionMet)
         {
+            // Debug.Log("Lock unlocked!");
+            
             isLocked = false;
-            Debug.Log("Lock unlocked!");
-
-            // Consume items from the met conditions if required
+            
+            // Show "unlocked" message
+            string lockedMessage = DialogueManager.GetDialogue("Door", "DoorUnlocked");
+            if (!string.IsNullOrEmpty(lockedMessage))
+            {
+                DialogueMessageBoxUI.Instance.ShowMessage(lockedMessage, 3f);
+            }
+            
             ConsumeItemsFromConditions(metConditions, inventory);
-
             OnUnlock?.Invoke();
         }
         else
         {
-            Debug.Log("Conditions not met.");
+            // Debug.Log("Conditions not met.");
+            
+            // Show "locked" message
+            string lockedMessage = DialogueManager.GetDialogue("Door", "DoorLocked");
+            if (!string.IsNullOrEmpty(lockedMessage))
+            {
+                DialogueMessageBoxUI.Instance.ShowMessage(lockedMessage, 3f);
+            }
 
+            // Check if there's a code to enter
             CodeConditionConfig codeCond = GetUnmetCodeCondition(inventory);
             if (codeCond != null)
             {
-                // Show code panel
                 if (CodeUIManager.Instance != null)
                 {
                     CodeUIManager.Instance.ShowCodePanel(codeCond.requiredCode, this);
@@ -81,9 +85,6 @@ public class Lock : MonoBehaviour, IInteractable
         }
     }
 
-    /// <summary>
-    /// Returns a list of conditions that are currently met, based on unlockRequiresAllConditions.
-    /// </summary>
     private List<UnlockConditionConfig> GetMetConditions(InventoryManager inventory)
     {
         List<UnlockConditionConfig> metConds = new List<UnlockConditionConfig>();
@@ -92,27 +93,22 @@ public class Lock : MonoBehaviour, IInteractable
 
         if (unlockRequiresAllConditions)
         {
-            // All conditions must be met
             foreach (var c in unlockConditions)
             {
                 if (!c.IsConditionMet(inventory))
                 {
-                    // If one is not met, none qualify
                     metConds.Clear();
                     return metConds;
                 }
             }
-            // If we reach here, all are met
             metConds.AddRange(unlockConditions);
         }
         else
         {
-            // ANY one condition is enough
             foreach (var c in unlockConditions)
             {
                 if (c.IsConditionMet(inventory))
                 {
-                    // Return just this one condition for consumption
                     metConds.Add(c);
                     break;
                 }
@@ -122,15 +118,10 @@ public class Lock : MonoBehaviour, IInteractable
         return metConds;
     }
 
-    /// <summary>
-    /// Consumes any items associated with the given conditions if those items have consumeOnUse = true.
-    /// </summary>
     private void ConsumeItemsFromConditions(List<UnlockConditionConfig> conditions, InventoryManager inventory)
     {
-        // Conditions that might have items: KeyConditionConfig, ToolConditionConfig
         foreach (var cond in conditions)
         {
-            // Check if the condition is a KeyCondition or ToolCondition
             if (cond is KeyConditionConfig keyCond && keyCond.requiredKey != null)
             {
                 TryConsumeItem(keyCond.requiredKey, inventory);
@@ -142,24 +133,15 @@ public class Lock : MonoBehaviour, IInteractable
         }
     }
 
-    /// <summary>
-    /// If the item is consumeOnUse, remove one instance from the inventory.
-    /// </summary>
     private void TryConsumeItem(ItemConfig item, InventoryManager inventory)
     {
-        if (item.consumeOnUse)
+        if (item.consumeOnUse && inventory.HasItem(item))
         {
-            if (inventory.HasItem(item))
-            {
-                inventory.RemoveItem(item);
-                Debug.Log($"{item.itemName} has been consumed on use.");
-            }
+            inventory.RemoveItem(item);
+            Debug.Log($"{item.itemName} has been consumed on use.");
         }
     }
 
-    /// <summary>
-    /// Returns a CodeConditionConfig that isn't met yet, if any, so we can prompt for code entry.
-    /// </summary>
     private CodeConditionConfig GetUnmetCodeCondition(InventoryManager inventory)
     {
         foreach (var condition in unlockConditions)

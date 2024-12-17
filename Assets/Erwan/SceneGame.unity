@@ -276,10 +276,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63739f27a723044f9790027e664e424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _puzzleID: 0
+  _puzzleHint: 
+  _shuffleCount: 10
   speed: 6
-  _changeTime: 15
-  _size: 3
-  _gobletPrefab: {fileID: 7019460896810389146, guid: 4a2f4feea617a834c9c342a723be9b6d, type: 3}
+  boxTransforms: []
+  ball: {fileID: 0}
+  raisedHeight: 1.5
+  groundLevel: 0
 --- !u!1001 &191221620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10122,8 +10126,9 @@ GameObject:
   - component: {fileID: 1819076617}
   - component: {fileID: 1819076616}
   - component: {fileID: 1819076615}
+  - component: {fileID: 1819076618}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: CellLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10282,7 +10287,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 11.769636
+  m_Intensity: 10
   m_Range: 6.776743
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -10351,6 +10356,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1273644662}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1819076618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819076614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8852be212f2db1e459843febc7d90d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashingLightSpeed: 3
+  _flashingLightMaxIntensity: 5
+  _flashingLightMinIntensity: 10
 --- !u!1 &1830064411
 GameObject:
   m_ObjectHideFlags: 0

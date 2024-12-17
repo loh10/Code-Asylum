@@ -359,7 +359,7 @@ MonoBehaviour:
   isLocked: 1
   unlockRequiresAllConditions: 1
   unlockConditions:
-  - {fileID: 11400000, guid: 5e12b99f521366b4d904c392dbac5317, type: 2}
+  - {fileID: 11400000, guid: fe27fdf95a301a34fabbf57c86012ce7, type: 2}
 --- !u!65 &7727383547279089026
 BoxCollider:
   m_ObjectHideFlags: 0

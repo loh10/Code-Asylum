@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6864961891858855859}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 4.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8d884cb2434708b39d694e7c06435b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _PuzzleID: 9900
+  _PuzzleID: 4
   _PuzzleHint: 
   terminalUI: {fileID: 0}
   codeEntryPanel: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   confirmButton: {fileID: 0}
   closeButton: {fileID: 0}
   autoSolveButton: {fileID: 0}
-  devCode: 69 69 69
+  devCode: 24 01 41
   cameraTransform: {fileID: 0}
   shakeDuration: 0.3
   shakeMagnitude: 0.1
@@ -251,6 +251,18 @@ PrefabInstance:
     - target: {fileID: 4382437640598059595, guid: f14ce79560d6a5d4f8a425ae97ea3406, type: 3}
       propertyPath: m_Name
       value: FloatingText_Billboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766609947021076812, guid: f14ce79560d6a5d4f8a425ae97ea3406, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766609947021076812, guid: f14ce79560d6a5d4f8a425ae97ea3406, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766609947021076812, guid: f14ce79560d6a5d4f8a425ae97ea3406, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8060127515886697288, guid: f14ce79560d6a5d4f8a425ae97ea3406, type: 3}
       propertyPath: m_text

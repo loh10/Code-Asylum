@@ -6,66 +6,81 @@
 public class Door : MonoBehaviour
 {
     [Header("Door Properties")]
-    [Tooltip("Animator for the door. Used for opening/closing animations.")]
     public Animator doorAnimator;
 
     [Tooltip("If your lock is on a different GameObject, assign it here.")]
     [SerializeField] private Lock lockComponent;
 
+    [Header("Handle References")]
+    [Tooltip("The mesh renderer of the handle.")]
+    [SerializeField] private MeshRenderer handleRenderer;
+
+    [Tooltip("Material used when door is locked.")]
+    [SerializeField] private Material lockedMaterial;
+
+    [Tooltip("Material used when door is unlocked.")]
+    [SerializeField] private Material unlockedMaterial;
+
     private void Awake()
     {
-        // Try to get the lock component from the same GameObject if not assigned in the inspector
         if (lockComponent == null)
         {
             lockComponent = GetComponent<Lock>();
         }
 
-        // Subscribe to the OnUnlock event if a lock component is found
         if (lockComponent != null)
         {
-            lockComponent.OnUnlock += OpenDoor;
+            lockComponent.OnUnlock += OnDoorUnlocked;
         }
         else
         {
             Debug.LogWarning("No Lock component assigned or found on the door.");
         }
+
+        // Set handle to locked material initially if handleRenderer is assigned
+        if (handleRenderer != null && lockedMaterial != null)
+        {
+            handleRenderer.material = lockedMaterial;
+        }
     }
 
     private void OnDestroy()
     {
-        // Unsubscribe from the OnUnlock event
         if (lockComponent != null)
         {
-            lockComponent.OnUnlock -= OpenDoor;
+            lockComponent.OnUnlock -= OnDoorUnlocked;
         }
     }
 
-    private void OpenDoor()
+    private void OnDoorUnlocked()
     {
         if (doorAnimator != null)
         {
-            // Trigger the door opening animation
             doorAnimator.enabled = true;
             AudioManager.Instance.PlaySound(AudioType.door, AudioSourceType.player);
         }
         else
         {
-            Debug.LogWarning("No Animator component assigned to the door. Disabling the door GameObject as a fallback.");
+            // Fallback if no animator
             gameObject.SetActive(false);
+        }
+
+        // Change handle material to unlocked
+        if (handleRenderer != null && unlockedMaterial != null)
+        {
+            handleRenderer.material = unlockedMaterial;
+        }
+
+        // Show a dialogue indicating the door is now open
+        string message = DialogueManager.GetDialogue("Door", "KeyActivated");
+        if (!string.IsNullOrEmpty(message))
+        {
+            DialogueMessageBoxUI.Instance.ShowMessage(message, 3f);
         }
     }
 
     public void CloseDoor()
     {
-        if (doorAnimator != null)
-        {
-            // Trigger the door closing animation
-            // doorAnimator.SetTrigger("Close"); // TODO: Uncomment this line when animation is ready
-        }
-        else
-        {
-            // Debug.LogWarning("No Animator component assigned to the door. Enabling the door GameObject as a fallback.");
-            gameObject.SetActive(true); // TODO: Remove this line when animation is implemented
-        }
+        // Implement door closing if needed
     }
 }

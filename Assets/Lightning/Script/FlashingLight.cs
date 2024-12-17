@@ -4,7 +4,7 @@ using UnityEngine;
 public class FlashingLight : MonoBehaviour
 {
     private Light _light;
-    [SerializeField, Range(1, 10)] private float _flashingLightSpeed = 1.0f;
+    [SerializeField, Range(0.1f, 10)] private float _flashingLightSpeed = 1.0f;
     [SerializeField, Range(0, 3000)] private float _flashingLightMaxIntensity =  1500;
     [SerializeField, Range(0, 3000)] private float _flashingLightMinIntensity= 1000;
 

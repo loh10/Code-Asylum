@@ -37,6 +37,7 @@ public class ChangeControl : MonoBehaviour
         _actionReference.action.ChangeBinding(_indexBinding).WithPath("<Keyboard>/#(" + control + ")");
         _textControl.text = control;
         _control = control;
+        EventSystem.current.SetSelectedGameObject(null);
         return true;
     }
 }

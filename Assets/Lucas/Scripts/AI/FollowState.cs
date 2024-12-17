@@ -7,9 +7,7 @@ public class FollowState : State
     private readonly NavMeshAgent _agent;
     private const float _speedMultiplier = 1.25f;
     private const float _distanceToTarget = 2f;
-
     private const float _distanceToPlaySound = 4f;
-
     
     public FollowState(Transform target, NavMeshAgent agent)
     {
@@ -43,6 +41,4 @@ public class FollowState : State
     {
         _agent.speed /= _speedMultiplier;
     }
-
-    
 }

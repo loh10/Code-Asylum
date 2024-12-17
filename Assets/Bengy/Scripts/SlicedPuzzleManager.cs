@@ -1,72 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlicedPuzzleManager : MonoBehaviour
 {
+    [Header("MiniGameManager Reference")]
+    [SerializeField] private MiniGameManager miniGameManager;
 
+    [Header("Puzzle Setup")]
     [SerializeField] private Transform _gameTransform;
     [SerializeField] private Transform _piecePrefab;
     [SerializeField] private Camera _camera;
+    [SerializeField] private Sprite[] _sprites;
+
+    [Header("Cheat Settings")]
+    [SerializeField] private bool CheatEnabled;
+    [SerializeField] private Button autoSolveButton;
 
     private List<Transform> _pieces;
     private int _emptyLocation;
     private int _size;
-    private bool _shuffling;
+    private bool _solved;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
+        // Activate AutoSolve cheat button if enabled
+        if (CheatEnabled && autoSolveButton != null)
+        {
+            autoSolveButton.gameObject.SetActive(true);
+            autoSolveButton.onClick.AddListener(AutoSolve);
+        }
+        else if (autoSolveButton != null)
+        {
+            autoSolveButton.gameObject.SetActive(false);
+        }
+
         _pieces = new List<Transform>();
         _size = 3;
         CreateGamePieces(0.01f);
+
+        // Shuffle at start so puzzle isn't already solved
+        Shuffle();
     }
 
     private void CreateGamePieces(float gapThickness)
-    // This is the width of each tile
     {
-        float width = 1 / (float)_size; 
-        for(int row = 0; row < _size; row++)
+        float width = 1f / _size;
+        for (int row = 0; row < _size; row++)
         {
-            for(int col = 0; col < _size; col++)
+            for (int col = 0; col < _size; col++)
             {
                 Transform piece = Instantiate(_piecePrefab, _gameTransform);
                 _pieces.Add(piece);
-                // Pieces will be in a game board going from -1 to +1
-                piece.localPosition = new Vector3(-1 + (2 * width * col) + width,
-                                                  +1 - (2 * width * row) + width,
+                piece.localPosition = new Vector3(-1 + (2f * width * col) + width,
+                                                  +1 - (2f * width * row) + width,
                                                   0);
-                piece.localScale = ((2 * width) - gapThickness) * Vector3.one;
-                piece.name = $"{(row * _size) + col}";
-                // We want an empty space in the bottom right
-                if((row == _size - 1) && (col == _size - 1))
+                piece.localScale = ((2f * width) - gapThickness) * Vector3.one;
+                int currentPiece = (row * _size) + col;
+                piece.name = currentPiece.ToString();
+
+                if ((row == _size - 1) && (col == _size - 1))
                 {
                     _emptyLocation = (_size * _size) - 1;
                     piece.gameObject.SetActive(false);
-                }else
-                    // We want to map the UV coordinates appropriately, they are 1 -> 0 
+                }
+                else
                 {
-                    float gap = gapThickness / 2;
-                    Mesh mesh = piece.GetComponent<MeshFilter>().mesh;
-                    Vector2[] uv = new Vector2[4];
-                    // UV coord order: (0, 1), (1, 1), (0, 0), (1, 0)
-                    uv[0] = new Vector2((width * col) + gap, 1 - ((width * (row + 1)) - gap));
-                    uv[1] = new Vector2((width * (col + 1) - gap), 1 - ((width * (row + 1)) - gap));
-                    uv[2] = new Vector2((width * col) + gap, 1 - ((width * row) + gap));
-                    uv[3] = new Vector2((width * (col + 1)) - gap, 1 - ((width * row) + gap));
-                    // Assign our new UVs to the mesh
-                    mesh.uv = uv;
+                    piece.GetComponent<SpriteRenderer>().sprite = _sprites[currentPiece];
                 }
             }
         }
     }
 
-    // Update is called once per frame
     private void Update()
-    // On click send out ray to see if we click a piece
     {
-        Debug.DrawRay(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.down * 100, Color.red);
-        if(Input.GetMouseButtonDown(0))
+        if (_solved) return;
+
+        if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.down, Mathf.Infinity);
             if (hit)
@@ -75,35 +86,31 @@ public class SlicedPuzzleManager : MonoBehaviour
                 {
                     if (_pieces[i] == hit.transform)
                     {
-                        // Check each direction to see if valid move
-                        // We break out on success so we don't carry on and swap back again
                         if (SwapIfValid(i, -_size, _size)) { break; }
                         if (SwapIfValid(i, +_size, _size)) { break; }
                         if (SwapIfValid(i, -1, 0)) { break; }
                         if (SwapIfValid(i, +1, _size - 1)) { break; }
                     }
                 }
-                AudioManager.Instance.PlaySound(AudioType.slicedPuzzle, AudioSourceType.player);
-            }
-        }
 
-        if (!_shuffling && CheckCompletion())
-        {
-            _shuffling = true;
-            StartCoroutine(WaitShuffle(0.5f));
+                AudioManager.Instance.PlaySound(AudioType.slicedPuzzle, AudioSourceType.player);
+
+                // Check after a move if completed
+                if (CheckCompletion())
+                {
+                    SolvePuzzle();
+                }
+            }
         }
     }
 
-    // colCheck is used to stop horizontal moves wrapping
     private bool SwapIfValid(int i, int offset, int colCheck)
     {
         if (((i % _size) != colCheck) && ((i + offset) == _emptyLocation))
         {
-            // Swap them in game state
             (_pieces[i], _pieces[i + offset]) = (_pieces[i + offset], _pieces[i]);
-            // Swap their transforms
-            (_pieces[i].localPosition, _pieces[i + offset].localPosition) = (_pieces[i + offset].localPosition, _pieces[i].localPosition);
-            // Update empty location
+            (_pieces[i].localPosition, _pieces[i + offset].localPosition) =
+                (_pieces[i + offset].localPosition, _pieces[i].localPosition);
             _emptyLocation = i;
             return true;
         }
@@ -112,7 +119,7 @@ public class SlicedPuzzleManager : MonoBehaviour
 
     private bool CheckCompletion()
     {
-        for(int i = 0; i < _pieces.Count; i++)
+        for (int i = 0; i < _pieces.Count; i++)
         {
             if (_pieces[i].name != $"{i}")
             {
@@ -122,14 +129,25 @@ public class SlicedPuzzleManager : MonoBehaviour
         return true;
     }
 
-
-    private IEnumerator WaitShuffle(float duration)
+    private void SolvePuzzle()
     {
-        yield return new WaitForSeconds(duration);
-        Shuffle();
-        _shuffling = false;
+        _solved = true;
+        StartCoroutine(DelayedSolve());
     }
 
+    private IEnumerator DelayedSolve()
+    {
+        yield return new WaitForSeconds(2f);
+
+        if (miniGameManager != null)
+        {
+            miniGameManager.Solve();
+        }
+        else
+        {
+            Debug.LogWarning("MiniGameManager reference not set on SlicedPuzzleManager.");
+        }
+    }
 
     private void Shuffle()
     {
@@ -137,37 +155,35 @@ public class SlicedPuzzleManager : MonoBehaviour
         int last = 0;
         while (count < (_size * _size * _size))
         {
-            // Pick a random location
             int rnd = Random.Range(0, _size * _size);
-            // Only thing we forbid is undoing the last move
-            if(rnd == last) { continue; }
+            if (rnd == last) { continue; }
             last = _emptyLocation;
-            // Try surrounding spaces looking for valid move
-            if(SwapIfValid(rnd, -_size, _size))
-            {
-                count++;
-            }else if(SwapIfValid(rnd, +_size, _size))
-            {
-                count++;
-            }else if(SwapIfValid(rnd, -1, 0)) 
-            {
-                count++;
-            }else if(SwapIfValid(rnd, +1, _size - 1))
-            {
-                count++;
-            }       
+
+            if (SwapIfValid(rnd, -_size, _size)) { count++; }
+            else if (SwapIfValid(rnd, +_size, _size)) { count++; }
+            else if (SwapIfValid(rnd, -1, 0)) { count++; }
+            else if (SwapIfValid(rnd, +1, _size - 1)) { count++; }
         }
     }
+
     private void OnEnable()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         PlayerController.freezeInput = true;
     }
+
     private void OnDisable()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         PlayerController.freezeInput = false;
+    }
+
+    public void AutoSolve()
+    {
+        if (!CheatEnabled) return;
+        
+        SolvePuzzle();
     }
 }

@@ -3,9 +3,9 @@ using UnityEngine.AI;
 
 public class SaveReload : MonoBehaviour
 {
-    public Vector3 respawnPoint;
-    public NavMeshAgent ennemi;
+    [SerializeField] private NavMeshAgent ennemi;
     private Vector3 _startEnnemiPos;
+    private Vector3 respawnPoint;
     
     private void Awake()
     {
@@ -22,5 +22,9 @@ public class SaveReload : MonoBehaviour
         
         ennemi.enabled = true;
         PlayerController.freezeInput = false;
+        if (MiniGameManager.currentMiniGame != null)
+            MiniGameManager.currentMiniGame.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

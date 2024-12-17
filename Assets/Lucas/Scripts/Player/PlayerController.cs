@@ -52,11 +52,12 @@ public class PlayerController : MonoBehaviour
     public void GetInputPlayer(InputAction.CallbackContext ctx)
     {
         _inputDirection = ctx.ReadValue<Vector2>();
+        AudioManager audioManager = AudioManager.Instance;
         
         if (ctx.canceled)
         {
             _rb.linearVelocity = Vector3.zero;
-            AudioManager.Instance.StopSound(AudioType.walk,AudioSourceType.player);
+            audioManager.StopSound(AudioType.walk,AudioSourceType.player);
         }
         else
         {
@@ -116,7 +117,7 @@ public class PlayerController : MonoBehaviour
         }
             
         IPuzzle puzzle = hit.collider.GetComponent<IPuzzle>();
-        if (puzzle is { IsSolved: false })
+        if (puzzle is { IsSolved: false } && !Cursor.visible)
         {
             puzzle.Activate();
         }

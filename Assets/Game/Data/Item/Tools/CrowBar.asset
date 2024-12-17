@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e4f326a7204ac08570ccb1a35f3ad9, type: 3}
+  m_Name: CrowBar
+  m_EditorClassIdentifier: 
+  itemName: Crowbar
+  icon: {fileID: -873537040, guid: b24d98aa10ce937428981c2c1c2ba0b5, type: 3}
+  description: This crowbar might be useful later...
+  itemType: 1
+  category: 1
+  isStackable: 0
+  maxStackSize: 0
+  useSound: {fileID: 0}
+  useEffect: {fileID: 0}
+  consumeOnUse: 0
+  modelPrefab: {fileID: 2021990651644273731, guid: a5f5b50578ad2444aaa6e5baba82aa0f, type: 3}

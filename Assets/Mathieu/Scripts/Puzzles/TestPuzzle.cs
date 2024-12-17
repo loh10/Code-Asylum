@@ -41,5 +41,7 @@ public class TestPuzzle : MonoBehaviour, IPuzzle, IInteractable
         IsSolved = true;
         PuzzleManager.Instance.SetPuzzleSolved(PuzzleID);
         Debug.Log($"Puzzle {PuzzleID} has been solved!");
+        string message = DialogueManager.GetDialogue("Enigma", "GotSymbol");
+        DialogueMessageBoxUI.Instance.ShowMessage(message, 3f);
     }
 }

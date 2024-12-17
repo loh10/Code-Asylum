@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Manages the player's inventory, allowing adding, removing, and querying items.
@@ -13,17 +14,17 @@ public class InventoryManager : MonoBehaviour
     
     public delegate void ItemAddedEventHandler(ItemConfig item);
     public event ItemAddedEventHandler OnItemAdded;
-
-    private void Update() // TODO: Change this to let PlayerController handle input
+    public void OpenInventory(InputAction.CallbackContext ctx)
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            ToggleInventoryDisplay(!_isDisplay);
-        }
+        if (!ctx.canceled) return;
+        
+        ToggleInventoryDisplay(!_isDisplay);
     }
     
     public void ToggleInventoryDisplay(bool display)
     {
+        if (Cursor.visible == display) return;
+        
         _isDisplay = display;
 
         if (_inventoryUI != null)

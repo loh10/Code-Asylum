@@ -63,6 +63,6 @@ MonoBehaviour:
   - symbolChar: Psi
     value: 22
     symbolItemConfig: {fileID: 11400000, guid: adb040ce729717e4095615b0a2854990, type: 2}
-  puzzleID_X: 9901
-  puzzleID_Y: 9902
-  puzzleID_Z: 9903
+  puzzleID_X: 1
+  puzzleID_Y: 2
+  puzzleID_Z: 3

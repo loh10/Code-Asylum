@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2429819184626027501}
   - component: {fileID: 8690187438425689267}
   m_Layer: 7
-  m_Name: Test_SymbolContainer
+  m_Name: SymbolContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -590,6 +590,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorAnimator: {fileID: 0}
   lockComponent: {fileID: 0}
+  handleRenderer: {fileID: 541287055445026643}
+  lockedMaterial: {fileID: 2100000, guid: 546612e971b7ec24a90b2781a5ba0e6c, type: 2}
+  unlockedMaterial: {fileID: 2100000, guid: cd372961ee25f9549b5424b4425e77de, type: 2}
 --- !u!114 &5552674773374883091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,9 +606,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLocked: 1
+  unlockRequiresAllConditions: 1
   unlockConditions:
   - {fileID: 0}
-  unlockRequiresAllConditions: 1
 --- !u!33 &6296831071872474858
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -817,6 +820,10 @@ PrefabInstance:
     - target: {fileID: 4382437640598059595, guid: f14ce79560d6a5d4f8a425ae97ea3406, type: 3}
       propertyPath: m_Name
       value: (Temp) FloatingText
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382437640598059595, guid: f14ce79560d6a5d4f8a425ae97ea3406, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8060127515886697288, guid: f14ce79560d6a5d4f8a425ae97ea3406, type: 3}
       propertyPath: m_text

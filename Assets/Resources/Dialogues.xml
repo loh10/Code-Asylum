@@ -1,7 +1,7 @@
 <Dialogues>
 	<Door>
-		<KeyActivated>The door is Open</KeyActivated>
-		<KeyNotActivated>I need a Key</KeyNotActivated>
+		<DoorUnlocked>The door is Open</DoorUnlocked>
+		<DoorLocked>I need a Key</DoorLocked>
 	</Door>
 	
 	<Key>

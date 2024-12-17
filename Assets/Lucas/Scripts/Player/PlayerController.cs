@@ -54,15 +54,15 @@ public class PlayerController : MonoBehaviour
     {
         _inputDirection = ctx.ReadValue<Vector2>();
         
-        if (ctx.canceled)
-        {
-            _rb.linearVelocity = Vector3.zero;
-            _audioManager.StopSound(AudioType.walk);
-        }
-        else
+        if (ctx.performed)
         {
             if (!_audioManager.GetAudioData(AudioType.walk).source.isPlaying)
                 _audioManager.PlaySound(AudioType.walk);
+        }
+        else if (ctx.canceled)
+        {
+            _rb.linearVelocity = Vector3.zero;
+            _audioManager.StopSound(AudioType.walk);
         }
     }
     

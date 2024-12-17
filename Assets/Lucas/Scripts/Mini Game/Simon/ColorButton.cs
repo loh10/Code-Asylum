@@ -16,7 +16,7 @@ public class ColorButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if (!_button.IsInteractable()) return;
         
-        _button.image.color *= 2f;
+        _button.image.color *= 1.25f;
     }
     public void OnPointerExit(PointerEventData eventData)
     {

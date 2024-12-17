@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlicedPuzzleManager : MonoBehaviour
@@ -15,7 +14,6 @@ public class SlicedPuzzleManager : MonoBehaviour
     private int _size;
     private bool _shuffling;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         _pieces = new List<Transform>();
@@ -24,7 +22,6 @@ public class SlicedPuzzleManager : MonoBehaviour
     }
 
     private void CreateGamePieces(float gapThickness)
-    // This is the width of each tile
     {
         float width = 1 / (float)_size; 
         for(int row = 0; row < _size; row++)
@@ -54,8 +51,7 @@ public class SlicedPuzzleManager : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
+    
     private void Update()
     // On click send out ray to see if we click a piece
     {
@@ -66,41 +62,39 @@ public class SlicedPuzzleManager : MonoBehaviour
             {
                 for (int i = 0; i < _pieces.Count; i++)
                 {
-                    if (_pieces[i] == hit.transform)
-                    {
-                        // Check each direction to see if valid move
-                        // We break out on success so we don't carry on and swap back again
-                        if (SwapIfValid(i, -_size, _size)) { break; }
-                        if (SwapIfValid(i, +_size, _size)) { break; }
-                        if (SwapIfValid(i, -1, 0)) { break; }
-                        if (SwapIfValid(i, +1, _size - 1)) { break; }
-                    }
+                    if (_pieces[i] != hit.transform)
+                        continue;
+                    // Check each direction to see if valid move
+                    // We break out on success so we don't carry on and swap back again
+                    if (SwapIfValid(i, -_size, _size)) { break; }
+                    if (SwapIfValid(i, +_size, _size)) { break; }
+                    if (SwapIfValid(i, -1, 0)) { break; }
+                    if (SwapIfValid(i, +1, _size - 1)) { break; }
+                    AudioManager.Instance.PlaySound(AudioType.slicedPuzzle);
                 }
-                AudioManager.Instance.PlaySound(AudioType.slicedPuzzle);
             }
         }
 
-        if (!_shuffling && CheckCompletion())
-        {
-            _shuffling = true;
-            StartCoroutine(WaitShuffle(0.5f));
-        }
+        if (_shuffling || !CheckCompletion())
+            return;
+        
+        _shuffling = true;
+        StartCoroutine(WaitShuffle(0.5f));
     }
 
     // colCheck is used to stop horizontal moves wrapping
     private bool SwapIfValid(int i, int offset, int colCheck)
     {
-        if (((i % _size) != colCheck) && ((i + offset) == _emptyLocation))
-        {
-            // Swap them in game state
-            (_pieces[i], _pieces[i + offset]) = (_pieces[i + offset], _pieces[i]);
-            // Swap their transforms
-            (_pieces[i].localPosition, _pieces[i + offset].localPosition) = (_pieces[i + offset].localPosition, _pieces[i].localPosition);
-            // Update empty location
-            _emptyLocation = i;
-            return true;
-        }
-        return false;
+        if (((i % _size) == colCheck) || ((i + offset) != _emptyLocation))
+            return false;
+        
+        // Swap them in game state
+        (_pieces[i], _pieces[i + offset]) = (_pieces[i + offset], _pieces[i]);
+        // Swap their transforms
+        (_pieces[i].localPosition, _pieces[i + offset].localPosition) = (_pieces[i + offset].localPosition, _pieces[i].localPosition);
+        // Update empty location
+        _emptyLocation = i;
+        return true;
     }
 
     private bool CheckCompletion()

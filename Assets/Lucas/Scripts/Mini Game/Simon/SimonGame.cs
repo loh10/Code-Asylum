@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -80,7 +81,7 @@ public class SimonGame : MonoBehaviour
         _listImages[index].color = _initialColor[index];
 
         AudioManager.Instance.PlaySound(AudioType.simon);
-
+        EventSystem.current.SetSelectedGameObject(null);
 
         if (index != _sequence[_sequenceIndex])
         {

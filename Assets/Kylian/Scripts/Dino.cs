@@ -11,15 +11,12 @@ public class Dino : MonoBehaviour
     private bool _isUp;
     private bool _move;
     private Vector3 _endPosition;
-
     
     
 
     private void Start()
     {
         _tempNumberEnemyToSpawn = numberEnemyToSpawn;
-
-
     }
 
 
@@ -38,7 +35,7 @@ public class Dino : MonoBehaviour
             ChangePosition();
         }
     }
-     
+
     private void ChangePosition()
     {
         if (_isUp)

@@ -10969,18 +10969,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1857701251}
     m_Modifications:
+    - target: {fileID: 452317928633449831, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 772177711001181002, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
       propertyPath: m_Name
       value: DinoGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 772177711001181002, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 922360340154791733, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1857701252}
+    - target: {fileID: 1934146604939839829, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934146604939839829, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934146604939839829, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934146604939839829, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3228360917153164510, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
       propertyPath: _miniGame
       value: 
       objectReference: {fileID: 1857701252}
+    - target: {fileID: 3273200921619670844, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c731973b5c9f16942a2492cd13b41091, type: 3}
+    - target: {fileID: 3273200921619670844, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273200921619670844, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273200921619670844, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613025119120303614, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d9466e7efa2cb7547bc29634038b1ea0, type: 3}
     - target: {fileID: 4748142450407402911, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.78
@@ -11020,6 +11064,28 @@ PrefabInstance:
     - target: {fileID: 4748142450407402911, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+    - target: {fileID: 6607118271531560307, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607118271531560307, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607118271531560307, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607118271531560307, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+=======
+    - target: {fileID: 8566208574388854960, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: _speed
+      value: 11
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

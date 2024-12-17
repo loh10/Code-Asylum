@@ -91,7 +91,7 @@ public class SlicedPuzzleManager : MonoBehaviour
                         if (SwapIfValid(i, +_size, _size)) { break; }
                         if (SwapIfValid(i, -1, 0)) { break; }
                         if (SwapIfValid(i, +1, _size - 1)) { break; }
-                        AudioManager.Instance.PlaySound(AudioType.slicedPuzzle, AudioSourceType.player);
+                        AudioManager.Instance.PlaySound(AudioType.slicedPuzzle);
                     }
                 }
 

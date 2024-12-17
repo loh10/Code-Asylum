@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
         flashingLight = GetComponentInChildren<Light>();
 
         _audioManager.PlaySound(AudioType.atmosphere);
+        _audioManager.PlaySound(AudioType.walk);
+        _audioManager.StopSound(AudioType.walk);
     }
     
     private void Update()

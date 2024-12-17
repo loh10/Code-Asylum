@@ -30,7 +30,7 @@ public class Dino : MonoBehaviour
                 _move = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space)&& _move == false)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && _move == false)
         {
             ChangePosition();
         }

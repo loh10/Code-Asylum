@@ -48,10 +48,10 @@ public class ObstacleSpawn : MonoBehaviour
                     _miniGame.Solve();
                 }
 
-                // Show panel after solving the puzzle
-                Panel.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                // // Show panel after solving the puzzle
+                // Panel.SetActive(true);
+                // Cursor.lockState = CursorLockMode.None;
+                // Cursor.visible = true;
             }
             yield return new WaitForSeconds(.5f);
         }

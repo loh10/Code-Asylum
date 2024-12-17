@@ -266,61 +266,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1273644662}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &170493937
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 170493938}
-  - component: {fileID: 170493939}
-  m_Layer: 0
-  m_Name: BonneteauManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &170493938
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170493937}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1361473024}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &170493939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170493937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b63739f27a723044f9790027e664e424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _puzzleID: 3
-  _puzzleHint: 
-  _shuffleCount: 10
-  speed: 2
-  boxTransforms:
-  - {fileID: 1766173775}
-  - {fileID: 864813700}
-  - {fileID: 2127274403}
-  ball: {fileID: 1136382200}
-  raisedHeight: 1.35
-  groundLevel: 0.85
 --- !u!1001 &191221620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1741,13 +1686,13 @@ Transform:
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 373801682}
   - {fileID: 856495797}
   - {fileID: 191221621}
   - {fileID: 1567092135}
   - {fileID: 1357862923}
   - {fileID: 2004699214}
   - {fileID: 1568174497}
-  - {fileID: 373801682}
   - {fileID: 1301061202}
   m_Father: {fileID: 686900490}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
@@ -1908,6 +1853,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3491714855205337132, guid: 0e650dd25b7e5b04784d50d3f186aa5c, type: 3}
+      propertyPath: _PuzzleID
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491714855205337132, guid: 0e650dd25b7e5b04784d50d3f186aa5c, type: 3}
       propertyPath: terminalUI
       value: 
       objectReference: {fileID: 856495796}
@@ -1961,7 +1910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6864961891858855859, guid: 0e650dd25b7e5b04784d50d3f186aa5c, type: 3}
       propertyPath: m_Name
-      value: (Test) TerminalCode
+      value: (Main) TerminalCode
       objectReference: {fileID: 0}
     - target: {fileID: 6939100678587481514, guid: 0e650dd25b7e5b04784d50d3f186aa5c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4268,12 +4217,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1361473024}
-  - {fileID: 1760828215}
-  - {fileID: 877098987}
-  - {fileID: 1546925858}
   - {fileID: 1055513939}
+  - {fileID: 877098987}
+  - {fileID: 1361473024}
   - {fileID: 361650890}
+  - {fileID: 1760828215}
+  - {fileID: 1546925858}
   - {fileID: 1857701251}
   m_Father: {fileID: 1903268760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7517,10 +7466,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1055513939}
-  - component: {fileID: 1055513941}
   - component: {fileID: 1055513940}
+  - component: {fileID: 1055513941}
   m_Layer: 7
-  m_Name: Puzzle
+  m_Name: SlidingPuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8890,7 +8839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 395e22423bde455cbbae34ca9b456e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonneteauPuzzle: {fileID: 170493939}
+  bonneteauPuzzle: {fileID: 0}
 --- !u!65 &1340554670
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8944,7 +8893,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7005882319455302, guid: 9c8bdff48c6280b4dadbf51c657437e1, type: 3}
       propertyPath: m_Name
-      value: (Test) SymbolDisplay
+      value: SymbolDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 167941805557467482, guid: 9c8bdff48c6280b4dadbf51c657437e1, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9069,6 +9018,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1361473024}
+  - component: {fileID: 1361473025}
   m_Layer: 0
   m_Name: BonneteauPuzzle
   m_TagString: Untagged
@@ -9089,11 +9039,33 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 170493938}
   - {fileID: 2019501399}
   - {fileID: 1340554668}
   m_Father: {fileID: 686900490}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1361473025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361473023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63739f27a723044f9790027e664e424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _puzzleID: 3
+  _puzzleHint: 
+  _shuffleCount: 10
+  speed: 2
+  boxTransforms:
+  - {fileID: 1766173775}
+  - {fileID: 864813700}
+  - {fileID: 2127274403}
+  ball: {fileID: 1136382200}
+  raisedHeight: 1.35
+  groundLevel: 0.85
 --- !u!1 &1386641031 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b8bed5b44342d8841916f371984294db, type: 3}
@@ -9732,8 +9704,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1546925858}
-  - component: {fileID: 1546925860}
   - component: {fileID: 1546925859}
+  - component: {fileID: 1546925860}
   m_Layer: 7
   m_Name: Labyrinthe
   m_TagString: Untagged
@@ -10627,7 +10599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9090988390214995286, guid: f34dab97f5f28974ebd152259382bbbc, type: 3}
       propertyPath: m_Name
-      value: (Test) Manual and SymbolSheet
+      value: Manual and SymbolSheet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -12268,6 +12240,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 922360340154791733, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1857701252}
+    - target: {fileID: 3228360917153164510, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
+      propertyPath: _miniGame
       value: 
       objectReference: {fileID: 1857701252}
     - target: {fileID: 4748142450407402911, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}

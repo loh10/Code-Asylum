@@ -95,8 +95,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 895248568379301350}
-  - component: {fileID: 1273641193410868931}
   - component: {fileID: 3491714855205337132}
+  - component: {fileID: 1273641193410868931}
   m_Layer: 7
   m_Name: (Test) TerminalCode
   m_TagString: Untagged
@@ -121,27 +121,6 @@ Transform:
   - {fileID: 5647765544881613953}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1273641193410868931
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6864961891858855859}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3491714855205337132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,9 +142,32 @@ MonoBehaviour:
   result3Field: {fileID: 0}
   confirmButton: {fileID: 0}
   closeButton: {fileID: 0}
+  autoSolveButton: {fileID: 0}
+  devCode: 69 69 69
   cameraTransform: {fileID: 0}
   shakeDuration: 0.3
   shakeMagnitude: 0.1
+--- !u!135 &1273641193410868931
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6864961891858855859}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7861391334256192201
 GameObject:
   m_ObjectHideFlags: 0

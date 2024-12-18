@@ -885,6 +885,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4135640314294869867, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
+      propertyPath: unlockConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135640314294869867, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
+      propertyPath: 'unlockConditions.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7575ec4282f51ed44b20be583cb398a6, type: 2}
     - target: {fileID: 5552674773374883091, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
       propertyPath: 'unlockConditions.Array.data[0]'
       value: 
@@ -892,7 +900,7 @@ PrefabInstance:
     - target: {fileID: 8142960043674178013, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
       propertyPath: handleRenderer
       value: 
-      objectReference: {fileID: 8244398447354427328}
+      objectReference: {fileID: 0}
     - target: {fileID: 8142960043674178013, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
       propertyPath: lockedMaterial
       value: 
@@ -905,18 +913,28 @@ PrefabInstance:
       propertyPath: puzzleID
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8690187438425689267, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
+      propertyPath: lockComponent
+      value: 
+      objectReference: {fileID: 5516430108146159608}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
+--- !u!114 &5516430108146159608 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4135640314294869867, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
+  m_PrefabInstance: {fileID: 8496873029685923987}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a824b68bfd4929aac34491e7721fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6076066921442614142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2429819184626027501, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
-  m_PrefabInstance: {fileID: 8496873029685923987}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &8244398447354427328 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 541287055445026643, guid: c45130cf3f11e6d4f90578393d2973d5, type: 3}
   m_PrefabInstance: {fileID: 8496873029685923987}
   m_PrefabAsset: {fileID: 0}

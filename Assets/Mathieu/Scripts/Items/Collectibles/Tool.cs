@@ -29,5 +29,9 @@ public class Tool : MonoBehaviour, ICollectable
         {
             Debug.Log("No inventory system found on collector.");
         }
+        
+        // Dialogues
+        string message = DialogueManager.GetDialogue("Tool", "GotCrowbar");
+        DialogueMessageBoxUI.Instance.ShowMessage(message);
     }
 }

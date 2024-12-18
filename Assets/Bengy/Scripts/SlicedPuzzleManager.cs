@@ -36,6 +36,10 @@ public class SlicedPuzzleManager : MonoBehaviour
             autoSolveButton.gameObject.SetActive(false);
         }
 
+        // Dialogues
+        string message = DialogueManager.GetDialogue("Enigma", "SlidingActivated");
+        DialogueMessageBoxUI.Instance.ShowMessage(message);
+        
         _pieces = new List<Transform>();
         _size = 3;
         CreateGamePieces(0.01f);
@@ -131,6 +135,10 @@ public class SlicedPuzzleManager : MonoBehaviour
 
     private void SolvePuzzle()
     {
+        // Dialogues
+        string message = DialogueManager.GetDialogue("Enigma", "SlidingFinished");
+        DialogueMessageBoxUI.Instance.ShowMessage(message);
+        
         _solved = true;
         StartCoroutine(DelayedSolve());
     }

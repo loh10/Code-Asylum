@@ -18,6 +18,10 @@ public class DifferenceGame : MonoBehaviour
 
     private void Start()
     {
+        // Dialogues
+        string message = DialogueManager.GetDialogue("Enigma", "DifferenceActivated");
+        DialogueMessageBoxUI.Instance.ShowMessage(message);
+        
         _crossObject = Instantiate(_cross, Vector3.zero, Quaternion.identity, _numbers[0].transform.parent);
         _crossObject.SetActive(false);
         _miniGame = GetComponentInParent<MiniGameManager>();
@@ -50,6 +54,10 @@ public class DifferenceGame : MonoBehaviour
 
     private IEnumerator ResetGame(float time)
     {
+        // Dialogues
+        string message = DialogueManager.GetDialogue("Enigma", "DifferenceFailed");
+        DialogueMessageBoxUI.Instance.ShowMessage(message);
+        
         _isEnd = true;
         yield return new WaitForSeconds(time);
         DifferenceNumber number = _numbers[_index];
@@ -79,6 +87,10 @@ public class DifferenceGame : MonoBehaviour
 
     private IEnumerator EndGame(float time)
     {
+        // Dialogues
+        string message = DialogueManager.GetDialogue("Enigma", "DifferenceFinished");
+        DialogueMessageBoxUI.Instance.ShowMessage(message);
+        
         _isEnd = true;
         yield return new WaitForSeconds(time);
         _miniGame.Solve();

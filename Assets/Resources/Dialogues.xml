@@ -1,31 +1,37 @@
 <Dialogues>
 	<Door>
-		<DoorUnlocked>The door is Open</DoorUnlocked>
-		<DoorLocked>I need a Key</DoorLocked>
+		<DoorUnlocked>It's open!</DoorUnlocked>
+		<DoorLocked>I need a key...</DoorLocked>
 	</Door>
 	
 	<Key>
-		<GotKey>You got a Key</GotKey>
+		<GotKey>I found a key</GotKey>
 	</Key>
 	
+	<Tool>
+		<GotCrowbar>I wonder what this Crowbar can be used for...</GotCrowbar>
+	</Tool>
 	<Player>
-		<Dead>You are Dead</Dead>
-		<Respawn>I must do better</Respawn>
+		<Dead>I died...</Dead>
+		<Respawn>I must do better!</Respawn>
 	</Player>
 		
 	<Enigma>
-		<EnigmaActivated>I must be fast</EnigmaActivated>
-		<EnigmaActivated2>Ohhhh that's Hard...</EnigmaActivated2>
-		<EnigmaFinished>I'm a crack</EnigmaFinished>
+		<SlidingActivated>That face looks familiar...</SlidingActivated>
+		<SlidingFinished>I've seen this man somewhere...</SlidingFinished>
+		
+		<DifferenceActivated>The radio on the right seems different...</DifferenceActivated>
+		<DifferenceFailed>Argh...Let's try again</DifferenceFailed>
+		<DifferenceFinished>I was right! Hmm a container has unlocked...</DifferenceFinished>
 		
 		<BonneteauActivated> Hmmm what are these boxes for?</BonneteauActivated>
 		<BonneteauFailed>Damn it, wrong one...</BonneteauFailed>
-		<BonneteauFinished> Yes!!! Huh...Looks like this container just unlocked...</BonneteauFinished>
-
-		<TerminalFailed>Wrong Code...</TerminalFailed>
+		<BonneteauFinished> Yes!!! Huh...Looks like a container just unlocked...</BonneteauFinished>
+		
+		<TerminalFailed>Argh! Wrong Code...</TerminalFailed>
 		<TerminalFinished>I need to turn on the power back on...</TerminalFinished>
 		
-		<GotSymbol>You got a Symbol</GotSymbol>
+		<GotSymbol>This thing has a weird symbol on it.</GotSymbol>
 	</Enigma>
 		
 	<Monster>

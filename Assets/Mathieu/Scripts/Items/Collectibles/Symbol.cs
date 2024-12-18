@@ -34,6 +34,8 @@ public class Symbol : MonoBehaviour, ICollectable
         InventoryManager inventory = collector.GetComponent<InventoryManager>();
         if (inventory != null)
         {
+            string message = DialogueManager.GetDialogue("Enigma", "GotSymbol");
+            DialogueMessageBoxUI.Instance.ShowMessage(message);
             inventory.AddItem(_itemConfig);
             Destroy(gameObject);
         }

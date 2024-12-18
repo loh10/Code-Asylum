@@ -394,6 +394,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4861036427287192037}
     m_Modifications:
+    - target: {fileID: 104386597707663961, guid: f1ade85a3eedb90409295d0484f2cb0f, type: 3}
+      propertyPath: 'unlockConditions.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f6d1f95227c57a44db1550de48de8b16, type: 2}
     - target: {fileID: 3186344944102476862, guid: f1ade85a3eedb90409295d0484f2cb0f, type: 3}
       propertyPath: m_Name
       value: BasicContainer
@@ -447,7 +451,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f6d1f95227c57a44db1550de48de8b16, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7898989254511955583, guid: f1ade85a3eedb90409295d0484f2cb0f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2389544775449435630, guid: f1ade85a3eedb90409295d0484f2cb0f, type: 3}
       insertIndex: -1
@@ -494,7 +499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 772177711001181002, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 922360340154791733, guid: 95bf4280b1b048747a14095f03d5cd7a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

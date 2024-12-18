@@ -57,7 +57,7 @@ public class Door : MonoBehaviour
         if (doorAnimator != null)
         {
             doorAnimator.enabled = true;
-            AudioManager.Instance.PlaySound(AudioType.door, AudioSourceType.player);
+            AudioManager.Instance.PlaySound(AudioType.door);
         }
         else
         {

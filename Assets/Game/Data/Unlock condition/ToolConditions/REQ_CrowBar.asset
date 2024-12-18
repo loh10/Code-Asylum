@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760aae4c93384927860b0a410dca7eaf, type: 3}
   m_Name: REQ_CrowBar
   m_EditorClassIdentifier: 
-  requiredTool: {fileID: 0}
+  requiredTool: {fileID: 11400000, guid: 0a6d12f75a07a804d86a1d93c55fd8d7, type: 2}

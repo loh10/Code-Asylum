@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private GameObject _itemHolder;
     private SaveReload _saveReload;
     private Light flashingLight;
+    private AudioManager _audioManager;
     
     public static bool freezeInput;
     
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         _saveReload = GetComponent<SaveReload>();
+        _audioManager = AudioManager.Instance;
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -34,8 +36,9 @@ public class PlayerController : MonoBehaviour
         
         flashingLight = GetComponentInChildren<Light>();
 
-        AudioManager.Instance.PlaySound(AudioType.atmosphere, AudioSourceType.player);
-        AudioManager.Instance.PlaySound(AudioType.voiceInTheHead, AudioSourceType.player);
+        _audioManager.PlaySound(AudioType.atmosphere);
+        _audioManager.PlaySound(AudioType.walk);
+        _audioManager.StopSound(AudioType.walk);
     }
     
     private void Update()
@@ -52,16 +55,16 @@ public class PlayerController : MonoBehaviour
     public void GetInputPlayer(InputAction.CallbackContext ctx)
     {
         _inputDirection = ctx.ReadValue<Vector2>();
-        AudioManager audioManager = AudioManager.Instance;
         
-        if (ctx.canceled)
+        if (ctx.performed)
+        {
+            if (!_audioManager.GetAudioData(AudioType.walk).source.isPlaying)
+                _audioManager.PlaySound(AudioType.walk);
+        }
+        else if (ctx.canceled)
         {
             _rb.linearVelocity = Vector3.zero;
-            audioManager.StopSound(AudioType.walk,AudioSourceType.player);
-        }
-        else
-        {
-            AudioManager.Instance.PlaySound(AudioType.walk,AudioSourceType.player);
+            _audioManager.StopSound(AudioType.walk);
         }
     }
     

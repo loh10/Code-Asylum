@@ -35,6 +35,13 @@ public class Lock : MonoBehaviour, IInteractable
         List<UnlockConditionConfig> metConditions = GetMetConditions(inventory);
         bool conditionMet = metConditions.Count > 0;
 
+        if (unlockConditions.Count <= 0)
+        {
+            OnUnlock?.Invoke();
+            isLocked = false;
+            return;
+        }
+
         if (conditionMet)
         {
             // Debug.Log("Lock unlocked!");

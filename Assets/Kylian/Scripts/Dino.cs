@@ -30,7 +30,7 @@ public class Dino : MonoBehaviour
                 _move = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space)&& _move == false)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && _move == false)
         {
             ChangePosition();
         }
@@ -52,7 +52,7 @@ public class Dino : MonoBehaviour
 
 
 
-        AudioManager.Instance.PlaySound(AudioType.dino, AudioSourceType.player);
+        AudioManager.Instance.PlaySound(AudioType.dino);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

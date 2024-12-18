@@ -107,7 +107,7 @@ public class Bonneteau : MonoBehaviour, IPuzzle
         else
         {
             // Puzzle not started shuffling yet
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyUp(KeyCode.E))
             {
                 if (PlayerClickedOnBox(out int clickedIndex))
                 {

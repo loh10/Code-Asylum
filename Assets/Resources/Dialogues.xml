@@ -20,8 +20,12 @@
 		
 		<BonneteauActivated> Hmmm what are these boxes for?</BonneteauActivated>
 		<BonneteauFailed>Damn it, wrong one...</BonneteauFailed>
-		<BonneteauFinished> Yes! Huh...Looks like this container just unlocked...</BonneteauFinished>
-		<GotSymbol>You got a Symbol</GotSymbol>	
+		<BonneteauFinished> Yes!!! Huh...Looks like this container just unlocked...</BonneteauFinished>
+
+		<TerminalFailed>Wrong Code...</TerminalFailed>
+		<TerminalFinished>I need to turn on the power back on...</TerminalFinished>
+		
+		<GotSymbol>You got a Symbol</GotSymbol>
 	</Enigma>
 		
 	<Monster>

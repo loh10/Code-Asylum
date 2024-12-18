@@ -22,4 +22,4 @@ MonoBehaviour:
   useSound: {fileID: 0}
   useEffect: {fileID: 0}
   consumeOnUse: 0
-  modelPrefab: {fileID: 4990870845867479348, guid: 55346180feb1e694787a00cc731742ea, type: 3}
+  modelPrefab: {fileID: 4990870845867479348, guid: 243d3e1e4aa08e04f874d4c10474d6a2, type: 3}

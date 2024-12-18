@@ -98,6 +98,8 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
         if (!IsSolved)
         {
             IsSolved = true;
+            string message = DialogueManager.GetDialogue("Enigma", "TerminalFinished");
+            DialogueMessageBoxUI.Instance.ShowMessage(message);
             PuzzleManager.Instance.SetPuzzleSolved(PuzzleID);
             Debug.Log($"Puzzle {PuzzleID} solved.");
         }
@@ -139,6 +141,8 @@ public class TerminalPuzzle : MonoBehaviour, IPuzzle, IInteractable
             else
             {
                 Debug.Log("Incorrect code. Try again.");
+                string message = DialogueManager.GetDialogue("Enigma", "TerminalFailed");
+                DialogueMessageBoxUI.Instance.ShowMessage(message);
                 ResetInputFields();
                 TriggerScreenShake();
             }

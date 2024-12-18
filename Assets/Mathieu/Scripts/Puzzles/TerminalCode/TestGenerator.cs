@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 /// <summary>
 /// A basic test script for a generator that visually indicates power state using material color.
@@ -18,6 +19,10 @@ public class TestGenerator : MonoBehaviour
 
     [Tooltip("Material for the 'on' state.")]
     [SerializeField] private Material onMaterial;
+
+    [Header("Directional Light")]
+    [SerializeField] private GameObject _directionalLight;
+    [SerializeField] private GameObject _fog;
 
     private bool isPowerOn = false;
 
@@ -43,6 +48,9 @@ public class TestGenerator : MonoBehaviour
         }
 
         UpdatePowerIndicator();
+        
+        _directionalLight.SetActive(false);
+        _fog.SetActive(false);
     }
 
     private void OnDestroy()
@@ -68,6 +76,8 @@ public class TestGenerator : MonoBehaviour
     {
         isPowerOn = true;
         Debug.Log("Power has been turned on!");
+        _directionalLight.SetActive(true);
+        _fog.SetActive(true);
         UpdatePowerIndicator();
     }
 

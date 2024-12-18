@@ -39,7 +39,7 @@ public class PlayerLabyrinthControl : MonoBehaviour
         }
 
         if(Input.GetMouseButtonDown(0))
-            AudioManager.Instance.PlaySound(AudioType.labyrinth, AudioSourceType.player);
+            AudioManager.Instance.PlaySound(AudioType.labyrinth);
     }
     private void OnEnable()
     {

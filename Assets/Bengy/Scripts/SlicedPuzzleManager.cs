@@ -84,16 +84,16 @@ public class SlicedPuzzleManager : MonoBehaviour
             {
                 for (int i = 0; i < _pieces.Count; i++)
                 {
+
                     if (_pieces[i] == hit.transform)
                     {
                         if (SwapIfValid(i, -_size, _size)) { break; }
                         if (SwapIfValid(i, +_size, _size)) { break; }
                         if (SwapIfValid(i, -1, 0)) { break; }
                         if (SwapIfValid(i, +1, _size - 1)) { break; }
+                        AudioManager.Instance.PlaySound(AudioType.slicedPuzzle);
                     }
                 }
-
-                AudioManager.Instance.PlaySound(AudioType.slicedPuzzle, AudioSourceType.player);
 
                 // Check after a move if completed
                 if (CheckCompletion())

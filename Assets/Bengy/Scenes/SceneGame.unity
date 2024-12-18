@@ -3241,13 +3241,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26853993b87ae2845a71d70271e8a19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 1
+  volume: 0.5
   gameSource: {fileID: 2129856704}
   playerSource: {fileID: 1011439055}
   audioData:
-  - clip: {fileID: 8300000, guid: 541636db5b34d28429c3fcb829967e2c, type: 3}
+  - clip: {fileID: 8300000, guid: 67326cad084ebbf4aabee07528af4753, type: 3}
     type: 0
-  - clip: {fileID: 8300000, guid: 7249438af75e5734fa2f3762a29c8270, type: 3}
+  - clip: {fileID: 8300000, guid: 96304f39a49574c49b585d2132359471, type: 3}
     type: 1
   - clip: {fileID: 8300000, guid: 906198a1228f0a444a7c8032cf6ea07b, type: 3}
     type: 2
@@ -3267,6 +3267,8 @@ MonoBehaviour:
     type: 9
   - clip: {fileID: 8300000, guid: 15e69a1010e939144aacecbb81ce6a68, type: 3}
     type: 10
+  - clip: {fileID: 8300000, guid: 38f3346dcbe91c7498c6281f79220c5a, type: 3}
+    type: 11
 --- !u!4 &643111619
 Transform:
   m_ObjectHideFlags: 0

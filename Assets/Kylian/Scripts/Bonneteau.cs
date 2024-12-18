@@ -73,7 +73,7 @@ public class Bonneteau : MonoBehaviour, IPuzzle
 
         // Ball randomly placed under one of the boxes
         _ballIndex = Random.Range(0, boxTransforms.Length);
-        PlaceBallUnderBox(_ballIndex, raiseOffset);
+        PlaceBallUnderBox(_ballIndex);
         ball.SetActive(true);
     }
 
@@ -143,7 +143,7 @@ public class Bonneteau : MonoBehaviour, IPuzzle
 
         // Randomize ball position again
         _ballIndex = Random.Range(0, boxTransforms.Length);
-        PlaceBallUnderBox(_ballIndex, raiseOffset);
+        PlaceBallUnderBox(_ballIndex);
         ball.SetActive(true);
 
         _isShuffling = false;
@@ -151,15 +151,12 @@ public class Bonneteau : MonoBehaviour, IPuzzle
         _currentShuffleCount = 0;
     }
 
-    private void PlaceBallUnderBox(int index, float offsetY)
+    private void PlaceBallUnderBox(int index)
     {
         Vector3 boxPos = boxTransforms[index].position;
         Vector3 ballPos = ball.transform.position;
-        ballPos.x = boxPos.x;
-        ballPos.z = boxPos.z;
-        // Place the ball slightly under the box top. 
-        // Since box is at initialPositions[index].y + offsetY, we do same for ball and subtract a little:
-        ballPos.y = initialPositions[index].y + offsetY - 0.5f;
+        ballPos.x = boxPos.x-0.2f;
+        ballPos.z = boxPos.z+0.2f;
         ball.transform.position = ballPos;
     }
 
@@ -302,7 +299,7 @@ public class Bonneteau : MonoBehaviour, IPuzzle
         }
 
         // Place ball under correct box at raised height
-        PlaceBallUnderBox(_ballIndex, raiseOffset);
+        PlaceBallUnderBox(_ballIndex);
         ball.SetActive(true);
 
         if (correct)

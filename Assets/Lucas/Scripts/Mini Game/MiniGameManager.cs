@@ -30,6 +30,7 @@ public class MiniGameManager : MonoBehaviour, IPuzzle
         
         IsSolved = true;
         PuzzleManager.Instance.SetPuzzleSolved(PuzzleID);
+        AudioManager.Instance.PlaySound(AudioType.button);
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

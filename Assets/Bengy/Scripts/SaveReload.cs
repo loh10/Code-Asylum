@@ -26,7 +26,10 @@ public class SaveReload : MonoBehaviour
         ennemi.enabled = true;
         PlayerController.freezeInput = false;
         if (MiniGameManager.currentMiniGame != null)
+        {
             MiniGameManager.currentMiniGame.SetActive(false);
+            InventoryManager.Instance.ToggleInventoryDisplay(false);
+        }
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

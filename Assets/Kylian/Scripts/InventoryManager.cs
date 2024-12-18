@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,11 +11,18 @@ public class InventoryManager : MonoBehaviour
 {
     private List<InventoryItem> inventoryItems = new List<InventoryItem>();
 
+    public static InventoryManager Instance;
+
     [SerializeField] private GameObject _inventoryUI;
     private bool _isDisplay;
     
     public delegate void ItemAddedEventHandler(ItemConfig item);
     public event ItemAddedEventHandler OnItemAdded;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void OpenInventory(InputAction.CallbackContext ctx)
     {
         if (!ctx.canceled) return;
@@ -24,7 +33,8 @@ public class InventoryManager : MonoBehaviour
     public void ToggleInventoryDisplay(bool display)
     {
         if (Cursor.visible == display) return;
-        
+
+        MiniGameManager.currentMiniGame = _inventoryUI;
         _isDisplay = display;
 
         if (_inventoryUI != null)

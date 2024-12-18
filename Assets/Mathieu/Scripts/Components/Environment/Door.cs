@@ -78,9 +78,4 @@ public class Door : MonoBehaviour
             DialogueMessageBoxUI.Instance.ShowMessage(message, 3f);
         }
     }
-
-    public void CloseDoor()
-    {
-        // Implement door closing if needed
-    }
 }

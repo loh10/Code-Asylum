@@ -14,7 +14,7 @@ public class ObstacleSpawn : MonoBehaviour
     [Header("Puzzle Integration")]
     [SerializeField] private MiniGameManager _miniGame;
 
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(SpawnEnemy());
     }

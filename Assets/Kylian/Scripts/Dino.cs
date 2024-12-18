@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Dino : MonoBehaviour
@@ -18,11 +19,8 @@ public class Dino : MonoBehaviour
     private void Start()
     {
         _tempNumberEnemyToSpawn = numberEnemyToSpawn;
-
-
     }
-
-
+    
     private void Update()
     {
         if (_move)
@@ -62,14 +60,22 @@ public class Dino : MonoBehaviour
     {
         if (!collision.gameObject.TryGetComponent<Obstacle>(out Obstacle obstacle)) return;
         
-        transform.position = _targetDown.position;
-        _tempNumberEnemyToSpawn = numberEnemyToSpawn;
+        ResetGame();
         Destroy(obstacle.gameObject);
-        Debug.Log(_tempNumberEnemyToSpawn);
-        _isUp = false;
     }
     
     public int GetNumberEnemyToSpawn() => _tempNumberEnemyToSpawn;
     public void SetNumberEnemyToSpawn(int number) => _tempNumberEnemyToSpawn = number;
 
+    private void OnDisable()
+    {
+        ResetGame();
+    }
+
+    private void ResetGame()
+    {
+        transform.position = _targetDown.position;
+        _tempNumberEnemyToSpawn = numberEnemyToSpawn;
+        _isUp = false;
+    }
 }

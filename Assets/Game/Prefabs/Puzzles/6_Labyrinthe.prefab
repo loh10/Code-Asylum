@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 7363916760401423903}
   m_Layer: 0
   m_Name: RoadOfPlayer (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 8131103540575470772}
   m_Layer: 0
   m_Name: WallLabyrinth
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 8104574758313640946}
   m_Layer: 0
   m_Name: RoadOfPlayer
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -986,7 +986,7 @@ GameObject:
   - component: {fileID: 3382568375504503598}
   m_Layer: 0
   m_Name: RoadOfPlayer (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 222372304995592465}
   m_Layer: 0
   m_Name: RoadOfPlayer (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1597,7 +1597,7 @@ GameObject:
   - component: {fileID: 8535066175056900039}
   m_Layer: 0
   m_Name: WallLabyrinth (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1705,7 +1705,7 @@ GameObject:
   - component: {fileID: 5616154639363080140}
   m_Layer: 0
   m_Name: RoadOfPlayer (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1813,7 +1813,7 @@ GameObject:
   - component: {fileID: 4074659718877944702}
   m_Layer: 0
   m_Name: WallLabyrinth (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2498,7 +2498,7 @@ GameObject:
   - component: {fileID: 2216563292679158155}
   m_Layer: 0
   m_Name: WallLabyrinth (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2742,7 +2742,7 @@ GameObject:
   - component: {fileID: 6128063436637758311}
   m_Layer: 0
   m_Name: RoadOfPlayer (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2880,6 +2880,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 7290221082823488850, guid: f1ade85a3eedb90409295d0484f2cb0f, type: 3}
+      propertyPath: doorAnimator
+      value: 
+      objectReference: {fileID: 7260616248825998355}
     - target: {fileID: 8545966778309078059, guid: f1ade85a3eedb90409295d0484f2cb0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0009999275
@@ -2923,10 +2927,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7185795598717168365, guid: f1ade85a3eedb90409295d0484f2cb0f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7260616248825998355}
   m_SourcePrefab: {fileID: 100100000, guid: f1ade85a3eedb90409295d0484f2cb0f, type: 3}
 --- !u!4 &5209120884232133190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8545966778309078059, guid: f1ade85a3eedb90409295d0484f2cb0f, type: 3}
   m_PrefabInstance: {fileID: 4527204329473406573}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6731420602433100928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7185795598717168365, guid: f1ade85a3eedb90409295d0484f2cb0f, type: 3}
+  m_PrefabInstance: {fileID: 4527204329473406573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7260616248825998355
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731420602433100928}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dbe4f7da3cfdacf43b7cf344e9b4ec2e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -14,7 +14,7 @@ public class ChangeControl : MonoBehaviour
     private void Start()
     {
         _control = _actionReference.action.bindings[_indexBinding].ToDisplayString();
-        if (_control.Length > 1)
+        if (_control[0] == '"')
             _control = _control[1..^1];
         _textControl.text = _control;
     }
@@ -27,7 +27,7 @@ public class ChangeControl : MonoBehaviour
         {
             string currentControl = changeControl._actionReference.action.bindings[changeControl._indexBinding].ToDisplayString();
 
-            if (currentControl.Length > 1)
+            if (currentControl[0] == '"')
                 currentControl = currentControl[1..^1];
 
             if (currentControl != control)

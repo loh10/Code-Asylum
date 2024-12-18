@@ -394,6 +394,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0d30a129-dd58-4750-ab8f-289ebb040341
     m_ActionName: 'Player/Escape[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 41c26041-9209-404e-bf6e-28c301baa093
+    m_ActionName: 'Player/Inventory[/Keyboard/tab]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1882,7 +1886,7 @@ AudioSource:
   m_GameObject: {fileID: 914082853}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6026597766418378159, guid: c38a1f93b957ae646a25a0fe313e8d4f, type: 2}
   m_audioClip: {fileID: 8300000, guid: ebbe63d2fa5e2fa4b984bdef84141e77, type: 3}
   m_Resource: {fileID: 8300000, guid: ebbe63d2fa5e2fa4b984bdef84141e77, type: 3}
   m_PlayOnAwake: 1

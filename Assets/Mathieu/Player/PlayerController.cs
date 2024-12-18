@@ -25,8 +25,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        char ff = '"';
-        print(ff);
         _rb = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         _saveReload = GetComponent<SaveReload>();

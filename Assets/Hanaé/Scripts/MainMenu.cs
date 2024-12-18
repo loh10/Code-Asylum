@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
         }
         else if (!Cursor.visible)
         {
+            DialogueMessageBoxUI.Instance.HideImmediately();
             Open(_pauseMenu);
         }
     }

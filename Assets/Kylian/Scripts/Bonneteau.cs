@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Bonneteau : MonoBehaviour, IPuzzle
 {
@@ -97,24 +98,14 @@ public class Bonneteau : MonoBehaviour, IPuzzle
                 }
             }
         }
-        else if (_canChoose)
-        {
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                GuessBox();
-            }
-        }
-        else
-        {
-            // Puzzle not started shuffling yet
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                if (PlayerClickedOnBox(out int clickedIndex))
-                {
-                    StartCoroutine(LowerBoxesAndStartShuffle());
-                }
-            }
-        }
+    }
+    public void Interact(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed || !gameObject.activeSelf) return;
+        if (!_isActive || IsSolved || _showingResult || _isShuffling) return;
+        
+        if (_canChoose) GuessBox();
+        else if (PlayerClickedOnBox(out int clickedIndex)) StartCoroutine(LowerBoxesAndStartShuffle());
     }
 
     public void Activate()

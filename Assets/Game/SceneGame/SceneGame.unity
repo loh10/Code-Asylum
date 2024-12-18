@@ -4805,13 +4805,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 747912474}
     - target: {fileID: 6482395080875675594, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482395080875675594, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482395080875675594, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1559971558}
     - target: {fileID: 6482395080875675594, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1963968895}
+    - target: {fileID: 6482395080875675594, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2585485953090721958}
+    - target: {fileID: 6482395080875675594, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482395080875675594, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482395080875675594, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Bonneteau, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482395080875675594, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7744653196689377028, guid: 134109eb72053e04e92ddd68585aa4c8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -11395,6 +11423,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4894162557395145415, guid: e593d52382da973469915bb23fecf9a0, type: 3}
   m_PrefabInstance: {fileID: 1963968893}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1963968895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 921762127458389076, guid: e593d52382da973469915bb23fecf9a0, type: 3}
+  m_PrefabInstance: {fileID: 1963968893}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63739f27a723044f9790027e664e424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1966347726 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5502203766858083505, guid: 61f1fa30cfe38334f9b2914b38fd7d45, type: 3}

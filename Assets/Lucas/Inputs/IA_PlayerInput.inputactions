@@ -183,7 +183,7 @@
                 {
                     "name": "",
                     "id": "d766b52f-d3f5-4aea-858f-98355ac268fd",
-                    "path": "<Keyboard>/#(H)",
+                    "path": "<Keyboard>/#(C)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -227,7 +227,7 @@
                 {
                     "name": "",
                     "id": "f9f99388-7306-4f19-818d-be0d50dbf7b0",
-                    "path": "<Keyboard>/#(Left Button)",
+                    "path": "<Keyboard>/#(Tab)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

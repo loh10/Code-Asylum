@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4410330242073424950}
   m_Layer: 8
-  m_Name: Symbol_Model
+  m_Name: INSPECT_Symbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

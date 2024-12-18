@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2249521755588075838}
   m_Layer: 8
-  m_Name: Model
+  m_Name: INSPECT_CrowBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

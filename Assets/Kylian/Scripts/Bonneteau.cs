@@ -99,7 +99,7 @@ public class Bonneteau : MonoBehaviour, IPuzzle
         }
         else if (_canChoose)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyUp(KeyCode.E))
             {
                 GuessBox();
             }

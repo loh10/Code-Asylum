@@ -15,6 +15,9 @@ public class SaveReload : MonoBehaviour
     
     public void IsDead()
     {
+        string message = DialogueManager.GetDialogue("Player", "Dead");
+        DialogueMessageBoxUI.Instance.ShowMessage(message, 3f);
+        
         ennemi.enabled = false;
         
         transform.position = respawnPoint;

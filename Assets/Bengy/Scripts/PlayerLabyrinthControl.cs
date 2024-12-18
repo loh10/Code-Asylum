@@ -73,7 +73,7 @@ public class PlayerLabyrinthControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             sphere.position = _initialPosition;
-            _r.velocity = Vector3.zero;
+            _r.linearVelocity = Vector3.zero;
             _isDragging = false;
             _canMove = false;
         }

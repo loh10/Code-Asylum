@@ -158,6 +158,8 @@ public class Bonneteau : MonoBehaviour, IPuzzle
         ballPos.x = boxPos.x-0.2f;
         ballPos.z = boxPos.z+0.2f;
         ball.transform.position = ballPos;
+        ball.transform.SetParent(boxTransforms[index]);
+        _ballIndex = index;
     }
 
     private bool PlayerClickedOnBox(out int boxIndex)
@@ -218,7 +220,7 @@ public class Bonneteau : MonoBehaviour, IPuzzle
 
     private void SetupNextShuffle()
     {
-        _currentActiveBoxIndex = _ballIndex; 
+        _currentActiveBoxIndex = Random.Range(0, boxTransforms.Length);
         _nextIndex = _currentActiveBoxIndex;
         while (_nextIndex == _currentActiveBoxIndex)
         {
@@ -246,8 +248,8 @@ public class Bonneteau : MonoBehaviour, IPuzzle
             boxTransforms[_nextIndex].position = finalPosB;
 
             // Update ball index
-            if (_ballIndex == _currentActiveBoxIndex) _ballIndex = _nextIndex;
-            else if (_ballIndex == _nextIndex) _ballIndex = _currentActiveBoxIndex;
+            // if (_ballIndex == _currentActiveBoxIndex) _ballIndex = _nextIndex;
+            // else if (_ballIndex == _nextIndex) _ballIndex = _currentActiveBoxIndex;
 
             _currentShuffleCount--;
             if (_currentShuffleCount > 0)
@@ -282,7 +284,7 @@ public class Bonneteau : MonoBehaviour, IPuzzle
         for (int i = 0; i < boxTransforms.Length; i++)
         {
             startPositions[i] = boxTransforms[i].position;
-            Vector3 endPos = initialPositions[i];
+            Vector3 endPos = startPositions[i];
             endPos.y += raiseOffset;
             endPositions[i] = endPos;
         }

@@ -1036,6 +1036,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7891166713618817244, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ad91ceebf3f0d44f8e936a272c5227a, type: 2}
     - target: {fileID: -6174767123817149069, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
       propertyPath: m_LocalScale.x
       value: 119.34988
@@ -1092,6 +1096,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3.133
       objectReference: {fileID: 0}
+    - target: {fileID: -2010681667344609467, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ad91ceebf3f0d44f8e936a272c5227a, type: 2}
+    - target: {fileID: -1512747568113094324, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ad91ceebf3f0d44f8e936a272c5227a, type: 2}
+    - target: {fileID: -338351986667201274, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ad91ceebf3f0d44f8e936a272c5227a, type: 2}
     - target: {fileID: 919132149155446097, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
       propertyPath: m_Name
       value: Cell walls
@@ -1128,6 +1144,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.63
       objectReference: {fileID: 0}
+    - target: {fileID: 2941972835598491382, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ad91ceebf3f0d44f8e936a272c5227a, type: 2}
+    - target: {fileID: 5500947720863507438, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ad91ceebf3f0d44f8e936a272c5227a, type: 2}
     - target: {fileID: 8729257900095640172, guid: ee1ac0b6c90a72d4fa1da279acdb1976, type: 3}
       propertyPath: m_LocalScale.x
       value: 119.4324
@@ -10301,10 +10325,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 5
+  MinDistance: 0.2
+  MaxDistance: 0.202
   Pan2D: 0
-  rolloffMode: 2
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

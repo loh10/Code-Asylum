@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8637971560233124502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,10 +131,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 285b6e9e8d5056143bb3988606a3166e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 761eb9ad8a41c3e4885fa0c5562e1df2, type: 2}
+      objectReference: {fileID: 2100000, guid: a4ebbba980701c04ca2fc615bf6e7a53, type: 2}
     - target: {fileID: 919132149155446097, guid: 285b6e9e8d5056143bb3988606a3166e, type: 3}
       propertyPath: m_Name
       value: Crowbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 285b6e9e8d5056143bb3988606a3166e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

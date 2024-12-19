@@ -19,7 +19,7 @@ public class GeneratorManual : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        closeButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(HideManual);
+        closeButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(CloseAndDisable);
     }
 
     public void Interact(GameObject interactor)
@@ -63,5 +63,13 @@ public class GeneratorManual : MonoBehaviour, IInteractable
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         PlayerController.freezeInput = false;
+    }
+
+    private void CloseAndDisable()
+    {
+        HideManual();
+
+        // Disable the entire game object after the UI is closed
+        gameObject.SetActive(false);
     }
 }

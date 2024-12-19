@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 /// <summary>
 /// When interacted with, displays a UI showing the symbol-to-value mapping.
-/// UI can be a simple panel listing all symbols and their values.
 /// </summary>
 public class SymbolSheet : MonoBehaviour, IInteractable
 {
@@ -20,7 +19,7 @@ public class SymbolSheet : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        closeButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(HideSheet);
+        closeButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(CloseAndDisable);
     }
 
     public void Interact(GameObject interactor)
@@ -47,7 +46,7 @@ public class SymbolSheet : MonoBehaviour, IInteractable
     {
         symbolSheetUI.SetActive(true);
         MiniGameManager.currentMiniGame = symbolSheetUI;
-        
+
         // Unlock cursor and freeze player input
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -57,10 +56,18 @@ public class SymbolSheet : MonoBehaviour, IInteractable
     private void HideSheet()
     {
         symbolSheetUI.SetActive(false);
-        
+
         // Lock cursor and unfreeze player input
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         PlayerController.freezeInput = false;
+    }
+
+    private void CloseAndDisable()
+    {
+        HideSheet();
+
+        // Disable the entire game object after the UI is closed
+        gameObject.SetActive(false);
     }
 }

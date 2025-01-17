@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -22,7 +24,12 @@ public class SettingsManager : MonoBehaviour
     
     [Header("Resolution")]
     [SerializeField] private TMP_Dropdown _dropdownResolution;
+
+
+    [SerializeField] private GameObject _pauseUI;
     
+    
+
     private Resolution[] _resolutions;
     
     private void Start()
@@ -49,6 +56,16 @@ public class SettingsManager : MonoBehaviour
         
         if (_dropdownResolution != null)
             GetResolution();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            this.gameObject.SetActive(false);
+            _pauseUI.SetActive(true);
+        }
+
     }
 
     public void SetFullScreen(bool isFullScreen)

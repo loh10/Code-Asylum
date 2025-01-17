@@ -11,6 +11,7 @@ public class CamPosition : MonoBehaviour
     private Transform _transform;
     
     [SerializeField] private float _sensitivity = 5f;
+    [SerializeField] private float gamepadFactor = 5f;
     [SerializeField] private Transform _orientation;
 
     private void Start()
@@ -28,7 +29,14 @@ public class CamPosition : MonoBehaviour
         if (PlayerPrefs.HasKey("Sensitivity"))
             _sensitivity = PlayerPrefs.GetFloat("Sensitivity");
         
-        _inputRotation = ctx.ReadValue<Vector2>();
+        if (ctx.action.activeControl.device.name == "Mouse")
+        {
+            _inputRotation = ctx.ReadValue<Vector2>();
+        }
+        else
+        {
+            _inputRotation = ctx.ReadValue<Vector2>()*(Vector2.one*gamepadFactor);
+        }
     }
     private void RotateCamera()
     {
